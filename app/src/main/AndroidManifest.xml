@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.MainActivity">
 
         </activity>
         <activity
-            android:name=".QuizControlActivity"
+            android:name=".Activity.QuizControlActivity"
             android:screenOrientation="landscape">
 
         </activity>
@@ -25,9 +25,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.QuizHistoryActivity"/>
+        <activity android:name=".Activity.QuizHistoryActivity" />
+
+        <activity android:name=".Activity.ExamResultDetailedPage"></activity>
+        <activity android:name=".Activity.ExamResultPage"></activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

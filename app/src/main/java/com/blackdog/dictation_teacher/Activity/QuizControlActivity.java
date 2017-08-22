@@ -1,4 +1,4 @@
-package com.blackdog.dictation_teacher;
+package com.blackdog.dictation_teacher.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Quiz;
 import com.blackdog.dictation_teacher.net.FcmRequester;
 
@@ -25,8 +26,6 @@ public class QuizControlActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         selectedQuiz = (Quiz)intent.getSerializableExtra("selectedQuiz");
-        Log.d("TEST", selectedQuiz.getName());
-        Log.d("test", selectedQuiz.getQuestions().get(1).getSentence());
 
         tvCurrentQuestionNumber = (TextView) findViewById(R.id.text_currentQuestionNumber);
         tvQuestion = (TextView) findViewById(R.id.text_question);

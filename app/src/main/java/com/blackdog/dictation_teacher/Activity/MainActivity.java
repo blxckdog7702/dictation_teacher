@@ -1,4 +1,4 @@
-package com.blackdog.dictation_teacher;
+package com.blackdog.dictation_teacher.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Quiz;
 import com.blackdog.dictation_teacher.net.ApiRequester;
 
