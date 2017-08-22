@@ -79,7 +79,7 @@ public class QuizResultListAdapter extends RecyclerView.Adapter<QuizResultListAd
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(context, "테스트용", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "테스트용", Toast.LENGTH_SHORT).show();
                 //화면 옮겨가기
 
                 Intent intent = new Intent(context, ExamResultPage.class);
