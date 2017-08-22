@@ -72,7 +72,7 @@ public class QuizResultListAdapter extends RecyclerView.Adapter<QuizResultListAd
 
 //        Log.d("quizHistory",quizHistory.getQuizNumber()+"");
         holder.tv_name.setText(quizResult.getStudentName());
-        holder.tv_score.setText("score : " + quizResult.getScore().toString());
+        holder.tv_score.setText(quizResult.getScore().toString());
         holder.tv_quiz_number.setText(correctString);
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
