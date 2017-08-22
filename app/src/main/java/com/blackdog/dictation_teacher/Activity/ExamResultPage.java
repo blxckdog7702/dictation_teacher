@@ -110,7 +110,7 @@ public class ExamResultPage extends AppCompatActivity {
             ivScore.setImageResource(R.drawable.score10);
         }
         else if(quizResult.getScore() == 80){
-            ivScore.setImageResource(R.drawable.score10);
+            ivScore.setImageResource(R.drawable.score80);
         }
         else if(quizResult.getScore() == 90){
             ivScore.setImageResource(R.drawable.score10);
