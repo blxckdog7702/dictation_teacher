@@ -5,16 +5,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Adapter.QuizHistoryListAdapter;
+import com.blackdog.dictation_teacher.Adapter.QuizResultListAdapter;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.QuizHistory;
 import com.blackdog.dictation_teacher.net.ApiRequester;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,14 +28,15 @@ public class QuizHistoryActivity extends AppCompatActivity {
 
     RecyclerView rv_list;
     EditText et_search;
-    int postID;
-    String postCategory;
     ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_list);
         super.onCreate(savedInstanceState);
+
+        String quizHistoryId = getIntent().getStringExtra("quizHistoryId");
+
 
         //로딩바
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -40,13 +47,12 @@ public class QuizHistoryActivity extends AppCompatActivity {
         rv_list.setLayoutManager(new LinearLayoutManager(this));
 
         try {
-            ApiRequester.getInstance().getTeachersQuizHistories("599b03151c6e6f0159a72815", new ApiRequester.UserCallback<List<QuizHistory>>() {
+            ApiRequester.getInstance().getQuizHistory(quizHistoryId, new ApiRequester.UserCallback<QuizHistory>() {
                 @Override
-                public void onSuccess(List<QuizHistory> quizHistoryList) {
-                    Log.d("quizHistory",quizHistoryList.size()+"");
-                    for(QuizHistory q : quizHistoryList)
-                        Log.d("quizHistory",q.getId());
-                    rv_list.setAdapter(new QuizHistoryListAdapter(QuizHistoryActivity.this, quizHistoryList));
+                public void onSuccess(QuizHistory result) {
+                    //화면 갱신하기
+                    Toast.makeText(getBaseContext(), result.getQuizNumber()+"", Toast.LENGTH_SHORT).show();
+                    rv_list.setAdapter(new QuizResultListAdapter(QuizHistoryActivity.this, result.getQuizResults()));
                     progressBar.setVisibility(View.GONE);
                 }
 

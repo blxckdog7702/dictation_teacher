@@ -5,12 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Adapter.QuizHistoryListAdapter;
 import com.blackdog.dictation_teacher.R;
@@ -18,7 +16,6 @@ import com.blackdog.dictation_teacher.models.QuizHistory;
 import com.blackdog.dictation_teacher.net.ApiRequester;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -56,7 +53,7 @@ public class QuizHistoryListActivity extends AppCompatActivity {
 
                 @Override
                 public void onFail() {
-
+                    Toast.makeText(getBaseContext(),"실패",Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (IOException e) {

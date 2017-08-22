@@ -1,9 +1,7 @@
 package com.blackdog.dictation_teacher.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,28 +9,26 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.blackdog.dictation_teacher.Activity.QuizHistoryActivity;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.QuizHistory;
+import com.blackdog.dictation_teacher.models.QuizResult;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 
 /**
  * Created by JBStat on 2016-11-29.
  */
-public class QuizHistoryListAdapter extends RecyclerView.Adapter<QuizHistoryListAdapter.ViewHolder>  {
+public class QuizResultListAdapter extends RecyclerView.Adapter<QuizResultListAdapter.ViewHolder>  {
 
-    List<QuizHistory> quizHistories;
+    List<QuizResult> quizResults;
     Context context;
 
 
-    public QuizHistoryListAdapter(Context _context,List<QuizHistory> _quizHistories)
+    public QuizResultListAdapter(Context _context, List<QuizResult> _quizResults)
     {
         context = _context;
-        quizHistories = _quizHistories;
+        quizResults = _quizResults;
     }
 
     public class ViewHolder  extends RecyclerView.ViewHolder {
@@ -64,20 +60,17 @@ public class QuizHistoryListAdapter extends RecyclerView.Adapter<QuizHistoryList
     @Override
     public void onBindViewHolder(ViewHolder holder,int position) {
 
-        final QuizHistory quizHistory = quizHistories.get(position);
+        final QuizResult quizResult = quizResults.get(position);
 //        Log.d("quizHistory",quizHistory.getQuizNumber()+"");
-        holder.tv_number.setText( quizHistory.getQuizNumber().toString());
-        holder.tv_period.setText( quizHistory.getDate());
-        holder.tv_writer.setText( quizHistory.getId());
+        holder.tv_number.setText( quizResult.getQuizNumber().toString());
+        holder.tv_period.setText( quizResult.getScore().toString());
+        holder.tv_writer.setText( quizResult.getStudentName());
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Toast.makeText(context,"테스트용",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, QuizHistoryActivity.class);
-                intent.putExtra("quizHistoryId",quizHistory.getId());
-                context.startActivity(intent);
                 //화면 옮겨가기
 //                AlertDialog.Builder alert_confirm = new AlertDialog.Builder(context);
 //                alert_confirm.setMessage(title).setCancelable(false)
@@ -114,6 +107,6 @@ public class QuizHistoryListAdapter extends RecyclerView.Adapter<QuizHistoryList
 
     @Override
     public int getItemCount() {
-        return quizHistories.size();
+        return quizResults.size();
     }
 }
