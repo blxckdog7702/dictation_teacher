@@ -41,7 +41,6 @@ public class QuizHistoryListAdapter extends RecyclerView.Adapter<QuizHistoryList
 
         TextView tv_number;
         TextView tv_period;
-        TextView tv_writer;
 
         public ViewHolder(View view) {
             super(view);
@@ -50,7 +49,7 @@ public class QuizHistoryListAdapter extends RecyclerView.Adapter<QuizHistoryList
 
             tv_number = (TextView) view.findViewById(R.id.tv_number);
             tv_period = (TextView) view.findViewById(R.id.tv_period);
-            tv_writer = (TextView) view.findViewById(R.id.tv_writer);
+
         }
     }
 
@@ -66,15 +65,14 @@ public class QuizHistoryListAdapter extends RecyclerView.Adapter<QuizHistoryList
 
         final QuizHistory quizHistory = quizHistories.get(position);
 //        Log.d("quizHistory",quizHistory.getQuizNumber()+"");
-        holder.tv_number.setText( quizHistory.getQuizNumber().toString());
+        holder.tv_number.setText( "quiz number : " + quizHistory.getQuizNumber().toString());
         holder.tv_period.setText( quizHistory.getDate());
-        holder.tv_writer.setText( quizHistory.getId());
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(context,"테스트용",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context,"테스트용",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, QuizHistoryActivity.class);
                 intent.putExtra("quizHistoryId",quizHistory.getId());
                 context.startActivity(intent);

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.R;
+import com.blackdog.dictation_teacher.models.QuestionResult;
 import com.blackdog.dictation_teacher.models.QuizHistory;
 import com.blackdog.dictation_teacher.models.QuizResult;
 
@@ -35,24 +36,24 @@ public class QuizResultListAdapter extends RecyclerView.Adapter<QuizResultListAd
 
         LinearLayout layout;
 
-        TextView tv_number;
-        TextView tv_period;
-        TextView tv_writer;
+        TextView tv_name;
+        TextView tv_score;
+        TextView tv_quiz_number;
 
         public ViewHolder(View view) {
             super(view);
 
-            layout = (LinearLayout) view.findViewById(R.id.layout_item_quiz_history);
+            layout = (LinearLayout) view.findViewById(R.id.layout_item_quiz_result);
 
-            tv_number = (TextView) view.findViewById(R.id.tv_number);
-            tv_period = (TextView) view.findViewById(R.id.tv_period);
-            tv_writer = (TextView) view.findViewById(R.id.tv_writer);
+            tv_name = (TextView) view.findViewById(R.id.tv_name);
+            tv_score = (TextView) view.findViewById(R.id.tv_score);
+            tv_quiz_number = (TextView) view.findViewById(R.id.tv_quiz_number);
         }
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_quiz_history,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_quiz_result,parent,false);
 
         return new ViewHolder(view);
     }
@@ -61,10 +62,16 @@ public class QuizResultListAdapter extends RecyclerView.Adapter<QuizResultListAd
     public void onBindViewHolder(ViewHolder holder,int position) {
 
         final QuizResult quizResult = quizResults.get(position);
+        String correctString = "";
+
+        for( QuestionResult qr : quizResult.getQuestionResult())
+            if (qr.getCorrect()) correctString += "O|";
+            else correctString += "X|";
+
 //        Log.d("quizHistory",quizHistory.getQuizNumber()+"");
-        holder.tv_number.setText( quizResult.getQuizNumber().toString());
-        holder.tv_period.setText( quizResult.getScore().toString());
-        holder.tv_writer.setText( quizResult.getStudentName());
+        holder.tv_name.setText( quizResult.getStudentName());
+        holder.tv_score.setText( "score : " + quizResult.getScore().toString());
+        holder.tv_quiz_number.setText(  correctString);
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,34 +79,6 @@ public class QuizResultListAdapter extends RecyclerView.Adapter<QuizResultListAd
 
                 Toast.makeText(context,"테스트용",Toast.LENGTH_SHORT).show();
                 //화면 옮겨가기
-//                AlertDialog.Builder alert_confirm = new AlertDialog.Builder(context);
-//                alert_confirm.setMessage(title).setCancelable(false)
-//                        .setPositiveButton("내용보기", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//
-//                                //enock page 6 : 새로운 화면 만들어 띄어주기
-//                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse( post.getLink() ));
-//                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                context.startActivity(intent);
-//                            }
-//                        })
-//                        .setNeutralButton("즐겨찾기 등록", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                                ArrayList<Post> posts = postListDAO.loadPostList("like");
-//                                posts.add(post);
-//                                postListDAO.savePostList("like",posts);
-//
-//
-//                                Toast.makeText(context,"즐겨찾기에 추가되었습니다",Toast.LENGTH_SHORT).show();
-//
-//                            }
-//                        })
-//                        .setCancelable(true);
-//                AlertDialog alert = alert_confirm.create();
-//                alert.show();
 
             }
         });
