@@ -4,29 +4,31 @@ package com.blackdog.dictation_teacher.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Question {
+import java.io.Serializable;
 
-    @SerializedName("question_number")
-    @Expose
-    private Integer questionNumber;
-    @SerializedName("answer")
-    @Expose
-    private String answer;
+public class Question implements Serializable{
 
-    public Integer getQuestionNumber() {
-        return questionNumber;
-    }
+	@SerializedName("number")
+	@Expose
+	private Integer number;
+	@SerializedName("sentence")
+	@Expose
+	private String sentence;
 
-    public void setQuestionNumber(Integer questionNumber) {
-        this.questionNumber = questionNumber;
-    }
+	public Integer getNumber() {
+		return number;
+	}
 
-    public String getAnswer() {
-        return answer;
-    }
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
+	public String getSentence() {
+		return sentence;
+	}
+
+	public void setSentence(String sentence) {
+		this.sentence = sentence;
+	}
 
 }
