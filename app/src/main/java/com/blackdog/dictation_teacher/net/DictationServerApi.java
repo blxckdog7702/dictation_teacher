@@ -42,7 +42,7 @@ public interface DictationServerApi {
     Call<QuizHistory> endQuiz(@Body JsonObject endedQuiz);
 
     public static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://dictation-server-minung.c9users.io")
+            .baseUrl("http://dictation.run.goorm.io")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }

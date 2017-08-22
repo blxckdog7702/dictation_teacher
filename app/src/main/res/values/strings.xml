@@ -2,4 +2,5 @@
     <string name="app_name">우리반받아쓰기 (교사용)</string>
     <string name="dictation_start">→ 받아쓰기 시작</string>
     <string name="dictation_end">→ 받아쓰기 종료</string>
+    <string name="teacher_id">599b03151c6e6f0159a72815</string>
 </resources>

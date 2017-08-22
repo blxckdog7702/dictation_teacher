@@ -4,4 +4,26 @@
     <color name="colorPrimaryDark">#000000</color>
     <!--<color name="colorPrimaryDark">#303F9F</color>-->
     <color name="colorAccent">#99CC00</color>
+
+
+
+    <color name="colorTitle">#2b2b2b</color>
+    <color name="colorTitle3">#3d3331</color>
+
+    <color name="colorNoti">#ffffff</color>
+    <color name="colorYello">#ddd5a4</color>
+    <color name="colorBackground">#e2e5ee</color>
+    <color name="colorGreen">#61a598</color>
+    <color name="colorGray">#d1cbcd</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="colorTitle2">#bcad90</color>
+    <color name="colorGreen2">#91966e</color>
+    <color name="colorBlue2">#9fa9a0</color>
+    <color name="colorWhite2">#e4e4e6</color>
+    <color name="colorYello2">#ddd8d5</color>
+
+
+    <color name="main_background">#353535</color>
 </resources>
