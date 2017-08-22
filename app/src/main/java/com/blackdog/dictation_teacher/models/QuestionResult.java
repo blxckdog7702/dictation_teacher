@@ -1,6 +1,8 @@
 
 package com.blackdog.dictation_teacher.models;
 
+import java.util.ArrayList;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -11,10 +13,10 @@ public class QuestionResult {
     private Integer questionNumber;
     @SerializedName("correct")
     @Expose
-    private String correct;
-    @SerializedName("wrong_part")
+    private Boolean correct;
+    @SerializedName("rectify")
     @Expose
-    private String wrongPart;
+    private ArrayList<String[]> rectify;
     @SerializedName("submitted_answer")
     @Expose
     private String submittedAnswer;
@@ -27,20 +29,20 @@ public class QuestionResult {
         this.questionNumber = questionNumber;
     }
 
-    public String getCorrect() {
+    public Boolean getCorrect() {
         return correct;
     }
 
-    public void setCorrect(String correct) {
+    public void setCorrect(Boolean correct) {
         this.correct = correct;
     }
 
-    public String getWrongPart() {
-        return wrongPart;
+    public ArrayList<String[]> getRectify() {
+        return rectify;
     }
 
-    public void setWrongPart(String wrongPart) {
-        this.wrongPart = wrongPart;
+    public void setRectify(ArrayList<String[]> rectify) {
+        this.rectify = rectify;
     }
 
     public String getSubmittedAnswer() {

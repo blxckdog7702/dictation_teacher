@@ -1,11 +1,14 @@
 package com.blackdog.dictation_teacher;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.blackdog.dictation_teacher.models.Quiz;
 import com.blackdog.dictation_teacher.net.FcmRequester;
 
 public class QuizControlActivity extends AppCompatActivity {
@@ -13,25 +16,34 @@ public class QuizControlActivity extends AppCompatActivity {
     private TextView tvCurrentQuestionNumber;
     private Button btnDictationEnd;
     private int currentQuestionNumber = 1;
+    private Quiz selectedQuiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_control);
 
+        Intent intent = getIntent();
+        selectedQuiz = (Quiz)intent.getSerializableExtra("selectedQuiz");
+        Log.d("TEST", selectedQuiz.getName());
+        Log.d("test", selectedQuiz.getQuestions().get(1).getSentence());
+
         tvCurrentQuestionNumber = (TextView) findViewById(R.id.text_currentQuestionNumber);
         tvQuestion = (TextView) findViewById(R.id.text_question);
         btnDictationEnd = (Button) findViewById(R.id.button_dictationEnd);
 
+        showCurrentQuestion();
+    }
+
+    private void showCurrentQuestion() {
         //현재 문제 번호 보여주기
         tvCurrentQuestionNumber.setText(String.valueOf(currentQuestionNumber));
+        //현재 문제 내용 보여주기
+        tvQuestion.setText(selectedQuiz.getQuestions().get(currentQuestionNumber - 1).getSentence());
         //강제 글자 단위 줄 바꿈
         tvQuestion.setText(tvQuestion.getText().toString().replace(" ", "\u00A0"));
-
-//        Intent intent = getIntent();
-//        String quizNumber = intent.getExtras().getString("quizNumber");
-//        Toast.makeText(getApplicationContext(), quizNumber, Toast.LENGTH_LONG).show();
     }
+
 
     public void previousClick(View view) {
         //끝내기 버튼 숨김
@@ -42,7 +54,7 @@ public class QuizControlActivity extends AppCompatActivity {
         if(currentQuestionNumber != 1) {
             FcmRequester.getInstance().requestMoveToPrevious();
             currentQuestionNumber--;
-            tvCurrentQuestionNumber.setText(String.valueOf(currentQuestionNumber));
+            showCurrentQuestion();
         }
     }
 
@@ -55,7 +67,7 @@ public class QuizControlActivity extends AppCompatActivity {
         if (currentQuestionNumber != 10) {
             FcmRequester.getInstance().requestMoveToNext();
             currentQuestionNumber++;
-            tvCurrentQuestionNumber.setText(String.valueOf(currentQuestionNumber));
+            showCurrentQuestion();
         }
     }
 

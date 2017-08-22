@@ -53,7 +53,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(getApplicationContext(), QuizControlActivity.class);
-        intent.putExtra("quizNumber", listView.getItemAtPosition(listView.getCheckedItemPosition()).toString());
+
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("selectedQuiz", selectedItem);
+        intent.putExtra("selectedQuiz", selectedItem);
         startActivity(intent);
     }
 
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                             button.setClickable(true);
                             int pos = listView.getCheckedItemPosition();
                             selectedItem = (Quiz) listView.getItemAtPosition(pos);
+                            Log.d("TEST", selectedItem.getName());
                             Toast.makeText(getApplicationContext(), "Value selected: " + selectedItem.getName(), Toast.LENGTH_LONG).show();
                         }
                     }

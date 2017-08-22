@@ -1,12 +1,12 @@
 
 package com.blackdog.dictation_teacher.models;
 
+import java.io.Serializable;
 import java.util.List;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Quiz {
+public class Quiz implements Serializable{
 
     @SerializedName("number")
     @Expose
