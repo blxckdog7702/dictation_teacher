@@ -6,6 +6,7 @@ import com.blackdog.dictation_teacher.models.EndedQuiz;
 import com.blackdog.dictation_teacher.models.Quiz;
 import com.blackdog.dictation_teacher.models.QuizHistory;
 import com.blackdog.dictation_teacher.models.QuizResult;
+import com.blackdog.dictation_teacher.models.Teacher;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -45,14 +46,14 @@ public class ApiRequester {
 
     public interface UserCallback<T> {
         void onSuccess(T result);
-
         void onFail();
     }
 
-    private class CustomCallback<T> implements Callback<T> {
+    private class ObjectCallback<T> implements Callback<T>{
+
         UserCallback callback;
 
-        public CustomCallback(UserCallback<T> _callback) {
+        public ObjectCallback(UserCallback<T> _callback){
             callback = _callback;
         }
 
@@ -63,12 +64,17 @@ public class ApiRequester {
                 // tasks available
                 callback.onSuccess(response.body());
             } else {
-                // error response, no access to resource?
-                System.out.println("서버 실패");
-                callback.onFail();
+                int status = response.code();
+                System.out.println(response.message());
+                if( status == 404 ){
+                    callback.onSuccess(null);
+                }
+                else {
+                    System.out.println("서버 실패");
+                    callback.onFail();
+                }
             }
         }
-
         @Override
         public void onFailure(Call<T> call, Throwable t) {
             // TODO Auto-generated method stub
@@ -78,22 +84,76 @@ public class ApiRequester {
         }
     }
 
+    private class ResultCallback implements Callback<okhttp3.ResponseBody>{
+
+        UserCallback callback;
+
+        public ResultCallback(UserCallback _callback){
+            callback = _callback;
+        }
+
+        @Override
+        public void onResponse(Call<okhttp3.ResponseBody> call, Response<okhttp3.ResponseBody> response) {
+            // TODO Auto-generated method stub
+            if (response.isSuccessful()) {
+                // tasks available
+                JsonObject object;
+                try {
+                    object = new JsonParser().parse(response.body().string()).getAsJsonObject();
+                    callback.onSuccess(object.get("result").getAsBoolean());
+                } catch (JsonSyntaxException | IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            } else {
+                // error response, no access to resource?
+                System.out.println("서버 실패");
+                callback.onFail();
+            }
+        }
+        @Override
+        public void onFailure(Call<okhttp3.ResponseBody> call, Throwable t) {
+            // TODO Auto-generated method stub
+            System.out.println(t.getMessage());
+            callback.onFail();
+        }
+    }
+
     //quiz list를 리턴한다
     public void getTeachersQuizzes(UserCallback<List<Quiz>> userCallback) throws IOException {
         Call<List<Quiz>> call = dictationServerApi.getTeachersQuizzes();
-        call.enqueue(new CustomCallback<List<Quiz>>(userCallback));
+        call.enqueue(new ObjectCallback<List<Quiz>>(userCallback));
     }
 
     //quiz history를 리턴한다
     public void getQuizHistory(String id, UserCallback<QuizHistory> userCallback) throws IOException {
         Call<QuizHistory> call = dictationServerApi.getQuizHistory(id);
-        call.enqueue(new CustomCallback<QuizHistory>(userCallback));
+        call.enqueue(new ObjectCallback<QuizHistory>(userCallback));
     }
 
     //선생님의 quiz history를 리턴한다
     public void getTeachersQuizHistories(String id, UserCallback<List<QuizHistory>> userCallback) throws IOException {
         Call<List<QuizHistory>> call = dictationServerApi.getTeachersQuizHistories(id);
-        call.enqueue(new CustomCallback<List<QuizHistory>>(userCallback));
+        call.enqueue(new ObjectCallback<List<QuizHistory>>(userCallback));
+    }
+
+    //login_id로 선생님의 가입여부를 판단한다
+    public void checkDuplicateTeacher(String loginId, UserCallback<Boolean> userCallback){
+        Call<okhttp3.ResponseBody> call = dictationServerApi.checkDuplicateTeacher(loginId);
+        call.enqueue(new ResultCallback(userCallback));
+    }
+
+    //선생님 회원 가입
+    public void signUpTeacher(Teacher teacher, UserCallback<Teacher> userCallback){
+        Call<Teacher> call = dictationServerApi.signUpTeacher(parser.parse(gson.toJson(teacher)).getAsJsonObject());
+        call.enqueue(new ObjectCallback<Teacher>(userCallback));
+    }
+
+    //선생님 로그인
+    public void loginTeacher(String loginID, String password, UserCallback<Teacher> userCallback){
+        Call<Teacher> call = dictationServerApi.login(loginID, password, "teacher");
+        call.enqueue(new ObjectCallback<Teacher>(userCallback));
     }
 
     //시험을 시작하고 quiz history id를 리턴한다
@@ -142,6 +202,6 @@ public class ApiRequester {
         endedQuiz.setStudentId(studentId);
 
         Call<QuizHistory> call = dictationServerApi.endQuiz(parser.parse(gson.toJson(endedQuiz)).getAsJsonObject());
-        call.enqueue(new CustomCallback<QuizHistory>(userCallback));
+        call.enqueue(new ObjectCallback<QuizHistory>(userCallback));
     }
 }

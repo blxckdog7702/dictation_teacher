@@ -2,6 +2,7 @@ package com.blackdog.dictation_teacher.net;
 
 import com.blackdog.dictation_teacher.models.Quiz;
 import com.blackdog.dictation_teacher.models.QuizHistory;
+import com.blackdog.dictation_teacher.models.Teacher;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by user on 2017-08-14.
@@ -41,8 +43,25 @@ public interface DictationServerApi {
     @POST("/quiz/end")
     Call<QuizHistory> endQuiz(@Body JsonObject endedQuiz);
 
+    //선생님 중복 검사
+    @GET("/teachers/check_duplicate")
+    Call<ResponseBody> checkDuplicateTeacher( @Query("login_id") String loginId);
+
+    //선생님 가입
+    @POST("/teachers")
+    Call<Teacher> signUpTeacher(@Body JsonObject teacher);
+
+    //선생님 로그인
+    @FormUrlEncoded
+    @POST("/auth/login")
+    Call<Teacher> login(@Field("login_id") String loginID, @Field("password") String password, @Field("type") String type);
+
     public static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://dictation.run.goorm.io")
+//            .baseUrl("http://dictation.run.goorm.io")
+            //테스트용 서버1
+            .baseUrl("https://dev-dictation-server.herokuapp.com")
+            //테스트용 서버2
+//            .baseUrl("https://dictation-server-minung.c9users.io")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }

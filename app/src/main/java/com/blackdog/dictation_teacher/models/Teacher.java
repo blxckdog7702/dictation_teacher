@@ -5,14 +5,27 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Teacher {
 
+    @SerializedName("__v")
+    @Expose
+    private Integer v;
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("email")
+    @SerializedName("class")
     @Expose
-    private String email;
+    private String _class;
+    @SerializedName("grade")
+    @Expose
+    private String grade;
+    @SerializedName("login_id")
+    @Expose
+    private String loginId;
     @SerializedName("name")
     @Expose
     private String name;
@@ -29,6 +42,14 @@ public class Teacher {
     @Expose
     private List<String> students = null;
 
+    public Integer getV() {
+        return v;
+    }
+
+    public void setV(Integer v) {
+        this.v = v;
+    }
+
     public String getId() {
         return id;
     }
@@ -37,12 +58,28 @@ public class Teacher {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getClass_() {
+        return _class;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setClass_(String _class) {
+        this._class = _class;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public String getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
     }
 
     public String getName() {
