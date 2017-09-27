@@ -26,6 +26,22 @@ import retrofit2.http.Query;
 
 public interface DictationServerApi {
 
+		//매칭 신청하기
+		@FormUrlEncoded
+		@POST("/matching/apply")
+		Call<ResponseBody> applyMatching(@Field("teacher_login_id") String teacherLoginID, @Field("student_id") String studentID);
+		//매칭 수락하기
+		@FormUrlEncoded
+		@POST("/matching/accept")
+		Call<ResponseBody> acceptMatching(@Field("teacher_login_id") String teacherLoginID, @Field("student_id") String studentID);
+		//매칭 삭제하기
+		@FormUrlEncoded
+		@POST("/matching/cancel")
+		Call<ResponseBody> cancelMatching(@Field("teacher_login_id") String teacherLoginID, @Field("student_id") String studentID);
+		//매칭 목록보기
+		@GET("/matching/list/{teacher_login_id}")
+		Call<List<Student>> getTeachersApplicants(@Path("teacher_login_id") String teacherLoginID);
+
     //선생님 중복 검사
 	  @GET("/teachers/check_duplicate")
 	  Call<ResponseBody> checkDuplicateTeacher( @Query("login_id") String loginId);
