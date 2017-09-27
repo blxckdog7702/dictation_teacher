@@ -1,6 +1,8 @@
 package com.blackdog.dictation_teacher.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.blackdog.dictation_teacher.LoginSharedPref;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Quiz;
 import com.blackdog.dictation_teacher.net.ApiRequester;
@@ -43,6 +46,16 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    //로그아웃 시, SharedPref에 있는 로그인 정보 날림.
+    public void logoutClick(View view) {
+        LoginSharedPref pref = new LoginSharedPref();
+        pref.deleteLoginInfo(getApplicationContext());
+
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        this.startActivity(intent);
+        this.finish();
     }
 
     public void startQuizClick(View view) {

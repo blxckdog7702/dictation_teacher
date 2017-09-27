@@ -62,6 +62,8 @@ public interface DictationServerApi {
             .baseUrl("https://dev-dictation-server.herokuapp.com")
             //테스트용 서버2
 //            .baseUrl("https://dictation-server-minung.c9users.io")
+            //테스트용 서버3
+//            .baseUrl("http://dictation.run.goorm.io")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }
