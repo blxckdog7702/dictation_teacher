@@ -17,7 +17,7 @@ public class QuestionResult implements Serializable{
     private Boolean correct;
     @SerializedName("rectify")
     @Expose
-    private ArrayList<String[]> rectify;
+    private PnuNlpSpeller rectify;
     @SerializedName("submitted_answer")
     @Expose
     private String submittedAnswer;
