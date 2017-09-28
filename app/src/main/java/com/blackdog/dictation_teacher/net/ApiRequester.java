@@ -120,6 +120,17 @@ public class ApiRequester {
         }
     }
 
+    //학교 목록보기
+  	public void getSchools(UserCallback<List<School>> userCallback){
+  		Call<List<School>> call = dictationServerApi.getSchools();
+  		call.enqueue(new ObjectCallback<>(userCallback));
+  	}
+  	//학교 검색하기
+  	public void searchSchools(String region1, String region2, UserCallback<List<School>> userCallback){
+  		Call<List<School>> call = dictationServerApi.searchSchool(region1, region2);
+  		call.enqueue(new ObjectCallback<>(userCallback));
+  	}
+
     //quiz list를 리턴한다
     public void getTeachersQuizzes(UserCallback<List<Quiz>> userCallback) throws IOException {
         Call<List<Quiz>> call = dictationServerApi.getTeachersQuizzes();

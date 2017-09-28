@@ -25,7 +25,15 @@ import retrofit2.http.Query;
  */
 
 public interface DictationServerApi {
-    //학생 수정
+
+    //학교 목록보기
+    @GET("/schools")
+    Call<List<School>> getSchools();
+    //학교 검색하기
+    @GET("/schools/search")
+    Call<List<School>> searchSchool(@Query("region1") String region1, @Query("region2") String region2);
+
+    //퀴즈 목록
     @GET("/quizzes")
     Call<List<Quiz>> getTeachersQuizzes();
 
