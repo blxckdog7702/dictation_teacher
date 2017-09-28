@@ -213,22 +213,22 @@ public class ApiRequester {
     }
 
   //매칭 신청하기
-	public void applyMatching(@Field("teacher_login_id") String teacherLoginID, @Field("student_id") String studentID, UserCallback<Boolean> userCallback){
+	public void applyMatching(String teacherLoginID, String studentID, UserCallback<Boolean> userCallback){
 		Call<okhttp3.ResponseBody> call = dictationServerApi.applyMatching(teacherLoginID, studentID);
 		call.enqueue(new ResultCallback(userCallback));
 	}
 	//매칭 수락하기
-	public void acceptMatching(@Field("teacher_login_id") String teacherLoginID, @Field("student_id") String studentID, UserCallback<Boolean> userCallback){
+	public void acceptMatching(String teacherLoginID, String studentID, UserCallback<Boolean> userCallback){
 		Call<okhttp3.ResponseBody> call = dictationServerApi.acceptMatching(teacherLoginID, studentID);
 		call.enqueue(new ResultCallback(userCallback));
 	}
 	//매칭 삭제하기
-	public void cancelMatching(@Field("teacher_login_id") String teacherLoginID, @Field("student_id") String studentID, UserCallback<Boolean> userCallback){
+	public void cancelMatching(String teacherLoginID, String studentID, UserCallback<Boolean> userCallback){
 		Call<okhttp3.ResponseBody> call = dictationServerApi.cancelMatching(teacherLoginID, studentID);
 		call.enqueue(new ResultCallback(userCallback));
 	}
 	//매칭 목록보기
-	public void getTeachersApplicants(@Path("teacher_login_id") String teacherLoginID, UserCallback<List<Student>> userCallback){
+	public void getTeachersApplicants(String teacherLoginID, UserCallback<List<Student>> userCallback){
 		Call<List<Student>> call = dictationServerApi.getTeachersApplicants(teacherLoginID);
 		call.enqueue(new ObjectCallback<>(userCallback));
 	}
