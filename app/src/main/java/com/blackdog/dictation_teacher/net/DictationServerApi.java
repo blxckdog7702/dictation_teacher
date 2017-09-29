@@ -2,6 +2,7 @@ package com.blackdog.dictation_teacher.net;
 
 import com.blackdog.dictation_teacher.models.Quiz;
 import com.blackdog.dictation_teacher.models.QuizHistory;
+import com.blackdog.dictation_teacher.models.School;
 import com.blackdog.dictation_teacher.models.Student;
 import com.blackdog.dictation_teacher.models.Teacher;
 import com.google.gson.JsonObject;
@@ -27,6 +28,12 @@ import retrofit2.http.Query;
 
 public interface DictationServerApi {
 
+    //학교 목록보기
+    @GET("/schools")
+    Call<List<School>> getSchools();
+    //학교 검색하기
+    @GET("/schools/search")
+    Call<List<School>> searchSchool(@Query("region1") String region1, @Query("region2") String region2);
 		//매칭 신청하기
 		@FormUrlEncoded
 		@POST("/matching/apply")
@@ -42,7 +49,6 @@ public interface DictationServerApi {
 		//매칭 목록보기
 		@GET("/matching/list/{teacher_login_id}")
 		Call<List<Student>> getTeachersApplicants(@Path("teacher_login_id") String teacherLoginID);
-
     //선생님 중복 검사
 	  @GET("/teachers/check_duplicate")
 	  Call<ResponseBody> checkDuplicateTeacher( @Query("login_id") String loginId);
@@ -50,6 +56,7 @@ public interface DictationServerApi {
 	  @POST("/teachers")
 	  Call<Teacher> signUpTeacher(@Body JsonObject teacher);
     //퀴즈 목록 가져오기
+
     @GET("/quizzes")
     Call<List<Quiz>> getTeachersQuizzes();
 
