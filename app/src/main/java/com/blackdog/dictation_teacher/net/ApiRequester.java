@@ -7,6 +7,7 @@ import com.blackdog.dictation_teacher.models.Quiz;
 import com.blackdog.dictation_teacher.models.QuizHistory;
 import com.blackdog.dictation_teacher.models.QuizResult;
 import com.blackdog.dictation_teacher.models.School;
+import com.blackdog.dictation_teacher.models.Student;
 import com.blackdog.dictation_teacher.models.Teacher;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -85,41 +86,48 @@ public class ApiRequester {
         }
     }
 
-    private class ResultCallback implements Callback<okhttp3.ResponseBody>{
+  private class ResultCallback implements Callback<okhttp3.ResponseBody>{
 
-        UserCallback callback;
+  		UserCallback callback;
 
-        public ResultCallback(UserCallback _callback){
-            callback = _callback;
-        }
+  		public ResultCallback(UserCallback _callback){
+  			callback = _callback;
+  		}
 
-        @Override
-        public void onResponse(Call<okhttp3.ResponseBody> call, Response<okhttp3.ResponseBody> response) {
-            // TODO Auto-generated method stub
-            if (response.isSuccessful()) {
-                // tasks available
-                JsonObject object;
-                try {
-                    object = new JsonParser().parse(response.body().string()).getAsJsonObject();
-                    callback.onSuccess(object.get("result").getAsBoolean());
-                } catch (JsonSyntaxException | IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+  		@Override
+  		public void onResponse(Call<okhttp3.ResponseBody> call, Response<okhttp3.ResponseBody> response) {
+  			// TODO Auto-generated method stub
+  			if (response.isSuccessful()) {
+  				// tasks available
+  				JsonObject object;
+  				try {
+  					object = new JsonParser().parse(response.body().string()).getAsJsonObject();
+  					callback.onSuccess(object.get("result").getAsBoolean());
+  				} catch (JsonSyntaxException | IOException e) {
+  					// TODO Auto-generated catch block
+  					e.printStackTrace();
+  				}
 
-            } else {
-                // error response, no access to resource?
-                System.out.println("서버 실패");
-                callback.onFail();
-            }
-        }
-        @Override
-        public void onFailure(Call<okhttp3.ResponseBody> call, Throwable t) {
-            // TODO Auto-generated method stub
-            System.out.println(t.getMessage());
-            callback.onFail();
-        }
-    }
+  			} else {
+  				// error response, no access to resource?
+  				int status = response.code();
+  				System.out.println(response.message());
+  				if( status == 404 ){
+  					callback.onSuccess(false);
+  				}
+  				else {
+  					System.out.println("서버 실패");
+  					callback.onFail();
+  				}
+  			}
+  		}
+  		@Override
+  		public void onFailure(Call<okhttp3.ResponseBody> call, Throwable t) {
+  			// TODO Auto-generated method stub
+  			System.out.println(t.getMessage());
+  			callback.onFail();
+  		}
+  	}
 
     //학교 목록보기
   	public void getSchools(UserCallback<List<School>> userCallback){
@@ -216,4 +224,25 @@ public class ApiRequester {
         Call<QuizHistory> call = dictationServerApi.endQuiz(parser.parse(gson.toJson(endedQuiz)).getAsJsonObject());
         call.enqueue(new ObjectCallback<QuizHistory>(userCallback));
     }
+
+  //매칭 신청하기
+	public void applyMatching(String teacherLoginID, String studentID, UserCallback<Boolean> userCallback){
+		Call<okhttp3.ResponseBody> call = dictationServerApi.applyMatching(teacherLoginID, studentID);
+		call.enqueue(new ResultCallback(userCallback));
+	}
+	//매칭 수락하기
+	public void acceptMatching(String teacherLoginID, String studentID, UserCallback<Boolean> userCallback){
+		Call<okhttp3.ResponseBody> call = dictationServerApi.acceptMatching(teacherLoginID, studentID);
+		call.enqueue(new ResultCallback(userCallback));
+	}
+	//매칭 삭제하기
+	public void cancelMatching(String teacherLoginID, String studentID, UserCallback<Boolean> userCallback){
+		Call<okhttp3.ResponseBody> call = dictationServerApi.cancelMatching(teacherLoginID, studentID);
+		call.enqueue(new ResultCallback(userCallback));
+	}
+	//매칭 목록보기
+	public void getTeachersApplicants(String teacherLoginID, UserCallback<List<Student>> userCallback){
+		Call<List<Student>> call = dictationServerApi.getTeachersApplicants(teacherLoginID);
+		call.enqueue(new ObjectCallback<>(userCallback));
+	}
 }
