@@ -4,6 +4,7 @@ package com.blackdog.dictation_teacher.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.blackdog.dictation_teacher.models.retify.PnuNlpSpeller;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -17,7 +18,7 @@ public class QuestionResult implements Serializable{
     private Boolean correct;
     @SerializedName("rectify")
     @Expose
-    private ArrayList<String[]> rectify;
+    private PnuNlpSpeller rectify;
     @SerializedName("submitted_answer")
     @Expose
     private String submittedAnswer;
@@ -38,11 +39,11 @@ public class QuestionResult implements Serializable{
         this.correct = correct;
     }
 
-    public ArrayList<String[]> getRectify() {
+    public PnuNlpSpeller getRectify() {
         return rectify;
     }
 
-    public void setRectify(ArrayList<String[]> rectify) {
+    public void setRectify(PnuNlpSpeller rectify) {
         this.rectify = rectify;
     }
 
