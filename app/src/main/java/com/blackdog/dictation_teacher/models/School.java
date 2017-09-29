@@ -1,4 +1,6 @@
 /*package 넣어주세요*/
+package com.blackdog.dictation_teacher.models;
+
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
