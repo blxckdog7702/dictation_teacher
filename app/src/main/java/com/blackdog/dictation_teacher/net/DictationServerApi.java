@@ -2,6 +2,7 @@ package com.blackdog.dictation_teacher.net;
 
 import com.blackdog.dictation_teacher.models.Quiz;
 import com.blackdog.dictation_teacher.models.QuizHistory;
+import com.blackdog.dictation_teacher.models.School;
 import com.blackdog.dictation_teacher.models.Teacher;
 import com.google.gson.JsonObject;
 

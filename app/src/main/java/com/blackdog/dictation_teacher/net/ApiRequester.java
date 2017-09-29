@@ -6,6 +6,7 @@ import com.blackdog.dictation_teacher.models.EndedQuiz;
 import com.blackdog.dictation_teacher.models.Quiz;
 import com.blackdog.dictation_teacher.models.QuizHistory;
 import com.blackdog.dictation_teacher.models.QuizResult;
+import com.blackdog.dictation_teacher.models.School;
 import com.blackdog.dictation_teacher.models.Teacher;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
