@@ -19,16 +19,20 @@
         </activity>
 
         <activity android:name=".Activity.QuizHistoryListActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activity.QuizHistoryActivity" />
 
         <activity android:name=".Activity.ExamResultDetailedPage"></activity>
         <activity android:name=".Activity.ExamResultPage"></activity>
+        <activity android:name=".Activity.ApplicantActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 
