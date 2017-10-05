@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:id="@+id/layout_item_applicant">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="10"
+        >
+
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
+
+
+            <TextView
+                android:id="@+id/tv_matching_class"
+                android:text="반상민"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_matching_name"
+                android:text="1"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="false"
+                android:layout_marginRight="50dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:background="#78c3f5"
+            android:weightSum="2"
+            >
+            <com.dd.processbutton.FlatButton
+                android:id="@+id/btn_matching_accept"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="승인"/>
+            <com.dd.processbutton.FlatButton
+                android:id="@+id/btn_matching_cancel"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="거절"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
