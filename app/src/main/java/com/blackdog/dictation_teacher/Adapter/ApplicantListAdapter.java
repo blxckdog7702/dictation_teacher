@@ -20,10 +20,6 @@ import com.dd.processbutton.FlatButton;
 
 import java.util.List;
 
-
-/**
- * Created by JBStat on 2016-11-29.
- */
 public class ApplicantListAdapter extends RecyclerView.Adapter<ApplicantListAdapter.ViewHolder> {
 
     String teacherLoginID;
@@ -68,7 +64,7 @@ public class ApplicantListAdapter extends RecyclerView.Adapter<ApplicantListAdap
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
         final Student applicant = applicants.get(position);
 
@@ -81,7 +77,10 @@ public class ApplicantListAdapter extends RecyclerView.Adapter<ApplicantListAdap
                 ApiRequester.getInstance().acceptMatching(teacherLoginID, applicant.getId(), new ApiRequester.UserCallback<Boolean>() {
                     @Override
                     public void onSuccess(Boolean result) {
-                        if(result) Toast.makeText(context,"수락 요청 성공",Toast.LENGTH_SHORT).show();
+                        if(result) {
+                            removeItem(position);
+                            Toast.makeText(context,"수락 요청 성공",Toast.LENGTH_SHORT).show();
+                        }
                         else Toast.makeText(context,"수락 요청 실패",Toast.LENGTH_SHORT).show();
                     }
 
@@ -96,10 +95,13 @@ public class ApplicantListAdapter extends RecyclerView.Adapter<ApplicantListAdap
         holder.btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ApiRequester.getInstance().acceptMatching(teacherLoginID, applicant.getId(), new ApiRequester.UserCallback<Boolean>() {
+                ApiRequester.getInstance().cancelMatching(teacherLoginID, applicant.getId(), new ApiRequester.UserCallback<Boolean>() {
                     @Override
                     public void onSuccess(Boolean result) {
-                        if(result) Toast.makeText(context,"거절 요청 성공",Toast.LENGTH_SHORT).show();
+                        if(result) {
+                            removeItem(position);
+                            Toast.makeText(context,"거절 요청 성공",Toast.LENGTH_SHORT).show();
+                        }
                         else Toast.makeText(context,"거절 요청 실패",Toast.LENGTH_SHORT).show();
                     }
 
@@ -116,5 +118,11 @@ public class ApplicantListAdapter extends RecyclerView.Adapter<ApplicantListAdap
     @Override
     public int getItemCount() {
         return applicants.size();
+    }
+
+    private void removeItem(int position){
+        applicants.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, applicants.size());
     }
 }
