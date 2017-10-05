@@ -27,6 +27,8 @@ public class ApplicantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        final String teacherLoginID = "test@test.com";
+
         //로딩바
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -35,12 +37,12 @@ public class ApplicantActivity extends AppCompatActivity {
         rv_list.setHasFixedSize(true);
         rv_list.setLayoutManager(new LinearLayoutManager(this));
 
-        ApiRequester.getInstance().getTeachersApplicants("test@test.com", new ApiRequester.UserCallback<List<Student>>() {
+        ApiRequester.getInstance().getTeachersApplicants(teacherLoginID, new ApiRequester.UserCallback<List<Student>>() {
             @Override
             public void onSuccess(List<Student> result) {
                 applicantList = result;
                 //TODO: 화면 갱신하도록
-                rv_list.setAdapter(new ApplicantListAdapter(ApplicantActivity.this, applicantList));
+                rv_list.setAdapter(new ApplicantListAdapter(ApplicantActivity.this, teacherLoginID, applicantList));
                 progressBar.setVisibility(View.GONE);
                 Log.d("dev","어뎁터 갱신");
             }
@@ -48,7 +50,7 @@ public class ApplicantActivity extends AppCompatActivity {
             @Override
             public void onFail() {
                 //TODO: 토스트를 띄울까..
-                Toast.makeText(getBaseContext(),"실패",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"지원자 정보 가져오기 실패",Toast.LENGTH_SHORT).show();
             }
         });
     }
