@@ -23,7 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ApiRequester {
-    private static String TAG = "FcmRequester.java";
+    private static String TAG = "ApiRequester";
     public static final String TEACHER_ID = "599b03151c6e6f0159a72815";
     private static ApiRequester instance;
 
