@@ -1,28 +1,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:id="@+id/menu_group_1">
         <item
-            android:id="@+id/menu_feed"
-            android:icon="@drawable/ic_global_menu_feed"
-            android:title="등록 신청 목록" />
+            android:id="@+id/menu_matching_applicant_list"
+            android:icon="@drawable/ic_matching_applicant_list"
+            android:title="@string/menu_matching_applicant" />
         <item
-            android:id="@+id/menu_direct"
-            android:icon="@drawable/ic_global_menu_direct"
-            android:title="학생 목록" />
+            android:id="@+id/menu_student_list"
+            android:icon="@drawable/ic_student_list"
+            android:title="@string/menu_student_list" />
         <item
-            android:id="@+id/menu_news"
-            android:icon="@drawable/ic_global_menu_news"
-            android:title="학생 관리" />
+            android:id="@+id/menu_student_edit"
+            android:icon="@drawable/ic_student_edit"
+            android:title="@string/menu_student_edit" />
         <item
-            android:id="@+id/menu_popular"
-            android:icon="@drawable/ic_global_menu_popular"
-            android:title="회차 별 시험 리스트" />
+            android:id="@+id/menu_list_by_period"
+            android:icon="@drawable/ic_show_list_by_period"
+            android:title="@string/menu_list_by_period" />
         <item
-            android:id="@+id/menu_photos_nearby"
-            android:icon="@drawable/ic_global_menu_nearby"
-            android:title="문제 작성" />
+            android:id="@+id/menu_create_question"
+            android:icon="@drawable/ic_create_question"
+            android:title="@string/menu_create_question" />
         <item
-            android:id="@+id/menu_photo_you_liked"
-            android:icon="@drawable/ic_global_menu_likes"
-            android:title="로그아웃" />
+            android:id="@+id/menu_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/menu_logout" />
     </group>
 </menu>
