@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menu_group_1">
+        <item
+            android:id="@+id/menu_feed"
+            android:icon="@drawable/ic_global_menu_feed"
+            android:title="등록 신청 목록" />
+        <item
+            android:id="@+id/menu_direct"
+            android:icon="@drawable/ic_global_menu_direct"
+            android:title="학생 목록" />
+        <item
+            android:id="@+id/menu_news"
+            android:icon="@drawable/ic_global_menu_news"
+            android:title="학생 관리" />
+        <item
+            android:id="@+id/menu_popular"
+            android:icon="@drawable/ic_global_menu_popular"
+            android:title="회차 별 시험 리스트" />
+        <item
+            android:id="@+id/menu_photos_nearby"
+            android:icon="@drawable/ic_global_menu_nearby"
+            android:title="문제 작성" />
+        <item
+            android:id="@+id/menu_photo_you_liked"
+            android:icon="@drawable/ic_global_menu_likes"
+            android:title="로그아웃" />
+    </group>
+</menu>
