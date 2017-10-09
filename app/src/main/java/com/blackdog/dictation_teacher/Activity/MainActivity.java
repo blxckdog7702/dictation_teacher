@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
 import com.blackdog.dictation_teacher.LoginSharedPref;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Quiz;
@@ -23,7 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseDrawerActivity {
     private static String TAG = "MainActivity.java";
     private ListView listView;
     private Button button;
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        toolbarTitle.setText("받아쓰기 준비");
+
         listView = (ListView) findViewById(R.id.listView);
         button = (Button) findViewById(R.id.button);
         button.setClickable(false);
@@ -46,16 +49,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    //로그아웃 시, SharedPref에 있는 로그인 정보 날림.
-    public void logoutClick(View view) {
-        LoginSharedPref pref = new LoginSharedPref();
-        pref.deleteLoginInfo(getApplicationContext());
-
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        this.startActivity(intent);
-        this.finish();
     }
 
     public void startQuizClick(View view) {

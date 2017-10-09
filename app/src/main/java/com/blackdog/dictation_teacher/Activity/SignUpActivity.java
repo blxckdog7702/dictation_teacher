@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.blackdog.dictation_teacher.Activity.base.BaseActivity;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Teacher;
 import com.blackdog.dictation_teacher.net.ApiRequester;
@@ -32,7 +33,7 @@ import java.util.regex.Pattern;
 /**
  * A login screen that offers login via teacherId/password.
  */
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends BaseActivity {
 
     /**
      * id to identity read_contacts permission request.
@@ -68,6 +69,8 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        toolbarTitle.setText("회원가입");
 
         // Set up the 회원가입 form.
         mTeacherIdView = (EditText) findViewById(R.id.etLoginId);

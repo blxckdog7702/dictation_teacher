@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menu_group_1">
+        <item
+            android:id="@+id/menu_matching_applicant_list"
+            android:icon="@drawable/ic_matching_applicant_list"
+            android:title="@string/menu_matching_applicant" />
+        <item
+            android:id="@+id/menu_student_list"
+            android:icon="@drawable/ic_student_list"
+            android:title="@string/menu_student_list" />
+        <item
+            android:id="@+id/menu_student_edit"
+            android:icon="@drawable/ic_student_edit"
+            android:title="@string/menu_student_edit" />
+        <item
+            android:id="@+id/menu_list_by_period"
+            android:icon="@drawable/ic_show_list_by_period"
+            android:title="@string/menu_list_by_period" />
+        <item
+            android:id="@+id/menu_create_question"
+            android:icon="@drawable/ic_create_question"
+            android:title="@string/menu_create_question" />
+        <item
+            android:id="@+id/menu_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/menu_logout" />
+    </group>
+</menu>
