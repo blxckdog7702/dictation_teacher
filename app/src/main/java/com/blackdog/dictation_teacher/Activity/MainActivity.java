@@ -49,16 +49,6 @@ public class MainActivity extends BaseDrawerActivity {
         }
     }
 
-    //로그아웃 시, SharedPref에 있는 로그인 정보 날림.
-    public void logoutClick(View view) {
-        LoginSharedPref pref = new LoginSharedPref();
-        pref.deleteLoginInfo(getApplicationContext());
-
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        this.startActivity(intent);
-        this.finish();
-    }
-
     public void startQuizClick(View view) {
         try {
             ApiRequester.getInstance().startQuiz(ApiRequester.TEACHER_ID, selectedItem.getNumber());

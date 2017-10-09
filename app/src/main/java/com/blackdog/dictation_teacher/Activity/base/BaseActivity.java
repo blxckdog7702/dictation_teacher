@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.blackdog.dictation_teacher.R;
 
@@ -11,11 +12,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class BaseActivity extends AppCompatActivity {
+    private static final String TAG = "BaseActivity.java";
 
 //    private FragmentManager fragmentManager;
 //    private ContextMenuDialogFragment mMenuDialogFragment;
 
     public @Nullable @BindView(R.id.toolbar) Toolbar toolbar;
+    public @Nullable @BindView(R.id.toolbar_title) TextView toolbarTitle;
 
     @Override
     public void setContentView(int layoutResID) {
@@ -95,13 +98,14 @@ public class BaseActivity extends AppCompatActivity {
 //    }
 
     protected void setupToolbar() {
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
-        toolbar.setNavigationIcon(R.drawable.ic_menu_white);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +113,7 @@ public class BaseActivity extends AppCompatActivity {
             }
         });
     }
-//
+
 //    protected void addFragment(Fragment fragment, boolean addToBackStack, int containerId) {
 //        invalidateOptionsMenu();
 //        String backStackName = fragment.getClass().getName();

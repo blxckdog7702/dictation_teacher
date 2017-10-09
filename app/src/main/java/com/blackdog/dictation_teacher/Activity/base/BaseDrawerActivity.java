@@ -1,5 +1,6 @@
 package com.blackdog.dictation_teacher.Activity.base;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.blackdog.dictation_teacher.Activity.LoginActivity;
+import com.blackdog.dictation_teacher.LoginSharedPref;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.Util;
 import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
@@ -51,6 +54,9 @@ public class BaseDrawerActivity extends BaseActivity {
         vNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+                if(menuItem.getTitle().equals("로그아웃")) {
+                    logoutClick();
+                }
                 Toast.makeText(getApplicationContext(),menuItem.getTitle(),Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -91,6 +97,8 @@ public class BaseDrawerActivity extends BaseActivity {
     @Override
     public void setupToolbar(){
         super.setupToolbar();
+        toolbar.setNavigationIcon(R.drawable.ic_menu_white);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,5 +114,15 @@ public class BaseDrawerActivity extends BaseActivity {
         } else {
             Util.getInstance().onBackPressed(this);
         }
+    }
+
+    //로그아웃 시, SharedPref에 있는 로그인 정보 날림.
+    public void logoutClick() {
+        LoginSharedPref pref = new LoginSharedPref();
+        pref.deleteLoginInfo(getApplicationContext());
+
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        this.startActivity(intent);
+        this.finish();
     }
 }

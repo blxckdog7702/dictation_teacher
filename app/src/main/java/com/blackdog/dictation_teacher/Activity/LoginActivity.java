@@ -11,13 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blackdog.dictation_teacher.Activity.base.BaseActivity;
 import com.blackdog.dictation_teacher.LoginSharedPref;
 import com.blackdog.dictation_teacher.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Teacher;
 import com.blackdog.dictation_teacher.net.ApiRequester;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private static final String TAG = "LoginActivity";
     private EditText mLoginIdView;
     private EditText mPasswordView;
@@ -29,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        toolbarTitle.setText("로그인");
 
         mLoginIdView = (EditText) findViewById(R.id.etLoginId);
         mPasswordView = (EditText) findViewById(R.id.etLoginPassword);
