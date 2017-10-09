@@ -37,6 +37,8 @@ public class MainActivity extends BaseDrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        toolbarTitle.setText("받아쓰기 준비");
+
         listView = (ListView) findViewById(R.id.listView);
         button = (Button) findViewById(R.id.button);
         button.setClickable(false);

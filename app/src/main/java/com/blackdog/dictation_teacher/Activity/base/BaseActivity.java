@@ -17,8 +17,8 @@ public class BaseActivity extends AppCompatActivity {
 //    private FragmentManager fragmentManager;
 //    private ContextMenuDialogFragment mMenuDialogFragment;
 
-    public @Nullable @BindView(R.id.toolbar) Toolbar toolbar;
-    public @Nullable @BindView(R.id.toolbar_title) TextView toolbarTitle;
+    protected  @Nullable @BindView(R.id.toolbar) Toolbar toolbar;
+    protected @Nullable @BindView(R.id.toolbar_title) TextView toolbarTitle;
 
     @Override
     public void setContentView(int layoutResID) {
