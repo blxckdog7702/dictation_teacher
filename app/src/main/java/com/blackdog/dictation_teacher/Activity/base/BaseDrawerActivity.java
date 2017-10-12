@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.LoginActivity;
+import com.blackdog.dictation_teacher.Activity.MainActivity;
+import com.blackdog.dictation_teacher.Activity.StudentListActivity;
 import com.blackdog.dictation_teacher.LoginSharedPref;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.Util;
@@ -54,10 +56,28 @@ public class BaseDrawerActivity extends BaseActivity {
         vNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-                if(menuItem.getTitle().equals("로그아웃")) {
-                    logoutClick();
+                String menuTitle = menuItem.getTitle().toString();
+                switch (menuTitle) {
+                    case "시험 준비" : {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        break;
+                    }
+                    case "학생 목록" : {
+                        Intent intent = new Intent(getApplicationContext(), StudentListActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        break;
+                    }
+                    case "로그아웃" : {
+                        logoutClick();
+                        break;
+                    }
                 }
+
                 Toast.makeText(getApplicationContext(),menuItem.getTitle(),Toast.LENGTH_SHORT).show();
+                drawerlayout.closeMenu();
                 return false;
             }
         }) ;
