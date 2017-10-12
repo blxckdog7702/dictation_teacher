@@ -5,6 +5,7 @@ import com.blackdog.dictation_teacher.models.QuizHistory;
 import com.blackdog.dictation_teacher.models.School;
 import com.blackdog.dictation_teacher.models.Student;
 import com.blackdog.dictation_teacher.models.Teacher;
+import com.blackdog.dictation_teacher.models.RectifyCount;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -28,6 +29,10 @@ import retrofit2.http.Query;
  */
 
 public interface DictationServerApi {
+
+    //선생님이 본 모든 시험 결과에 대한 취약점 합산
+  	@GET("/teachers/{teacher_id}/quiz_histories/rectify_count")
+  	Call<RectifyCount> getRecifyCountToAllQuizHistories(@Path("teacher_id") String teacherID);
     //등록된 선생님 목록보기
     @GET("/students/{student_id}/teachers")
     Call<List<Teacher>> getStudentsTeachers(@Path("student_id") String studentID);
