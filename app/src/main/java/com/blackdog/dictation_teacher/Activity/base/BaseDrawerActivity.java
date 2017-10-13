@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.LoginActivity;
 import com.blackdog.dictation_teacher.Activity.MainActivity;
+import com.blackdog.dictation_teacher.Activity.MatchingListActivity;
 import com.blackdog.dictation_teacher.Activity.StudentListActivity;
 import com.blackdog.dictation_teacher.LoginSharedPref;
 import com.blackdog.dictation_teacher.R;
@@ -60,6 +61,12 @@ public class BaseDrawerActivity extends BaseActivity {
                 switch (menuTitle) {
                     case "시험 준비" : {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        break;
+                    }
+                    case "학생 등록 요청" : {
+                        Intent intent = new Intent(getApplicationContext(), MatchingListActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                         break;

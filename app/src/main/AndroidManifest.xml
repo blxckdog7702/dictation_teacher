@@ -26,8 +26,8 @@
         <activity android:name=".Activity.ExamResultPage" />
         <activity
             android:name=".Activity.SignUpActivity"
-            android:label="@string/title_activity_login"></activity>
-        <activity android:name=".Activity.LoginActivity"></activity>
+            android:label="@string/title_activity_login" />
+        <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +35,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.StudentListActivity"></activity>
+        <activity android:name=".Activity.StudentListActivity" />
+        <activity android:name=".Activity.MatchingListActivity"></activity>
     </application>
 
 </manifest>
