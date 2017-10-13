@@ -42,7 +42,6 @@ public class SignUpActivity extends BaseActivity {
 
     /**
      * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo:hello", "bar:world"
@@ -223,13 +222,11 @@ public class SignUpActivity extends BaseActivity {
 
     //아이디 유효성 검증 메서드 (추가 필요?)
     private boolean isTeacherIdValid(String id) {
-        //TODO: Replace this with your own logic
         return id.length() >= 4;
     }
 
     //비밀번호 유효성 검증 메서드
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
         return password.length() >= 4;
     }
 

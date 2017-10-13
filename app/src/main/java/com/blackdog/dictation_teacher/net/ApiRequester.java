@@ -62,7 +62,6 @@ public class ApiRequester {
 
         @Override
         public void onResponse(Call<T> call, Response<T> response) {
-            // TODO Auto-generated method stub
             if (response.isSuccessful()) {
                 // tasks available
                 callback.onSuccess(response.body());
@@ -80,7 +79,6 @@ public class ApiRequester {
         }
         @Override
         public void onFailure(Call<T> call, Throwable t) {
-            // TODO Auto-generated method stub
 
             System.out.println(t.getMessage());
             callback.onFail();
@@ -97,7 +95,6 @@ public class ApiRequester {
 
   		@Override
   		public void onResponse(Call<okhttp3.ResponseBody> call, Response<okhttp3.ResponseBody> response) {
-  			// TODO Auto-generated method stub
   			if (response.isSuccessful()) {
   				// tasks available
   				JsonObject object;
@@ -105,7 +102,6 @@ public class ApiRequester {
   					object = new JsonParser().parse(response.body().string()).getAsJsonObject();
   					callback.onSuccess(object.get("result").getAsBoolean());
   				} catch (JsonSyntaxException | IOException e) {
-  					// TODO Auto-generated catch block
   					e.printStackTrace();
   				}
 
@@ -124,7 +120,6 @@ public class ApiRequester {
   		}
   		@Override
   		public void onFailure(Call<okhttp3.ResponseBody> call, Throwable t) {
-  			// TODO Auto-generated method stub
   			System.out.println(t.getMessage());
   			callback.onFail();
   		}

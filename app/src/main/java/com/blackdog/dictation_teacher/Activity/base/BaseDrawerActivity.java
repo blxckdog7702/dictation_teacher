@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.blackdog.dictation_teacher.Activity.LoginActivity;
 import com.blackdog.dictation_teacher.Activity.MainActivity;
 import com.blackdog.dictation_teacher.Activity.MatchingListActivity;
+import com.blackdog.dictation_teacher.Activity.QuizMakingActivity;
 import com.blackdog.dictation_teacher.Activity.StudentListActivity;
 import com.blackdog.dictation_teacher.Activity.StudentManageActivity;
 import com.blackdog.dictation_teacher.Adapter.StudentManageAdapter;
@@ -81,6 +82,12 @@ public class BaseDrawerActivity extends BaseActivity {
                     }
                     case "학생 관리" : {
                         Intent intent = new Intent(getApplicationContext(), StudentManageActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        break;
+                    }
+                    case "문제 작성" : {
+                        Intent intent = new Intent(getApplicationContext(), QuizMakingActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                         break;

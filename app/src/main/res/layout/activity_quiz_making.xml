@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.blackdog.dictation_teacher.Activity.QuizMakingActivity">
+
+    <Button
+        android:id="@+id/bt_make_quiz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="문제 작성"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layout_make_quiz"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@id/bt_make_quiz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/et_quiz_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="문제 이름을 입력하세요." />
+
+        <EditText
+            android:id="@+id/et_question_1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="입력하세요." />
+
+        <EditText
+            android:id="@+id/et_question_2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="입력하세요." />
+
+        <EditText
+            android:id="@+id/et_question_3"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="입력하세요." />
+
+        <EditText
+            android:id="@+id/et_question_4"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="입력하세요." />
+
+        <EditText
+            android:id="@+id/et_question_5"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="입력하세요." />
+
+        <EditText
+            android:id="@+id/et_question_6"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="입력하세요." />
+
+        <EditText
+            android:id="@+id/et_question_7"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="입력하세요." />
+
+        <EditText
+            android:id="@+id/et_question_8"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="입력하세요." />
+
+        <EditText
+            android:id="@+id/et_question_9"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="입력하세요." />
+
+        <EditText
+            android:id="@+id/et_question_10"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="입력하세요." />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

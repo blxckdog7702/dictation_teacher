@@ -156,7 +156,6 @@ public class BaseActivity extends AppCompatActivity {
 //        }
 //    }
 //
-//    //TODO 버튼별 화면 연결바람
 //    @Override
 //    public void onMenuItemClick(View clickedView, int position) {
 //        if(position == 0){
