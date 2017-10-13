@@ -9,6 +9,7 @@ import com.blackdog.dictation_teacher.models.QuizResult;
 import com.blackdog.dictation_teacher.models.School;
 import com.blackdog.dictation_teacher.models.Student;
 import com.blackdog.dictation_teacher.models.Teacher;
+import com.blackdog.dictation_teacher.models.RectifyCount;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -254,6 +255,12 @@ public class ApiRequester {
 	public void unConnectedMatching(String studentID, String teacherID, UserCallback<Boolean> userCallback){
 		Call<okhttp3.ResponseBody> call = dictationServerApi.unConnectedMatching(studentID, teacherID);
 		call.enqueue(new ResultCallback(userCallback));
+	}
+
+  //전체 시험결과 취약점 합산 가져오기
+	public void getRecifyCountToAllQuizHistories(String teacherID, UserCallback<RectifyCount> userCallback){
+		Call<RectifyCount> call = dictationServerApi.getRecifyCountToAllQuizHistories(teacherID);
+		call.enqueue(new ObjectCallback<>(userCallback));
 	}
 
 }

@@ -22,6 +22,12 @@ public class QuizHistory {
     @SerializedName("date")
     @Expose
     private String date;
+    @SerializedName("rectify_count")
+    @Expose
+    private RectifyCount rectifyCount;
+    @SerializedName("average")
+    @Expose
+    private Double average;
 
     public Integer getV() {
         return v;
@@ -61,6 +67,18 @@ public class QuizHistory {
 
     public void setDate(String date) {
         this.date = date;
+    }
+    public RectifyCount getRectifyCount() {
+      return rectifyCount;
+    }
+    public void setRectifyCount(RectifyCount rectifyCount) {
+   	  this.rectifyCount = rectifyCount;
+    }
+    public Double getAverage() {
+ 		   return average;
+ 	  }
+    public void setAverage(Double average) {
+ 	    this.average = average;
     }
 
 }
