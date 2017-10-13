@@ -1,6 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:id="@+id/menu_group_1">
         <item
+            android:id="@+id/menu_prepare_test"
+            android:icon="@drawable/ic_prepare_test"
+            android:title="시험 준비" />
+        <item
             android:id="@+id/menu_matching_applicant_list"
             android:icon="@drawable/ic_matching_applicant_list"
             android:title="@string/menu_matching_applicant" />
