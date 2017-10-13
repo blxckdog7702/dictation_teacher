@@ -15,6 +15,8 @@ import com.blackdog.dictation_teacher.Activity.LoginActivity;
 import com.blackdog.dictation_teacher.Activity.MainActivity;
 import com.blackdog.dictation_teacher.Activity.MatchingListActivity;
 import com.blackdog.dictation_teacher.Activity.StudentListActivity;
+import com.blackdog.dictation_teacher.Activity.StudentManageActivity;
+import com.blackdog.dictation_teacher.Adapter.StudentManageAdapter;
 import com.blackdog.dictation_teacher.LoginSharedPref;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.Util;
@@ -73,6 +75,12 @@ public class BaseDrawerActivity extends BaseActivity {
                     }
                     case "학생 목록" : {
                         Intent intent = new Intent(getApplicationContext(), StudentListActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        break;
+                    }
+                    case "학생 관리" : {
+                        Intent intent = new Intent(getApplicationContext(), StudentManageActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                         break;
