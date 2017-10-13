@@ -140,11 +140,16 @@ public class ApiRequester {
   		call.enqueue(new ObjectCallback<>(userCallback));
   	}
 
-    //quiz list를 리턴한다
-    public void getTeachersQuizzes(UserCallback<List<Quiz>> userCallback) throws IOException {
-        Call<List<Quiz>> call = dictationServerApi.getTeachersQuizzes();
-        call.enqueue(new ObjectCallback<List<Quiz>>(userCallback));
-    }
+    //선생님의 퀴즈 목록을 가져온다
+  	public void getTeachersQuizzes(String teacherID,UserCallback<List<Quiz>> userCallback) throws IOException{
+  		Call<List<Quiz>> call = dictationServerApi.getTeachersQuizzes(teacherID);
+  		call.enqueue(new ObjectCallback<List<Quiz>>(userCallback));
+  	}
+    //선생님의 퀴즈 목록을 추가한다
+  	public void addTeachersQuiz(String teacherID, Quiz quiz, UserCallback<Boolean> userCallback) {
+  		Call<okhttp3.ResponseBody> call = dictationServerApi.addTeachersQuiz(teacherID, parser.parse(gson.toJson(quiz)).getAsJsonObject());
+  		call.enqueue(new ResultCallback(userCallback));
+  	}
 
     //quiz history를 리턴한다
     public void getQuizHistory(String id, UserCallback<QuizHistory> userCallback) throws IOException {
