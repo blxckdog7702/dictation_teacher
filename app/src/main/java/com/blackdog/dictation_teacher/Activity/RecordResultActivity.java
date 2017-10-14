@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+//몇점이에요~ 액티비티
 public class RecordResultActivity extends BaseChartActivity implements OnChartValueSelectedListener {
 
     @BindView(R.id.pieChart) PieChart pieChart;
