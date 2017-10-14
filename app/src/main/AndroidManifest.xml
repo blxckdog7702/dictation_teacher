@@ -38,7 +38,8 @@
         <activity android:name=".Activity.StudentListActivity" />
         <activity android:name=".Activity.MatchingListActivity" />
         <activity android:name=".Activity.StudentManageActivity" />
-        <activity android:name=".Activity.QuizMakingActivity"></activity>
+        <activity android:name=".Activity.QuizMakingActivity" />
+        <activity android:name=".Activity.RecordByPeriodActivity"></activity>
     </application>
 
 </manifest>
