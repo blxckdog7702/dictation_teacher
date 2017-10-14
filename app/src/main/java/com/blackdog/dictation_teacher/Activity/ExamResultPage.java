@@ -1,22 +1,32 @@
 package com.blackdog.dictation_teacher.Activity;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.Util;
+import com.blackdog.dictation_teacher.models.Question;
 import com.blackdog.dictation_teacher.models.QuestionResult;
 import com.blackdog.dictation_teacher.models.QuizResult;
+import com.blackdog.dictation_teacher.models.retify.PnuNlpSpeller;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
+import nl.dionsegijn.konfetti.models.Size;
 
 public class ExamResultPage extends AppCompatActivity {
 
     QuizResult quizResult;
+    ArrayList<Question> questions;
+    PnuNlpSpeller rectifies;
     @BindView(R.id.ivGradeOne) ImageView ivGradeOne;
     @BindView(R.id.ivGradeTwo) ImageView ivGradeTwo;
     @BindView(R.id.ivGradeThree) ImageView ivGradeThree;
@@ -28,46 +38,57 @@ public class ExamResultPage extends AppCompatActivity {
     @BindView(R.id.ivGradeNine) ImageView ivGradeNine;
     @BindView(R.id.ivGradeTen) ImageView ivGradeTen;
     @BindView(R.id.ivScore) ImageView ivScore;
+    @BindView(R.id.konfettiView) KonfettiView konfettiView;
 
     @OnClick(R.id.btResultOne)
     void onClickBtResultOne(){
-        Util.getInstance().moveAcitivity(this, ExamResultDetailedPage.class, quizResult, 1);
+        Util.getInstance().moveActivity(this, ExamResultDetailedPage.class, quizResult,
+                questions, 1);
     }
     @OnClick(R.id.btResultTwo)
     void onClickBtResultTwo(){
-        Util.getInstance().moveAcitivity(this, ExamResultDetailedPage.class, quizResult, 2);
+        Util.getInstance().moveActivity(this, ExamResultDetailedPage.class, quizResult,
+                questions, 2);
     }
     @OnClick(R.id.btResultThree)
     void onClickBtResultThree(){
-        Util.getInstance().moveAcitivity(this, ExamResultDetailedPage.class, quizResult, 3);
+        Util.getInstance().moveActivity(this, ExamResultDetailedPage.class, quizResult,
+                questions, 3);
     }
     @OnClick(R.id.btResultFour)
     void onClickBtResultFour(){
-        Util.getInstance().moveAcitivity(this, ExamResultDetailedPage.class, quizResult, 4);
+        Util.getInstance().moveActivity(this, ExamResultDetailedPage.class, quizResult,
+                questions, 4);
     }
     @OnClick(R.id.btResultFive)
     void onClickBtResultFive(){
-        Util.getInstance().moveAcitivity(this, ExamResultDetailedPage.class, quizResult, 5);
+        Util.getInstance().moveActivity(this, ExamResultDetailedPage.class, quizResult,
+                questions, 5);
     }
     @OnClick(R.id.btResultSix)
     void onClickBtResultSix(){
-        Util.getInstance().moveAcitivity(this, ExamResultDetailedPage.class, quizResult, 6);
+        Util.getInstance().moveActivity(this, ExamResultDetailedPage.class, quizResult,
+                questions, 6);
     }
     @OnClick(R.id.btResultSeven)
     void onClickBtResultSeven(){
-        Util.getInstance().moveAcitivity(this, ExamResultDetailedPage.class, quizResult, 7);
+        Util.getInstance().moveActivity(this, ExamResultDetailedPage.class, quizResult,
+                questions, 7);
     }
     @OnClick(R.id.btResultEight)
     void onClickBtResultEight(){
-        Util.getInstance().moveAcitivity(this, ExamResultDetailedPage.class, quizResult, 8);
+        Util.getInstance().moveActivity(this, ExamResultDetailedPage.class, quizResult,
+                questions, 8);
     }
     @OnClick(R.id.btResultNine)
     void onClickBtResultNine(){
-        Util.getInstance().moveAcitivity(this, ExamResultDetailedPage.class, quizResult, 9);
+        Util.getInstance().moveActivity(this, ExamResultDetailedPage.class, quizResult,
+                questions, 9);
     }
     @OnClick(R.id.btResultTen)
     void onClickBtResultTen(){
-        Util.getInstance().moveAcitivity(this, ExamResultDetailedPage.class, quizResult);
+        Util.getInstance().moveActivity(this, ExamResultDetailedPage.class, quizResult,
+                questions, 10);
     }
 
     @OnClick(R.id.btInResultPage)
@@ -83,7 +104,8 @@ public class ExamResultPage extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        quizResult = (QuizResult) intent.getSerializableExtra("OBJECT");
+        quizResult = (QuizResult) intent.getSerializableExtra("quizResult");
+        questions = (ArrayList<Question>) intent.getSerializableExtra("questionsList");
 
         if(quizResult.getScore() == 0){
             ivScore.setImageResource(R.drawable.score0);
@@ -110,13 +132,23 @@ public class ExamResultPage extends AppCompatActivity {
             ivScore.setImageResource(R.drawable.score10);
         }
         else if(quizResult.getScore() == 80){
-            ivScore.setImageResource(R.drawable.score80);
+            ivScore.setImageResource(R.drawable.score10);
         }
         else if(quizResult.getScore() == 90){
             ivScore.setImageResource(R.drawable.score10);
         }
         else if(quizResult.getScore() == 100){
             ivScore.setImageResource(R.drawable.score100);
+            konfettiView.build()
+                    .addColors(Color.rgb(241, 95, 95), Color.rgb(165, 102, 255), Color.rgb(250, 237, 125))
+                    .setDirection(0.0, 359.0)
+                    .setSpeed(3f, 5f)
+                    .setFadeOutEnabled(true)
+                    .setTimeToLive(1500L)
+                    .addShapes(Shape.RECT)
+                    .addSizes(new Size(12, 5f))
+                    .setPosition(0f, Util.getInstance().getDisplayWidth(this), 0f, 50f)
+                    .stream(300, 3000L);
         }
 
         for (QuestionResult questionResult : quizResult.getQuestionResult()) {

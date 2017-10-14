@@ -1,6 +1,8 @@
 package com.blackdog.dictation_teacher.models;
 
 import java.util.List;
+import java.util.logging.Logger;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
