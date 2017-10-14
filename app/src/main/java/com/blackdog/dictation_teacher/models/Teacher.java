@@ -40,7 +40,7 @@ public class Teacher {
     private List<QuizHistory> quizHistories = null;
     @SerializedName("students")
     @Expose
-    private List<Student> students = null;
+    private List<String> students = null;
     @SerializedName("applicants")
     @Expose
     private List<String> applicants = null;
@@ -117,11 +117,11 @@ public class Teacher {
         this.quizHistories = quizHistories;
     }
 
-    public List<Student> getStudents() {
+    public List<String> getStudents() {
         return students;
     }
 
-    public void setStudents(List<Student> students) {
+    public void setStudents(List<String> students) {
         this.students = students;
     }
 
