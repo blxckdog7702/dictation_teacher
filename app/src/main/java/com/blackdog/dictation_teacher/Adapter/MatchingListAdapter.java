@@ -9,8 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blackdog.dictation_teacher.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Student;
+import com.blackdog.dictation_teacher.net.ApiRequester;
 
 import java.util.List;
 
@@ -58,25 +60,79 @@ public class MatchingListAdapter extends RecyclerView.Adapter<MatchingListAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mGrade.setText(mMatchingList.get(position).getGrade());
         holder.mClassNumber.setText(mMatchingList.get(position).getClass_());
-        holder.mStudentNumber.setText(mMatchingList.get(position).getStudentId().toString());
+
+        // TODO: 2017-10-14 서버에서 return 안넘어옴, 차후 주석 해제
+//        holder.mStudentNumber.setText(mMatchingList.get(position).getStudentId().toString());
         holder.mStudentName.setText(mMatchingList.get(position).getName());
 
         holder.mAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int selectedPosition = holder.getAdapterPosition();
                 Toast.makeText(mContext, "수락", Toast.LENGTH_SHORT).show();
+                matchingAccept(mMatchingList.get(selectedPosition).getId(), selectedPosition);
             }
         });
 
         holder.mRefuse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int selectedPosition = holder.getAdapterPosition();
                 Toast.makeText(mContext, "거절", Toast.LENGTH_SHORT).show();
+                matchingCancel(mMatchingList.get(selectedPosition).getId(), selectedPosition);
+            }
+        });
+    }
+
+    private void matchingCancel(String studentId, final int position) {
+        ApiRequester.getInstance().cancelMatching(
+                MyTeacherInfo.getInstance().getTeacher().getLoginId(),
+                studentId,
+                new ApiRequester.UserCallback<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean result) {
+                        if(result) {
+                            //삭제되었습니다.
+                            mMatchingList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position,mMatchingList.size());
+                        } else {
+                            //삭제 실패?
+                        }
+                    }
+                    @Override
+                    public void onFail() {
+                        //삭제 실패
+                    }
+                }
+        );
+    }
+
+    private void matchingAccept(String studentId, final int position) {
+        ApiRequester.getInstance().acceptMatching(
+                MyTeacherInfo.getInstance().getTeacher().getLoginId(),
+                studentId,
+                new ApiRequester.UserCallback<Boolean>() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if(result) {
+                    //삭제되었습니다.
+                    mMatchingList.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position,mMatchingList.size());
+                } else {
+                    //삭제 실패?
+                }
+            }
+
+            @Override
+            public void onFail() {
+                //삭제 실패
             }
         });
     }

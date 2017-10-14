@@ -4,16 +4,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
 import com.blackdog.dictation_teacher.Adapter.MatchingListAdapter;
+import com.blackdog.dictation_teacher.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Student;
+import com.blackdog.dictation_teacher.net.ApiRequester;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MatchingListActivity extends BaseDrawerActivity {
+    private static final String TAG = "MatchingListActivity.java";
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -34,21 +38,17 @@ public class MatchingListActivity extends BaseDrawerActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        List<Student> dataset = new ArrayList<>();
+        ApiRequester.getInstance().getTeachersApplicants(MyTeacherInfo.getInstance().getTeacher().getLoginId(), new ApiRequester.UserCallback<List<Student>>() {
+            @Override
+            public void onSuccess(List<Student> result) {
+                mAdapter = new MatchingListAdapter(getApplicationContext(), result);
+                mRecyclerView.setAdapter(mAdapter);
+            }
 
-        for (int i = 0; i < 20; i++) {
-            Student item = new Student();
-            item.setSchool("호성초등학교");
-            item.setGrade("1학년");
-            item.setClass_("2반");
-            item.setStudentId(1);
-            item.setName("홍길동");
+            @Override
+            public void onFail() {
 
-            dataset.add(item);
-        }
-
-        // specify an adapter (see also next example)
-        mAdapter = new MatchingListAdapter(this, dataset);
-        mRecyclerView.setAdapter(mAdapter);
+            }
+        });
     }
 }
