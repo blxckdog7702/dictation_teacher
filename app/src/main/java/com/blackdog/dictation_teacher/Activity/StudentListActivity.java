@@ -1,12 +1,16 @@
 package com.blackdog.dictation_teacher.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
 import com.blackdog.dictation_teacher.Adapter.StudentListAdapter;
 import com.blackdog.dictation_teacher.R;
+import com.blackdog.dictation_teacher.Util;
 import com.blackdog.dictation_teacher.models.Student;
 
 import java.util.ArrayList;
@@ -16,6 +20,7 @@ public class StudentListActivity extends BaseDrawerActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private Button mViewAllStudentStatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,7 @@ public class StudentListActivity extends BaseDrawerActivity {
 
         toolbarTitle.setText("학생목록");
 
+        mViewAllStudentStatButton = (Button) findViewById(R.id.bt_all_student_stat);
         mRecyclerView = (RecyclerView) findViewById(R.id.student_recycler_view);
 
         // use this setting to improve performance if you know that changes
@@ -50,5 +56,12 @@ public class StudentListActivity extends BaseDrawerActivity {
         // specify an adapter (see also next example)
         mAdapter = new StudentListAdapter(this, dataset);
         mRecyclerView.setAdapter(mAdapter);
+
+        mViewAllStudentStatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: 2017-10-15 우리 반 전체 통계 액티비티 제작
+            }
+        });
     }
 }

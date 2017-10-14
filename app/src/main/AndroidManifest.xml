@@ -40,6 +40,8 @@
         <activity android:name=".Activity.StudentManageActivity" />
         <activity android:name=".Activity.QuizMakingActivity" />
         <activity android:name=".Activity.RecordByPeriodActivity"></activity>
+        <activity android:name=".Activity.RecordManagerActivity"/>
+        <activity android:name=".Activity.RecordResultActivity"/>
     </application>
 
 </manifest>
