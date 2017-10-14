@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.LoginSharedPref;
@@ -14,6 +15,7 @@ import com.blackdog.dictation_teacher.models.Teacher;
 import com.blackdog.dictation_teacher.net.ApiRequester;
 
 public class SplashActivity extends AppCompatActivity {
+    private static final String TAG = "SplashActivity.java";
     static int SPLASH_TIME_OUT = 3000;
     private AsyncTask loginTask;
 
@@ -37,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
             }, SPLASH_TIME_OUT);
         } else {
             loginTask = new AsyncTask<Void, Void, Boolean>() {
-
+                // TODO: 2017-10-14 가끔 못받아올 때 있음. 다시 체크
                 @Override
                 protected Boolean doInBackground(Void... params) {
                     attemptLogin(login_id, password);

@@ -45,7 +45,6 @@ public class MainActivity extends BaseDrawerActivity {
 
         try {
             requestQuizList();
-            Log.d(TAG, "onCreate: 실행");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,7 +55,6 @@ public class MainActivity extends BaseDrawerActivity {
             ApiRequester.getInstance().startQuiz(ApiRequester.TEACHER_ID, selectedItem.getNumber());
         } catch (IOException e) {
             e.printStackTrace();
-            Log.d(TAG, "startQuizClick: 오류발생!");
         }
 
         Intent intent = new Intent(getApplicationContext(), QuizControlActivity.class);
@@ -87,7 +85,6 @@ public class MainActivity extends BaseDrawerActivity {
                             button.setClickable(true);
                             int pos = listView.getCheckedItemPosition();
                             selectedItem = (Quiz) listView.getItemAtPosition(pos);
-                            Log.d("TEST", selectedItem.getName());
                             Toast.makeText(getApplicationContext(), "Value selected: " + selectedItem.getName(), Toast.LENGTH_LONG).show();
                         }
                     }

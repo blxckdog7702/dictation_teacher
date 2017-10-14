@@ -37,10 +37,13 @@ public class Teacher {
     private String school;
     @SerializedName("quiz_histories")
     @Expose
-    private List<String> quizHistories = null;
+    private List<QuizHistory> quizHistories = null;
     @SerializedName("students")
     @Expose
-    private List<String> students = null;
+    private List<Student> students = null;
+    @SerializedName("applicants")
+    @Expose
+    private List<String> applicants = null;
 
     public Integer getV() {
         return v;
@@ -106,20 +109,27 @@ public class Teacher {
         this.school = school;
     }
 
-    public List<String> getQuizHistories() {
+    public List<QuizHistory> getQuizHistories() {
         return quizHistories;
     }
 
-    public void setQuizHistories(List<String> quizHistories) {
+    public void setQuizHistories(List<QuizHistory> quizHistories) {
         this.quizHistories = quizHistories;
     }
 
-    public List<String> getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(List<String> students) {
+    public void setStudents(List<Student> students) {
         this.students = students;
     }
 
+    public List<String> getApplicants() {
+        return applicants;
+    }
+
+    public void setApplicants(List<String> applicants) {
+        this.applicants = applicants;
+    }
 }
