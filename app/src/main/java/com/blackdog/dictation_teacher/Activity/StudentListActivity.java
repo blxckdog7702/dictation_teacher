@@ -61,6 +61,8 @@ public class StudentListActivity extends BaseDrawerActivity {
             @Override
             public void onClick(View v) {
                 // TODO: 2017-10-15 우리 반 전체 통계 액티비티 제작
+                Intent intent = new Intent(getApplicationContext(), RecordByPeriodActivity.class);
+                startActivity(intent);
             }
         });
     }
