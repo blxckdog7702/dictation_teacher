@@ -5,7 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.QuizHistory;
@@ -28,11 +30,13 @@ public class RecordByPeriodAdapter extends RecyclerView.Adapter<RecordByPeriodAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
+        Button button;
 
         // each data item is just a string in this case
         public ViewHolder(View v) {
             super(v);
             textView = (TextView)v.findViewById(R.id.tv_record_by_period);
+            button = (Button)v.findViewById(R.id.bt_view_record);
         }
     }
 
@@ -51,6 +55,13 @@ public class RecordByPeriodAdapter extends RecyclerView.Adapter<RecordByPeriodAd
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.textView.setText(mQuizHistoryList.get(position).getDate());
+
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "테스트입니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
