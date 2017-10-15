@@ -44,7 +44,7 @@
             android:text="자세히"/>
 
         <Button
-            android:id="@+id/bt_all_student_stat"
+            android:id="@+id/bt_total_stat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="전체 성적"/>

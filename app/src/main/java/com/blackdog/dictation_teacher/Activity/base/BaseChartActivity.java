@@ -27,18 +27,7 @@ import java.util.ArrayList;
  * 
  * @author Philipp Jahoda
  */
-public abstract class BaseChartActivity extends BaseDrawerActivity {
-
-    protected String[] mMonths = new String[] {
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
-    };
-
-    protected String[] mParties = new String[] {
-            "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
-            "Party I", "Party J", "Party K", "Party L", "Party M", "Party N", "Party O", "Party P",
-            "Party Q", "Party R", "Party S", "Party T", "Party U", "Party V", "Party W", "Party X",
-            "Party Y", "Party Z"
-    };
+public abstract class BaseChartActivity extends BaseActivity {
 
     protected Typeface mTfRegular;
     protected Typeface mTfLight;
@@ -51,20 +40,15 @@ public abstract class BaseChartActivity extends BaseDrawerActivity {
         mTfLight = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
     }
 
-    /**
-     * generates a random ChartData object with just one DataSet
-     *
-     * @return
-     */
-    public LineData generateLineData() {
+    public LineData generateLineData(ArrayList<Integer> values) {
 
-        ArrayList<Entry> entries = new ArrayList<Entry>();
+        ArrayList<Entry> entries = new ArrayList<>();
 
-        for (int i = 0; i < 12; i++) {
-            entries.add(new Entry(i, (int) (Math.random() * 65) + 40));
+        for (int i = 0; i < values.size(); i++) {
+            entries.add(new Entry(i, values.get(i)));
         }
 
-        LineDataSet d = new LineDataSet(entries, "New DataSet " +  ", (1)");
+        LineDataSet d = new LineDataSet(entries, "");
         d.setLineWidth(2.5f);
         d.setCircleRadius(4.5f);
         d.setHighLightColor(Color.rgb(244, 117, 117));
@@ -74,20 +58,15 @@ public abstract class BaseChartActivity extends BaseDrawerActivity {
         return cd;
     }
 
-    /**
-     * generates a random ChartData object with just one DataSet
-     *
-     * @return
-     */
-    public BarData generateBarData() {
+    public BarData generateBarData(ArrayList<Integer> values) {
 
-        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> entries = new ArrayList<>();
 
-        for (int i = 0; i < 12; i++) {
-            entries.add(new BarEntry(i, (int) (Math.random() * 70) + 30));
+        for (int i = 0; i < values.size(); i++) {
+            entries.add(new BarEntry(i, values.get(i)));
         }
 
-        BarDataSet d = new BarDataSet(entries, "New DataSet ");
+        BarDataSet d = new BarDataSet(entries, "");
         d.setColors(ColorTemplate.VORDIPLOM_COLORS);
         d.setHighLightAlpha(255);
 
@@ -96,17 +75,12 @@ public abstract class BaseChartActivity extends BaseDrawerActivity {
         return cd;
     }
 
-    /**
-     * generates a random ChartData object with just one DataSet
-     *
-     * @return
-     */
-    public PieData generatePieData() {
+    public PieData generatePieData(ArrayList<Integer> values, String[] marker) {
 
-        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
+        ArrayList<PieEntry> entries = new ArrayList<>();
 
-        for (int i = 0; i < 4; i++) {
-            entries.add(new PieEntry((float) ((Math.random() * 70) + 30), "Quarter " + (i+1)));
+        for (int i = 0; i < values.size(); i++) {
+            entries.add(new PieEntry(values.get(i), marker[i]));
         }
 
         PieDataSet d = new PieDataSet(entries, "");
@@ -114,23 +88,23 @@ public abstract class BaseChartActivity extends BaseDrawerActivity {
         // space between slices
         d.setSliceSpace(10f);
         d.setColors(ColorTemplate.VORDIPLOM_COLORS);
+
         d.setValueLinePart1OffsetPercentage(80.f);
-        d.setValueLinePart1Length(3.2f);
-        d.setValueLinePart2Length(1.4f);
-        //dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        d.setValueLinePart1Length(0.2f);
+        d.setValueLinePart2Length(0.4f);
         d.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
 
         PieData cd = new PieData(d);
         return cd;
     }
 
-    public BubbleData generateBubbleata() {
+    public BubbleData generateBubbleData(ArrayList<Integer> values) {
 
-        ArrayList<BubbleEntry> entries = new ArrayList<BubbleEntry>();
+        ArrayList<BubbleEntry> entries = new ArrayList<>();
 
-        for (int i = 0; i < 4; i++) {
-            float val = (float) (Math.random() * 70);
-            float size = (float) (Math.random() * 70);
+        for (int i = 0; i < values.size(); i++) {
+            float val = values.get(i);
+            float size = values.get(i);
 
             entries.add(new BubbleEntry(i, val, size));
         }
@@ -147,12 +121,12 @@ public abstract class BaseChartActivity extends BaseDrawerActivity {
         return bd;
     }
 
-    public CombinedData generateCombinedData() {
+    public CombinedData generateCombinedData(LineData lineData, BarData barData) {
 
         CombinedData d = new CombinedData();
 
-        d.setData(generateLineData());
-        d.setData(generateBarData());
+        d.setData(lineData);
+        d.setData(barData);
         d.setValueTypeface(mTfLight);
 
         return d;

@@ -11,18 +11,16 @@ import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
 import com.blackdog.dictation_teacher.Adapter.StudentListAdapter;
 import com.blackdog.dictation_teacher.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
-import com.blackdog.dictation_teacher.Util;
 import com.blackdog.dictation_teacher.models.Student;
 import com.blackdog.dictation_teacher.net.ApiRequester;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StudentListActivity extends BaseDrawerActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private Button mViewAllStudentStatButton;
+    private Button mTotalStatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +29,7 @@ public class StudentListActivity extends BaseDrawerActivity {
 
         toolbarTitle.setText("학생목록");
 
-        mViewAllStudentStatButton = (Button) findViewById(R.id.bt_all_student_stat);
+        mTotalStatButton = (Button) findViewById(R.id.bt_total_stat);
         mRecyclerView = (RecyclerView) findViewById(R.id.student_recycler_view);
 
         // use this setting to improve performance if you know that changes
@@ -44,10 +42,12 @@ public class StudentListActivity extends BaseDrawerActivity {
 
         requestStudentList();
 
-        mViewAllStudentStatButton.setOnClickListener(new View.OnClickListener() {
+        mTotalStatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 2017-10-15 우리 반 전체 통계 액티비티 제작
+                //우리반전체통계
+                Intent intent = new Intent(getApplicationContext(), TotalStatisticsActivity.class);
+                startActivity(intent);
             }
         });
     }

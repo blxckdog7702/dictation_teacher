@@ -39,9 +39,9 @@
         <activity android:name=".Activity.MatchingListActivity" />
         <activity android:name=".Activity.StudentManageActivity" />
         <activity android:name=".Activity.QuizMakingActivity" />
-        <activity android:name=".Activity.RecordByPeriodActivity"></activity>
-        <activity android:name=".Activity.RecordManagerActivity"/>
-        <activity android:name=".Activity.RecordResultActivity"/>
+        <activity android:name=".Activity.RecordManagerActivity" />
+        <activity android:name=".Activity.RecordResultActivity" />
+        <activity android:name=".Activity.TotalStatisticsActivity"></activity>
     </application>
 
 </manifest>

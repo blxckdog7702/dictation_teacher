@@ -17,8 +17,14 @@ public class BaseActivity extends AppCompatActivity {
 //    private FragmentManager fragmentManager;
 //    private ContextMenuDialogFragment mMenuDialogFragment;
 
-    protected  @Nullable @BindView(R.id.toolbar) Toolbar toolbar;
-    protected @Nullable @BindView(R.id.toolbar_title) TextView toolbarTitle;
+    protected
+    @Nullable
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    protected
+    @Nullable
+    @BindView(R.id.toolbar_title)
+    TextView toolbarTitle;
 
     @Override
     public void setContentView(int layoutResID) {
@@ -98,7 +104,10 @@ public class BaseActivity extends AppCompatActivity {
 //    }
 
     protected void setupToolbar() {
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        //BaseActivity만 쓰려면 해당 액티비티의 레이아웃에 toolbar 추가
+        //<include layout="@layout/toolbar" />
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {

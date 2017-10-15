@@ -70,6 +70,10 @@ public class MainActivity extends BaseDrawerActivity {
         ApiRequester.getInstance().getTeachersQuizzes(MyTeacherInfo.getInstance().getTeacher().getId(), new ApiRequester.UserCallback<List<Quiz>>() {
             @Override
             public void onSuccess(List<Quiz> result) {
+                if(result == null) {
+                    return;
+                }
+
                 quizList = (ArrayList) result;
 
                 ArrayAdapter<Quiz> arrayAdapter = new ArrayAdapter<Quiz>(getApplicationContext(),
