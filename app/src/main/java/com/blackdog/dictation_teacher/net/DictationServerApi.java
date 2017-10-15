@@ -30,6 +30,9 @@ import retrofit2.http.Query;
 
 public interface DictationServerApi {
 
+    //선생님의 학생 목록 가져오기
+    @GET("/teachers/{teacher_id}/students")
+    Call<List<Student>> getTeachersStudents(@Path("teacher_id") String teacherID);
     //선생님이 본 모든 시험 결과에 대한 취약점 합산
   	@GET("/teachers/{teacher_id}/quiz_histories/rectify_count")
   	Call<RectifyCount> getRecifyCountToAllQuizHistories(@Path("teacher_id") String teacherID);

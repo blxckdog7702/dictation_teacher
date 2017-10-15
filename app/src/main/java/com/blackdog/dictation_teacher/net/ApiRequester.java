@@ -263,4 +263,10 @@ public class ApiRequester {
 		call.enqueue(new ObjectCallback<>(userCallback));
 	}
 
+  //선생님의 학생 목록 가져오기
+  public void getTeachersStudents(String teacherID, UserCallback<List<Student>> userCallback){
+		Call<List<Student>> call = dictationServerApi.getTeachersStudents(teacherID);
+		call.enqueue(new ObjectCallback<>(userCallback));
+	}
+
 }
