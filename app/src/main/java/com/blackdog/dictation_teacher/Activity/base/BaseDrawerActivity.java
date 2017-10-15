@@ -12,6 +12,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.LoginActivity;
+import com.blackdog.dictation_teacher.Activity.MainActivity;
+import com.blackdog.dictation_teacher.Activity.MatchingListActivity;
+import com.blackdog.dictation_teacher.Activity.QuizHistoryListActivity;
+import com.blackdog.dictation_teacher.Activity.QuizMakingActivity;
+import com.blackdog.dictation_teacher.Activity.StudentListActivity;
+import com.blackdog.dictation_teacher.Activity.StudentManageActivity;
 import com.blackdog.dictation_teacher.LoginSharedPref;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.Util;
@@ -36,7 +42,7 @@ public class BaseDrawerActivity extends BaseActivity {
     @Override
     public void setContentView(int layoutResID) {
         super.setContentViewWithoutInject(R.layout.activity_base_drawer);
-        ViewGroup viewGroup = (ViewGroup) findViewById(R.id.content);
+        ViewGroup viewGroup = (ViewGroup) findViewById(R.id.lrContent);
         LayoutInflater.from(this).inflate(layoutResID, viewGroup, true);
         bindViews();
     }
@@ -54,10 +60,52 @@ public class BaseDrawerActivity extends BaseActivity {
         vNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-                if(menuItem.getTitle().equals("로그아웃")) {
-                    logoutClick();
+                String menuTitle = menuItem.getTitle().toString();
+                switch (menuTitle) {
+                    case "시험 준비" : {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        break;
+                    }
+                    case "학생 등록 요청" : {
+                        Intent intent = new Intent(getApplicationContext(), MatchingListActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        break;
+                    }
+                    case "학생 목록" : {
+                        Intent intent = new Intent(getApplicationContext(), StudentListActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        break;
+                    }
+                    case "학생 관리" : {
+                        Intent intent = new Intent(getApplicationContext(), StudentManageActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        break;
+                    }
+                    case "회차 별 시험 리스트" : {
+                        Intent intent = new Intent(getApplicationContext(), QuizHistoryListActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        break;
+                    }
+                    case "문제 작성" : {
+                        Intent intent = new Intent(getApplicationContext(), QuizMakingActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        break;
+                    }
+                    case "로그아웃" : {
+                        logoutClick();
+                        break;
+                    }
                 }
+
                 Toast.makeText(getApplicationContext(),menuItem.getTitle(),Toast.LENGTH_SHORT).show();
+                drawerlayout.closeMenu();
                 return false;
             }
         }) ;

@@ -41,6 +41,9 @@ public class Teacher {
     @SerializedName("students")
     @Expose
     private List<String> students = null;
+    @SerializedName("applicants")
+    @Expose
+    private List<String> applicants = null;
 
     public Integer getV() {
         return v;
@@ -122,4 +125,11 @@ public class Teacher {
         this.students = students;
     }
 
+    public List<String> getApplicants() {
+        return applicants;
+    }
+
+    public void setApplicants(List<String> applicants) {
+        this.applicants = applicants;
+    }
 }

@@ -1,6 +1,8 @@
 package com.blackdog.dictation_teacher.models;
 
 import java.util.List;
+import java.util.logging.Logger;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -29,7 +31,7 @@ public class Student {
     private Integer v;
     @SerializedName("quiz_results")
     @Expose
-    private List<String> quizResults = null;
+    private List<QuizResult> quizResults = null;
 
     public String getId() {
         return id;
@@ -87,11 +89,11 @@ public class Student {
         this.v = v;
     }
 
-    public List<String> getQuizResults() {
+    public List<QuizResult> getQuizResults() {
         return quizResults;
     }
 
-    public void setQuizResults(List<String> quizResults) {
+    public void setQuizResults(List<QuizResult> quizResults) {
         this.quizResults = quizResults;
     }
 
