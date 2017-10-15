@@ -1,6 +1,7 @@
 package com.blackdog.dictation_teacher.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blackdog.dictation_teacher.Activity.RecordManagerActivity;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Student;
 
@@ -58,7 +60,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mSchool.setText(mStudentList.get(position).getSchool());
@@ -70,7 +72,12 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
         holder.mStudentDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "테스트용", Toast.LENGTH_SHORT).show();
+                final int selectedPosition = holder.getAdapterPosition();
+
+                Intent intent = new Intent(mContext, RecordManagerActivity.class);
+                mContext.startActivity(intent);
+
+//                Toast.makeText(mContext, "테스트용", Toast.LENGTH_SHORT).show();
             }
         });
     }

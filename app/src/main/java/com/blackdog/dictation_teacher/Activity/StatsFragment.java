@@ -28,6 +28,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+//학생 개인 통계
 public class StatsFragment extends BaseChartFragment {
 
     @BindView(R.id.lvStats) ListView lvStats;

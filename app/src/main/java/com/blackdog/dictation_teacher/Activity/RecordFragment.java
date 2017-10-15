@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.blackdog.dictation_teacher.Adapter.RecordAdapter;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.QuizHistory;
+import com.blackdog.dictation_teacher.models.QuizResult;
 import com.blackdog.dictation_teacher.models.RecordModel;
 import com.blackdog.dictation_teacher.models.Teacher;
 
@@ -24,15 +25,18 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+//탭 뷰에서 회차별
 public class RecordFragment extends Fragment {
 
     private RecordAdapter recordAdapter;
-    private ArrayList<RecordModel> recordModels = new ArrayList<>();
-    private ArrayList<Teacher> teachers;
-    private ArrayList<QuizHistory> quizHistories;
+//    private ArrayList<QuizResult> recordModels;
+//    private ArrayList<Teacher> teachers;
+//    private ArrayList<QuizHistory> quizHistories;
 
-    @BindView(R.id.rvRecord) RecyclerView rvRecord;
-    @BindView(R.id.tvRecord) TextView tvRecord;
+    @BindView(R.id.rvRecord)
+    RecyclerView rvRecord;
+    @BindView(R.id.tvRecord)
+    TextView tvRecord;
 
     @Nullable
     @Override
@@ -52,6 +56,16 @@ public class RecordFragment extends Fragment {
         LinearLayoutManager MyLayoutManager = new LinearLayoutManager(getActivity());
         MyLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvRecord.setLayoutManager(MyLayoutManager);
+
+        ArrayList<QuizResult> recordModels = new ArrayList<>();
+        QuizResult item = new QuizResult();
+        item.setDate("2017년 10월 15일 테스트중");
+        item.setQuizNumber(9);
+        item.setRank(1);
+        item.setScore(100);
+        item.setStudentName("도효니!");
+        recordModels.add(item);
+
 
         recordAdapter = new RecordAdapter(getActivity(), recordModels);
         rvRecord.setAdapter(recordAdapter);

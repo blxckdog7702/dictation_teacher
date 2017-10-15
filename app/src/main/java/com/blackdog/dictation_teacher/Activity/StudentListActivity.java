@@ -59,7 +59,7 @@ public class StudentListActivity extends BaseDrawerActivity {
                 if(result == null) {
                     return;
                 }
-                mAdapter = new StudentListAdapter(getApplicationContext(), result);
+                mAdapter = new StudentListAdapter(StudentListActivity.this, result);
                 mRecyclerView.setAdapter(mAdapter);
             }
 

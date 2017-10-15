@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.blackdog.dictation_teacher.Activity.RecordResultActivity;
 import com.blackdog.dictation_teacher.R;
+import com.blackdog.dictation_teacher.models.QuizResult;
 import com.blackdog.dictation_teacher.models.RecordModel;
 
 import java.util.ArrayList;
@@ -21,11 +22,11 @@ import butterknife.OnClick;
 
 public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordViewHolder> {
 
-    private ArrayList<RecordModel> recordModels;
+    private ArrayList<QuizResult> recordModels;
     private Context context;
     private RecordViewHolder holder;
 
-    public RecordAdapter(Context context, ArrayList<RecordModel> recordModels) {
+    public RecordAdapter(Context context, ArrayList<QuizResult> recordModels) {
         this.context = context;
         this.recordModels = recordModels;
     }
@@ -39,7 +40,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
 
     @Override
     public void onBindViewHolder(final RecordViewHolder holder, final int position) {
-        final RecordModel recordModel = recordModels.get(position);
+        final QuizResult recordModel = recordModels.get(position);
         this.holder = holder;
 
         holder.tvDate.setText(recordModel.getDate());
@@ -54,7 +55,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
         else{
             holder.tvComment.setTextColor(Color.RED);
         }
-        holder.tvComment.setText(recordModel.getComment());
+//        holder.tvComment.setText(recordModel.getComment());
 
     }
 
