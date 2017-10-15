@@ -9,9 +9,11 @@ import android.widget.Button;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
 import com.blackdog.dictation_teacher.Adapter.StudentListAdapter;
+import com.blackdog.dictation_teacher.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.Util;
 import com.blackdog.dictation_teacher.models.Student;
+import com.blackdog.dictation_teacher.net.ApiRequester;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,22 +42,21 @@ public class StudentListActivity extends BaseDrawerActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        List<Student> dataset = new ArrayList<>();
+        ApiRequester.getInstance().getTeachersStudents(MyTeacherInfo.getInstance().getTeacher().getId(), new ApiRequester.UserCallback<List<Student>>() {
+            @Override
+            public void onSuccess(List<Student> result) {
+                if(result == null) {
+                    return;
+                }
+                mAdapter = new StudentListAdapter(getApplicationContext(), result);
+                mRecyclerView.setAdapter(mAdapter);
+            }
 
-        for (int i = 0; i < 20; i++) {
-            Student item = new Student();
-            item.setSchool("호성초등학교");
-            item.setGrade("1학년");
-            item.setClass_("2반");
-            item.setStudentId(1);
-            item.setName("홍길동");
+            @Override
+            public void onFail() {
 
-            dataset.add(item);
-        }
-
-        // specify an adapter (see also next example)
-        mAdapter = new StudentListAdapter(this, dataset);
-        mRecyclerView.setAdapter(mAdapter);
+            }
+        });
 
         mViewAllStudentStatButton.setOnClickListener(new View.OnClickListener() {
             @Override
