@@ -9,8 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blackdog.dictation_teacher.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Student;
+import com.blackdog.dictation_teacher.net.ApiRequester;
 
 import java.util.List;
 
@@ -60,7 +62,7 @@ public class StudentManageAdapter extends RecyclerView.Adapter<StudentManageAdap
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mGrade.setText(mStudentList.get(position).getGrade());
@@ -71,7 +73,42 @@ public class StudentManageAdapter extends RecyclerView.Adapter<StudentManageAdap
         holder.mDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "삭제", Toast.LENGTH_SHORT).show();
+                final int selectedPosition = holder.getAdapterPosition();
+                Student item = mStudentList.get(selectedPosition);
+
+                requestBreakMatching(selectedPosition, item);
+            }
+        });
+    }
+
+    private void requestBreakMatching(final int selectedPosition, Student item) {
+        ApiRequester.getInstance().unConnectedMatching(item.getId(), MyTeacherInfo.getInstance().getTeacher().getId(), new ApiRequester.UserCallback<Boolean>() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if(result == null) {
+                    Toast.makeText(mContext, "NULL~~~", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(result == true) {
+                    //성공
+                    Toast.makeText(mContext, "성공~~~", Toast.LENGTH_SHORT).show();
+                    mStudentList.remove(selectedPosition);
+                    notifyItemRemoved(selectedPosition);
+                    notifyItemRangeChanged(selectedPosition, mStudentList.size());
+
+                } else {
+                    //실패
+                    Toast.makeText(mContext, "실패~~~", Toast.LENGTH_SHORT).show();
+
+                }
+
+                return;
+            }
+
+            @Override
+            public void onFail() {
+
             }
         });
     }

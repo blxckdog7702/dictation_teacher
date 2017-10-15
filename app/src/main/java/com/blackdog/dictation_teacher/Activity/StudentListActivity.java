@@ -42,6 +42,17 @@ public class StudentListActivity extends BaseDrawerActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        requestStudentList();
+
+        mViewAllStudentStatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: 2017-10-15 우리 반 전체 통계 액티비티 제작
+            }
+        });
+    }
+
+    private void requestStudentList() {
         ApiRequester.getInstance().getTeachersStudents(MyTeacherInfo.getInstance().getTeacher().getId(), new ApiRequester.UserCallback<List<Student>>() {
             @Override
             public void onSuccess(List<Student> result) {
@@ -55,13 +66,6 @@ public class StudentListActivity extends BaseDrawerActivity {
             @Override
             public void onFail() {
 
-            }
-        });
-
-        mViewAllStudentStatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: 2017-10-15 우리 반 전체 통계 액티비티 제작
             }
         });
     }

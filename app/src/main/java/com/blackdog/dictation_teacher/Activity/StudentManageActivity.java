@@ -5,9 +5,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
+import com.blackdog.dictation_teacher.Adapter.StudentListAdapter;
 import com.blackdog.dictation_teacher.Adapter.StudentManageAdapter;
+import com.blackdog.dictation_teacher.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Student;
+import com.blackdog.dictation_teacher.net.ApiRequester;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,20 +37,24 @@ public class StudentManageActivity extends BaseDrawerActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        List<Student> dataset = new ArrayList<>();
+        requestStudentList();
+    }
 
-        for (int i = 0; i < 20; i++) {
-            Student item = new Student();
-            item.setSchool("호성초등학교");
-            item.setGrade("1학년");
-            item.setClass_("2반");
-            item.setStudentId(1);
-            item.setName("홍길동");
+    private void requestStudentList() {
+        ApiRequester.getInstance().getTeachersStudents(MyTeacherInfo.getInstance().getTeacher().getId(), new ApiRequester.UserCallback<List<Student>>() {
+            @Override
+            public void onSuccess(List<Student> result) {
+                if(result == null) {
+                    return;
+                }
+                mAdapter = new StudentManageAdapter(getApplicationContext(), result);
+                mRecyclerView.setAdapter(mAdapter);
+            }
 
-            dataset.add(item);
-        }
+            @Override
+            public void onFail() {
 
-        mAdapter = new StudentManageAdapter(this, dataset);
-        mRecyclerView.setAdapter(mAdapter);
+            }
+        });
     }
 }
