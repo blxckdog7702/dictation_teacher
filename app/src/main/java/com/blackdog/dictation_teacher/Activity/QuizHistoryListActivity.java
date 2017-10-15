@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Adapter.QuizHistoryListAdapter;
+import com.blackdog.dictation_teacher.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.QuizHistory;
 import com.blackdog.dictation_teacher.net.ApiRequester;
@@ -41,7 +42,7 @@ public class QuizHistoryListActivity extends AppCompatActivity {
         rv_list.setLayoutManager(new LinearLayoutManager(this));
 
         try {
-            ApiRequester.getInstance().getTeachersQuizHistories("599b03151c6e6f0159a72815", new ApiRequester.UserCallback<List<QuizHistory>>() {
+            ApiRequester.getInstance().getTeachersQuizHistories(MyTeacherInfo.getInstance().getTeacher().getId(), new ApiRequester.UserCallback<List<QuizHistory>>() {
                 @Override
                 public void onSuccess(List<QuizHistory> quizHistoryList) {
                     Log.d("quizHistory",quizHistoryList.size()+"");
