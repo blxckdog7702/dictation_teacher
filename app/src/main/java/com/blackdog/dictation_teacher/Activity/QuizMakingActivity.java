@@ -1,12 +1,20 @@
 package com.blackdog.dictation_teacher.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
+import com.blackdog.dictation_teacher.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
+import com.blackdog.dictation_teacher.models.Question;
+import com.blackdog.dictation_teacher.models.Quiz;
+import com.blackdog.dictation_teacher.net.ApiRequester;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +55,70 @@ public class QuizMakingActivity extends BaseDrawerActivity {
             return;
         }
 
+        Quiz quiz = makeQuiz();
+
+        if (quiz == null) {
+            return;
+        }
+
+        ApiRequester.getInstance().addTeachersQuiz(MyTeacherInfo.getInstance().getTeacher().getId(), quiz, new ApiRequester.UserCallback<Boolean>() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if (result == null) {
+                    Toast.makeText(getApplicationContext(), "Null러간다~~~", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (result == true) {
+                    Toast.makeText(getApplicationContext(), "성공~~~", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "실패~~~", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        });
         //문제 보내기 요청
+    }
+
+    private Quiz makeQuiz() {
+        Quiz quiz = new Quiz();
+        //퀴즈 이름
+        quiz.setName(mQuizName.getText().toString());
+        //퀴즈 번호? null로 보내는걸로
+        List<Question> list = new ArrayList<>();
+
+        String[] sentences = new String[]{
+                mQuestion1.getText().toString(),
+                mQuestion2.getText().toString(),
+                mQuestion3.getText().toString(),
+                mQuestion4.getText().toString(),
+                mQuestion5.getText().toString(),
+                mQuestion6.getText().toString(),
+                mQuestion7.getText().toString(),
+                mQuestion8.getText().toString(),
+                mQuestion9.getText().toString(),
+                mQuestion10.getText().toString()
+        };
+
+        for (int i = 1; i <= 10; i++) {
+            Question question = new Question();
+            question.setNumber(i);
+            question.setSentence(sentences[i - 1]);
+            list.add(question);
+        }
+
+        quiz.setQuestions(list);
+
+        return quiz;
     }
 
     // TODO: 2017-10-14 키보드가 et 가림

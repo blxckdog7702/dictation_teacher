@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
 import com.blackdog.dictation_teacher.LoginSharedPref;
+import com.blackdog.dictation_teacher.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Quiz;
 import com.blackdog.dictation_teacher.net.ApiRequester;
@@ -66,7 +67,7 @@ public class MainActivity extends BaseDrawerActivity {
     }
 
     public void requestQuizList() throws IOException {
-        ApiRequester.getInstance().getTeachersQuizzes(new ApiRequester.UserCallback<List<Quiz>>() {
+        ApiRequester.getInstance().getTeachersQuizzes(MyTeacherInfo.getInstance().getTeacher().getId(), new ApiRequester.UserCallback<List<Quiz>>() {
             @Override
             public void onSuccess(List<Quiz> result) {
                 quizList = (ArrayList) result;
