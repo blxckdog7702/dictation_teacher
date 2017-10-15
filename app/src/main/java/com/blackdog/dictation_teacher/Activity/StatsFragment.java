@@ -2,54 +2,98 @@ package com.blackdog.dictation_teacher.Activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseChartFragment;
-import com.blackdog.dictation_teacher.Adapter.ChartDataAdapter;
 import com.blackdog.dictation_teacher.R;
+import com.blackdog.dictation_teacher.Util;
 import com.blackdog.dictation_teacher.models.ChartItem.ChartItem;
 import com.blackdog.dictation_teacher.models.QuizHistory;
-import com.blackdog.dictation_teacher.models.QuizResult;
-import com.blackdog.dictation_teacher.models.Student;
 import com.blackdog.dictation_teacher.models.Teacher;
-import com.blackdog.dictation_teacher.net.ApiRequester;
+import com.github.mikephil.charting.charts.CombinedChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.CombinedData;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.PieData;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 //학생 개인 통계
 public class StatsFragment extends BaseChartFragment {
 
-    @BindView(R.id.lvStats) ListView lvStats;
-    @BindView(R.id.tvStats) TextView tvStats;
+//    @BindView(R.id.lvStats) ListView lvStats;
+//    @BindView(R.id.tvStats) TextView tvStats;
+
     private ArrayList<ChartItem> chartItems;
     private ArrayList<Teacher> teachers;
     private ArrayList<QuizHistory> quizHistories;
+    String[] marker = {"Property1","Property2","Property3","Property4","Property5",
+            "Property6","Property7","Property8","Property9","Property10",};
+
+    CombinedChart combinedChart;
+    PieChart pieChart;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_stats, container, false);
-        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        ButterKnife.bind(this, view);
+        //상태바 안보이게 하는 코드
+//        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+//        ButterKnife.bind(this, view);
 
 //        getServerData();
 //        initModels();
 //        setupView();
 
+        pieChart = (PieChart) view.findViewById(R.id.student_pie_chart);
+        combinedChart = (CombinedChart) view.findViewById(R.id.student_combined_chart);
+        drawCombinedChart();
+        drawPieChart();
+
         return view;
+    }
+
+    private void drawPieChart() {
+        pieChart.getLayoutParams().height =  (int) ((Util.getInstance().getDisplayHeigth(getContext()) / 5) * 3);
+
+        ArrayList<Integer> data = new ArrayList<>();
+        data.add(1);
+        data.add(100);
+        data.add(150);
+        data.add(50);
+        data.add(1);
+        data.add(100);
+        data.add(150);
+        data.add(50);
+        data.add(150);
+        data.add(50);
+
+        PieData pieData = generatePieData(data, marker);
+        pieChart.setData(pieData);
+        pieChart.invalidate();
+    }
+
+    private void drawCombinedChart() {
+        combinedChart.getLayoutParams().height =  (int) ((Util.getInstance().getDisplayHeigth(getContext()) / 5) * 3);
+
+        ArrayList<Integer> data = new ArrayList<>();
+        data.add(1);
+        data.add(100);
+        data.add(150);
+        data.add(50);
+
+        LineData lineData = generateLineData(data);
+        BarData barData = generateBarData(data);
+
+        CombinedData combinedData = generateCombinedData(lineData, barData);
+
+        combinedChart.setData(combinedData);
+        combinedChart.invalidate();
     }
 //
 //    private void initModels() {
