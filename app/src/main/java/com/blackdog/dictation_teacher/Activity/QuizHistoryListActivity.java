@@ -1,7 +1,6 @@
 package com.blackdog.dictation_teacher.Activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
 import com.blackdog.dictation_teacher.Adapter.QuizHistoryListAdapter;
 import com.blackdog.dictation_teacher.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class QuizHistoryListActivity extends AppCompatActivity {
+public class QuizHistoryListActivity extends BaseDrawerActivity {
 
     RecyclerView rv_list;
     EditText et_search;
@@ -30,8 +30,9 @@ public class QuizHistoryListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_quiz_history_list);
         super.onCreate(savedInstanceState);
+        toolbarTitle.setText("회차 별 시험 리스트");
 
         //로딩바
         progressBar = (ProgressBar) findViewById(R.id.progressBar);

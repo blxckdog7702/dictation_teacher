@@ -8,13 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.ExamResultPage;
-import com.blackdog.dictation_teacher.Activity.QuizHistoryActivity;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.QuestionResult;
-import com.blackdog.dictation_teacher.models.QuizHistory;
 import com.blackdog.dictation_teacher.models.QuizResult;
 
 import java.util.List;
@@ -23,13 +20,13 @@ import java.util.List;
 /**
  * Created by JBStat on 2016-11-29.
  */
-public class QuizResultListAdapter extends RecyclerView.Adapter<QuizResultListAdapter.ViewHolder> {
+public class QuizHistoryAdapter extends RecyclerView.Adapter<QuizHistoryAdapter.ViewHolder> {
 
     List<QuizResult> quizResults;
     Context context;
 
 
-    public QuizResultListAdapter(Context _context, List<QuizResult> _quizResults) {
+    public QuizHistoryAdapter(Context _context, List<QuizResult> _quizResults) {
         context = _context;
         quizResults = _quizResults;
     }
@@ -83,7 +80,7 @@ public class QuizResultListAdapter extends RecyclerView.Adapter<QuizResultListAd
                 //화면 옮겨가기
 
                 Intent intent = new Intent(context, ExamResultPage.class);
-                intent.putExtra("OBJECT",quizResult);
+                intent.putExtra("quizResult",quizResult);
                 context.startActivity(intent);
 
             }

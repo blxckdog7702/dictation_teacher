@@ -4,7 +4,9 @@ package com.blackdog.dictation_teacher.models.retify;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Error
+import java.io.Serializable;
+
+public class Error implements Serializable
 {
 
     @SerializedName("msg")

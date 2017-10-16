@@ -3,7 +3,9 @@ package com.blackdog.dictation_teacher.models.retify;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Help
+import java.io.Serializable;
+
+public class Help implements Serializable
 {
 
     @SerializedName("text")

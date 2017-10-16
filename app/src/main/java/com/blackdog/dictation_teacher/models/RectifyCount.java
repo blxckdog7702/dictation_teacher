@@ -3,7 +3,9 @@ package com.blackdog.dictation_teacher.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RectifyCount {
+import java.io.Serializable;
+
+public class RectifyCount implements Serializable{
 
 	@SerializedName("property1")
 	@Expose

@@ -1,12 +1,12 @@
 package com.blackdog.dictation_teacher.models.retify;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PnuErrorWordList
+public class PnuErrorWordList implements Serializable
 {
-
     @SerializedName("repeat")
     @Expose
     private String repeat;
