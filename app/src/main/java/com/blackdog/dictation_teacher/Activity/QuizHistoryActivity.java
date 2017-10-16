@@ -45,7 +45,6 @@ public class QuizHistoryActivity extends BaseActivity {
                 @Override
                 public void onSuccess(QuizHistory result) {
                     //화면 갱신하기
-                    Toast.makeText(getBaseContext(), result.getQuizNumber()+"", Toast.LENGTH_SHORT).show();
                     rv_list.setAdapter(new QuizHistoryAdapter(QuizHistoryActivity.this, result.getQuizResults()));
                     progressBar.setVisibility(View.GONE);
                 }

@@ -23,9 +23,9 @@ public class QuizResult implements Serializable {
     @SerializedName("rectify_count")
     @Expose
     private RectifyCount rectifyCount;
-    @SerializedName("quiz_number")
+    @SerializedName("quiz")
     @Expose
-    private Integer quizNumber;
+    private Quiz quiz;
     @SerializedName("date")
     @Expose
     private String date;
@@ -36,14 +36,6 @@ public class QuizResult implements Serializable {
 
     public void setRank(Integer rank) {
         this.rank = rank;
-    }
-
-    public Integer getQuizNumber() {
-        return quizNumber;
-    }
-
-    public void setQuizNumber(Integer quizNumber) {
-        this.quizNumber = quizNumber;
     }
 
     public String getStudentName() {
@@ -86,4 +78,11 @@ public class QuizResult implements Serializable {
         this.date = date;
     }
 
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
+    }
 }

@@ -43,6 +43,9 @@ public class TotalStatisticsActivity extends BaseChartActivity {
         }
 
         List<QuizHistory> quizResultList = QuizHistoryListSingle.getInstance().getQuizHistoryList();
+        if(quizResultList == null) {
+            return;
+        }
 
         for (QuizHistory QuizHistory : quizResultList) {
             RectifyCount item = QuizHistory.getRectifyCount();
@@ -76,7 +79,14 @@ public class TotalStatisticsActivity extends BaseChartActivity {
         }
 
         for (QuizHistory item : list) {
+            if(item.getAverage() == null) {
+                break;
+            }
             averageTotal.add(item.getAverage().intValue());
+        }
+
+        if(averageTotal.size() == 0) {
+            averageTotal.add(0);
         }
 
         LineData lineData = generateLineData(averageTotal);

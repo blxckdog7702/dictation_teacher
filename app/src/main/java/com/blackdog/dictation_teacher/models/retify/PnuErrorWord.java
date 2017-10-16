@@ -1,9 +1,10 @@
 package com.blackdog.dictation_teacher.models.retify;
 
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
+
 
 public class PnuErrorWord implements Serializable
 {
@@ -11,21 +12,26 @@ public class PnuErrorWord implements Serializable
     @SerializedName("Help")
     @Expose
     private Help help;
+
     @SerializedName("orgStr")
     @Expose
     private String orgStr;
+
     @SerializedName("m_nStart")
     @Expose
-    private String m_nStart;
+    private int m_nStart;
+
     @SerializedName("nErrorIdx")
     @Expose
-    private String nErrorIdx;
+    private int nErrorIdx;
+
     @SerializedName("candWordList")
     @Expose
     private CandWordList candWordList;
+
     @SerializedName("m_nEnd")
     @Expose
-    private String m_nEnd;
+    private int m_nEnd;
 
     public Help getHelp ()
     {
@@ -47,22 +53,22 @@ public class PnuErrorWord implements Serializable
         this.orgStr = orgStr;
     }
 
-    public String getM_nStart ()
+    public int getM_nStart ()
     {
         return m_nStart;
     }
 
-    public void setM_nStart (String m_nStart)
+    public void setM_nStart (int m_nStart)
     {
         this.m_nStart = m_nStart;
     }
 
-    public String getNErrorIdx ()
+    public int getNErrorIdx ()
     {
         return nErrorIdx;
     }
 
-    public void setNErrorIdx (String nErrorIdx)
+    public void setNErrorIdx (int nErrorIdx)
     {
         this.nErrorIdx = nErrorIdx;
     }
@@ -77,12 +83,12 @@ public class PnuErrorWord implements Serializable
         this.candWordList = candWordList;
     }
 
-    public String getM_nEnd ()
+    public int getM_nEnd ()
     {
         return m_nEnd;
     }
 
-    public void setM_nEnd (String m_nEnd)
+    public void setM_nEnd (int m_nEnd)
     {
         this.m_nEnd = m_nEnd;
     }
