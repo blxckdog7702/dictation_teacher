@@ -36,6 +36,9 @@ public class RecordResultActivity extends BaseChartActivity implements OnChartVa
     @BindView(R.id.pieChart) PieChart pieChart;
     private Typeface tf;
 
+    String[] marker = {"Property1","Property2","Property3","Property4","Property5",
+            "Property6","Property7","Property8","Property9","Property10",};
+
     protected String[] mParties = new String[] {
             "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
             "Party I", "Party J", "Party K", "Party L", "Party M", "Party N", "Party O", "Party P",
@@ -46,13 +49,36 @@ public class RecordResultActivity extends BaseChartActivity implements OnChartVa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_record_result);
+        toolbarTitle.setText("누구의 x월 x일 시험");
 
         ButterKnife.bind(this);
+        drawPieChart();
         pieChart.getLayoutParams().height = (int) ((Util.getInstance().getDisplayHeigth(this) / 5) * 3);
+        setPieChartStyle();
+    }
 
+    private void drawPieChart() {
+        ArrayList<Integer> data = new ArrayList<>();
+        data.add(1);
+        data.add(100);
+        data.add(150);
+        data.add(50);
+        data.add(1);
+        data.add(100);
+        data.add(150);
+        data.add(50);
+        data.add(150);
+        data.add(50);
+
+        PieData pieData = generatePieData(data, marker);
+        pieChart.setData(pieData);
+        pieChart.invalidate();
+    }
+
+    private void setPieChartStyle() {
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.setExtraOffsets(5, 10, 5, 5);
@@ -88,7 +114,7 @@ public class RecordResultActivity extends BaseChartActivity implements OnChartVa
         // add a selection listener
         pieChart.setOnChartValueSelectedListener(this);
 
-        setData(4, 100);
+//        setData(4, 100);
 
         pieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
         // mChart.spin(2000, 0, 360);
@@ -112,69 +138,69 @@ public class RecordResultActivity extends BaseChartActivity implements OnChartVa
         pieChart.animateY(700);
     }
 
-    private void setData(int count, float range) {
-
-        float mult = range;
-        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
-
-        // NOTE: The order of the entries when being added to the entries array determines their position around the center of
-        // the chart.
-        for (int i = 0; i < count; i++) {
-            entries.add(new PieEntry((float) ((Math.random() * mult) + mult / 5), mParties[i % mParties.length]));
-        }
-
-        PieDataSet dataSet = new PieDataSet(entries, "");
-
-        dataSet.setDrawIcons(false);
-
-        dataSet.setSliceSpace(10f);
-        dataSet.setIconsOffset(new MPPointF(0, 40));
-        dataSet.setSelectionShift(5f);
-
-        // add a lot of colors
-
-        ArrayList<Integer> colors = new ArrayList<Integer>();
-
-        for (int c : ColorTemplate.VORDIPLOM_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.JOYFUL_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.COLORFUL_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.LIBERTY_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.PASTEL_COLORS)
-            colors.add(c);
-
-        colors.add(ColorTemplate.getHoloBlue());
-
-        dataSet.setColors(colors);
-        //dataSet.setSelectionShift(0f);
-
-
-        dataSet.setValueLinePart1OffsetPercentage(80.f);
-        dataSet.setValueLinePart1Length(0.2f);
-        dataSet.setValueLinePart2Length(0.4f);
-        //dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
-        dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
-
-        PieData data = new PieData(dataSet);
-        data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(11f);
-        data.setValueTextColor(Color.BLACK);
-        data.setValueTypeface(tf);
-        pieChart.setData(data);
-
-        // undo all highlights
-        pieChart.highlightValues(null);
-
-        pieChart.invalidate();
-    }
-
+    //    private void setData(int count, float range) {
+//
+//        float mult = range;
+//        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
+//
+//        // NOTE: The order of the entries when being added to the entries array determines their position around the center of
+//        // the chart.
+//        for (int i = 0; i < count; i++) {
+//            entries.add(new PieEntry((float) ((Math.random() * mult) + mult / 5), mParties[i % mParties.length]));
+//        }
+//
+//        PieDataSet dataSet = new PieDataSet(entries, "");
+//
+//        dataSet.setDrawIcons(false);
+//
+//        dataSet.setSliceSpace(10f);
+//        dataSet.setIconsOffset(new MPPointF(0, 40));
+//        dataSet.setSelectionShift(5f);
+//
+//        // add a lot of colors
+//
+//        ArrayList<Integer> colors = new ArrayList<Integer>();
+//
+//        for (int c : ColorTemplate.VORDIPLOM_COLORS)
+//            colors.add(c);
+//
+//        for (int c : ColorTemplate.JOYFUL_COLORS)
+//            colors.add(c);
+//
+//        for (int c : ColorTemplate.COLORFUL_COLORS)
+//            colors.add(c);
+//
+//        for (int c : ColorTemplate.LIBERTY_COLORS)
+//            colors.add(c);
+//
+//        for (int c : ColorTemplate.PASTEL_COLORS)
+//            colors.add(c);
+//
+//        colors.add(ColorTemplate.getHoloBlue());
+//
+//        dataSet.setColors(colors);
+//        //dataSet.setSelectionShift(0f);
+//
+//
+//        dataSet.setValueLinePart1OffsetPercentage(80.f);
+//        dataSet.setValueLinePart1Length(0.2f);
+//        dataSet.setValueLinePart2Length(0.4f);
+//        //dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+//        dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+//
+//        PieData data = new PieData(dataSet);
+//        data.setValueFormatter(new PercentFormatter());
+//        data.setValueTextSize(11f);
+//        data.setValueTextColor(Color.BLACK);
+//        data.setValueTypeface(tf);
+//        pieChart.setData(data);
+//
+//        // undo all highlights
+//        pieChart.highlightValues(null);
+//
+//        pieChart.invalidate();
+//    }
+//
     private SpannableString generateCenterSpannableText() {
 
         SpannableString s = new SpannableString("MPAndroidChart\ndeveloped by Philipp Jahoda");

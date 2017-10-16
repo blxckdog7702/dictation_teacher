@@ -66,8 +66,7 @@ public class MatchingListAdapter extends RecyclerView.Adapter<MatchingListAdapte
         holder.mGrade.setText(mMatchingList.get(position).getGrade());
         holder.mClassNumber.setText(mMatchingList.get(position).getClass_());
 
-        // TODO: 2017-10-14 서버에서 return 안넘어옴, 차후 주석 해제
-//        holder.mStudentNumber.setText(mMatchingList.get(position).getStudentId().toString());
+        holder.mStudentNumber.setText(mMatchingList.get(position).getStudentId().toString());
         holder.mStudentName.setText(mMatchingList.get(position).getName());
 
         holder.mAccept.setOnClickListener(new View.OnClickListener() {

@@ -28,54 +28,26 @@ public class SplashActivity extends AppCompatActivity {
         final String login_id = pref.getLoginId(getApplicationContext());
         final String password = pref.getPassword(getApplicationContext());
 
-        if (login_id.equals("")) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
+        new Handler().postDelayed((new Runnable() {
+            @Override
+            public void run() {
+                //자동 로그인 정보가 없으면
+                if (login_id.equals("")) {
                     Intent loginIntent = new Intent(SplashActivity.this, LoginActivity.class);
                     SplashActivity.this.startActivity(loginIntent);
                     SplashActivity.this.finish();
-                }
-            }, SPLASH_TIME_OUT);
-        } else {
-            loginTask = new AsyncTask<Void, Void, Boolean>() {
-                // TODO: 2017-10-14 가끔 못받아올 때 있음. 다시 체크
-                @Override
-                protected Boolean doInBackground(Void... params) {
-                    attemptLogin(login_id, password);
-                    return null;
-                }
-
-                @Override
-                protected void onCancelled() {
-                    super.onCancelled();
-                    Toast.makeText(getApplicationContext(), "서버와의 연결을 확인해주세요.", Toast.LENGTH_SHORT).show();
-
-                    //자동 로그인은 실패처리, 로그인 액티비티 시작
-                    new Handler().postDelayed(new Runnable() {
+                } else {
+                    loginTask = new AsyncTask<Void, Void, Boolean>() {
+                        // TODO: 2017-10-14 가끔 못받아올 때 있음. 다시 체크
                         @Override
-                        public void run() {
-                            Intent loginIntent = new Intent(SplashActivity.this, LoginActivity.class);
-                            SplashActivity.this.startActivity(loginIntent);
-                            SplashActivity.this.finish();
+                        protected Boolean doInBackground(Void... params) {
+                            attemptLogin(login_id, password);
+                            return null;
                         }
-                    }, SPLASH_TIME_OUT);
+                    }.execute();
                 }
-
-                @Override
-                protected void onPostExecute(Boolean aBoolean) {
-                    super.onPostExecute(aBoolean);
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
-                            SplashActivity.this.startActivity(mainIntent);
-                            SplashActivity.this.finish();
-                        }
-                    }, SPLASH_TIME_OUT);
-                }
-            }.execute();
-        }
+            }
+        }), SPLASH_TIME_OUT);
     }
 
     //스플래시에서도 로그인을 해야 result로 넘어온 MyTeacherInfo를 갖고 있는다.
@@ -84,15 +56,25 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Teacher result) {
                 if (result == null) {
+                    //// TODO: 2017-10-16 이거 작동 안함
                     loginTask.cancel(true);
                 } else {
                     MyTeacherInfo.getInstance().setTeacher(result);
+
+                    //로그인
+                    Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
+                    SplashActivity.this.startActivity(mainIntent);
+                    SplashActivity.this.finish();
                 }
             }
 
             @Override
             public void onFail() {
-                Toast.makeText(getApplicationContext(), "서버와의 연결을 확인해주세요.", Toast.LENGTH_SHORT).show();
+                loginTask.cancel(true);
+                //자동 로그인은 실패처리, 로그인 액티비티 시작
+                Intent loginIntent = new Intent(SplashActivity.this, LoginActivity.class);
+                SplashActivity.this.startActivity(loginIntent);
+                SplashActivity.this.finish();
             }
         });
     }

@@ -1,14 +1,19 @@
 package com.blackdog.dictation_teacher.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.blackdog.dictation_teacher.Activity.RecordFragment;
+import com.blackdog.dictation_teacher.Activity.RecordManagerActivity;
 import com.blackdog.dictation_teacher.Activity.RecordResultActivity;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.QuizResult;
@@ -56,7 +61,6 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
             holder.tvComment.setTextColor(Color.RED);
         }
 //        holder.tvComment.setText(recordModel.getComment());
-
     }
 
     @Override
@@ -81,6 +85,8 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
             //// TODO: 2017-10-14 수정
 //            Util.getInstance().moveActivity(context, RecordResultActivity.class);
             Log.v("RecordAdapter", "Listener OK");
+            Intent intent = new Intent(context, RecordResultActivity.class);
+            context.startActivity(intent);
         }
     }
 }
