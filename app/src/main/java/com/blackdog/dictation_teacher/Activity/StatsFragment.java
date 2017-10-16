@@ -127,7 +127,7 @@ public class StatsFragment extends BaseChartFragment {
 
         List<QuizHistory> list = QuizHistoryListSingle.getInstance().getQuizHistoryList();
         for (QuizHistory quizHistory : list) {
-            if(quizHistory.getAverage() == null) {
+            if (quizHistory.getAverage() == null) {
                 break;
             }
 
