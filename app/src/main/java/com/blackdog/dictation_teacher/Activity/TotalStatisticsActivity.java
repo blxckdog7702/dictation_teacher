@@ -79,10 +79,9 @@ public class TotalStatisticsActivity extends BaseChartActivity {
         }
 
         for (QuizHistory item : list) {
-            if(item.getAverage() == null) {
-                break;
+            if(item.getAverage() != null) {
+                averageTotal.add(item.getAverage().intValue());
             }
-            averageTotal.add(item.getAverage().intValue());
         }
 
         if(averageTotal.size() == 0) {

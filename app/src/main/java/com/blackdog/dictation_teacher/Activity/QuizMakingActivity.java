@@ -48,6 +48,68 @@ public class QuizMakingActivity extends BaseDrawerActivity {
     @BindView(R.id.bt_make_quiz)
     Button mButtonMakeQuiz;
 
+
+    // TODO: 2017-10-14 키보드가 et 가림
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_quiz_making);
+
+        toolbarTitle.setText("문제 작성");
+
+        ButterKnife.bind(this);
+    }
+
+    private boolean isEmptyForm() {
+        if (mQuizName.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "시험 제목을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            mQuizName.requestFocus();
+            return true;
+        } else if (mQuestion1.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            mQuestion1.requestFocus();
+            return true;
+        } else if (mQuestion2.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            mQuestion2.requestFocus();
+            return true;
+        } else if (mQuestion3.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            mQuestion3.requestFocus();
+            return true;
+        } else if (mQuestion4.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            mQuestion4.requestFocus();
+            return true;
+        } else if (mQuestion5.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            mQuestion5.requestFocus();
+            return true;
+        } else if (mQuestion6.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            mQuestion6.requestFocus();
+            return true;
+        } else if (mQuestion7.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            mQuestion7.requestFocus();
+            return true;
+        } else if (mQuestion8.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            mQuestion8.requestFocus();
+            return true;
+        } else if (mQuestion9.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            mQuestion9.requestFocus();
+            return true;
+        } else if (mQuestion10.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            mQuestion10.requestFocus();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     @OnClick(R.id.bt_make_quiz)
     void onClickBtMakeQuiz() {
         //빈칸 체크
@@ -119,67 +181,5 @@ public class QuizMakingActivity extends BaseDrawerActivity {
         quiz.setQuestions(list);
 
         return quiz;
-    }
-
-    // TODO: 2017-10-14 키보드가 et 가림
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_making);
-
-        toolbarTitle.setText("문제 작성");
-
-        ButterKnife.bind(this);
-    }
-
-    private boolean isEmptyForm() {
-        if (mQuizName.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "시험 제목을 입력해주세요.", Toast.LENGTH_SHORT).show();
-            mQuizName.requestFocus();
-            return true;
-        } else if (mQuestion1.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            mQuestion1.requestFocus();
-            return true;
-        } else if (mQuestion2.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            mQuestion2.requestFocus();
-            return true;
-        } else if (mQuestion3.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            mQuestion3.requestFocus();
-            return true;
-        } else if (mQuestion4.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            mQuestion4.requestFocus();
-            return true;
-        } else if (mQuestion5.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            mQuestion5.requestFocus();
-            return true;
-        } else if (mQuestion6.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            mQuestion6.requestFocus();
-            return true;
-        } else if (mQuestion7.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            mQuestion7.requestFocus();
-            return true;
-        } else if (mQuestion8.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            mQuestion8.requestFocus();
-            return true;
-        } else if (mQuestion9.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            mQuestion9.requestFocus();
-            return true;
-        } else if (mQuestion10.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "문제를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            mQuestion10.requestFocus();
-            return true;
-        } else {
-            return false;
-        }
     }
 }
