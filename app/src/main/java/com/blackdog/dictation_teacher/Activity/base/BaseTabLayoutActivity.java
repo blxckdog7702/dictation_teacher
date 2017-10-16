@@ -16,7 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public abstract class BaseTabLayoutActivity extends BaseDrawerActivity {
+public abstract class BaseTabLayoutActivity extends BaseActivity {
 
     protected @BindView(R.id.viewPager) ViewPager viewPager;
     protected @BindView(R.id.tabLayout) TabLayout tabLayout;

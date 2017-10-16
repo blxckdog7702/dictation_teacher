@@ -18,9 +18,9 @@ import com.blackdog.dictation_teacher.Activity.QuizHistoryListActivity;
 import com.blackdog.dictation_teacher.Activity.QuizMakingActivity;
 import com.blackdog.dictation_teacher.Activity.StudentListActivity;
 import com.blackdog.dictation_teacher.Activity.StudentManageActivity;
-import com.blackdog.dictation_teacher.LoginSharedPref;
+import com.blackdog.dictation_teacher.singleton.LoginSharedPref;
 import com.blackdog.dictation_teacher.R;
-import com.blackdog.dictation_teacher.Util;
+import com.blackdog.dictation_teacher.singleton.Util;
 import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 

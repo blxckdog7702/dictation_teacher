@@ -1,4 +1,4 @@
-package com.blackdog.dictation_teacher;
+package com.blackdog.dictation_teacher.singleton;
 
 import com.blackdog.dictation_teacher.models.Teacher;
 

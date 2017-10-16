@@ -5,13 +5,18 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseChartFragment;
 import com.blackdog.dictation_teacher.R;
-import com.blackdog.dictation_teacher.Util;
 import com.blackdog.dictation_teacher.models.ChartItem.ChartItem;
 import com.blackdog.dictation_teacher.models.QuizHistory;
+import com.blackdog.dictation_teacher.models.QuizResult;
+import com.blackdog.dictation_teacher.models.RectifyCount;
+import com.blackdog.dictation_teacher.models.Student;
 import com.blackdog.dictation_teacher.models.Teacher;
+import com.blackdog.dictation_teacher.singleton.QuizHistoryListSingle;
+import com.blackdog.dictation_teacher.singleton.Util;
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarData;
@@ -20,6 +25,10 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.PieData;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 //학생 개인 통계
 public class StatsFragment extends BaseChartFragment {
@@ -30,8 +39,15 @@ public class StatsFragment extends BaseChartFragment {
     private ArrayList<ChartItem> chartItems;
     private ArrayList<Teacher> teachers;
     private ArrayList<QuizHistory> quizHistories;
-    String[] marker = {"Property1","Property2","Property3","Property4","Property5",
-            "Property6","Property7","Property8","Property9","Property10",};
+    private Student student;
+
+    @BindView(R.id.tv_average_combined_chart)
+    TextView tvAverage;
+    @BindView(R.id.tv_rectify_pie_chart)
+    TextView tvRectify;
+
+    String[] marker = {"Property1", "Property2", "Property3", "Property4", "Property5",
+            "Property6", "Property7", "Property8", "Property9", "Property10",};
 
     CombinedChart combinedChart;
     PieChart pieChart;
@@ -40,15 +56,21 @@ public class StatsFragment extends BaseChartFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_stats, container, false);
+
+
         //상태바 안보이게 하는 코드
 //        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-//        ButterKnife.bind(this, view);
+        ButterKnife.bind(this, view);
 
 //        getServerData();
 //        initModels();
 //        setupView();
+        initStudent();
+
+        tvAverage.setText(student.getName() + " 학생의 점수와 반 평균 점수");
+        tvRectify.setText(student.getName() + " 학생이 자주 틀리는 문법");
 
         pieChart = (PieChart) view.findViewById(R.id.student_pie_chart);
         combinedChart = (CombinedChart) view.findViewById(R.id.student_combined_chart);
@@ -58,37 +80,73 @@ public class StatsFragment extends BaseChartFragment {
         return view;
     }
 
+    private void initStudent() {
+        student = ((RecordManagerActivity) getActivity()).getStudent();
+
+        if (student == null) {
+            return;
+        }
+    }
+
     private void drawPieChart() {
-        pieChart.getLayoutParams().height =  (int) ((Util.getInstance().getDisplayHeigth(getContext()) / 5) * 3);
+        pieChart.getLayoutParams().height = (int) ((Util.getInstance().getDisplayHeigth(getContext()) / 5) * 3);
 
-        ArrayList<Integer> data = new ArrayList<>();
-        data.add(1);
-        data.add(100);
-        data.add(150);
-        data.add(50);
-        data.add(1);
-        data.add(100);
-        data.add(150);
-        data.add(50);
-        data.add(150);
-        data.add(50);
+        ArrayList<Integer> rectifyTotal = new ArrayList<>();
 
-        PieData pieData = generatePieData(data, marker);
+        List<QuizResult> quizResultList = student.getQuizResults();
+
+        for (int i = 0; i < 10; i++) {
+            rectifyTotal.add(0);
+        }
+
+        for (QuizResult quizResult : quizResultList) {
+            RectifyCount item = quizResult.getRectifyCount();
+            rectifyTotal.set(0, rectifyTotal.get(0) + item.getProperty1());
+            rectifyTotal.set(1, rectifyTotal.get(1) + item.getProperty2());
+            rectifyTotal.set(2, rectifyTotal.get(2) + item.getProperty3());
+            rectifyTotal.set(3, rectifyTotal.get(3) + item.getProperty4());
+            rectifyTotal.set(4, rectifyTotal.get(4) + item.getProperty5());
+            rectifyTotal.set(5, rectifyTotal.get(5) + item.getProperty6());
+            rectifyTotal.set(6, rectifyTotal.get(6) + item.getProperty7());
+            rectifyTotal.set(7, rectifyTotal.get(7) + item.getProperty8());
+            rectifyTotal.set(8, rectifyTotal.get(8) + item.getProperty9());
+            rectifyTotal.set(9, rectifyTotal.get(9) + item.getProperty10());
+        }
+
+
+        PieData pieData = generatePieData(rectifyTotal, marker);
         pieChart.setData(pieData);
         pieChart.invalidate();
     }
 
     private void drawCombinedChart() {
-        combinedChart.getLayoutParams().height =  (int) ((Util.getInstance().getDisplayHeigth(getContext()) / 5) * 3);
+        combinedChart.getLayoutParams().height = (int) ((Util.getInstance().getDisplayHeigth(getContext()) / 5) * 3);
 
-        ArrayList<Integer> data = new ArrayList<>();
-        data.add(1);
-        data.add(100);
-        data.add(150);
-        data.add(50);
+        ArrayList<Integer> onesAverage = new ArrayList<>();
+        ArrayList<Integer> totalAverage = new ArrayList<>();
 
-        LineData lineData = generateLineData(data);
-        BarData barData = generateBarData(data);
+        List<QuizHistory> list = QuizHistoryListSingle.getInstance().getQuizHistoryList();
+        for (QuizHistory quizHistory : list) {
+            totalAverage.add(quizHistory.getAverage().intValue());
+
+            List<QuizResult> quizResultList = quizHistory.getQuizResults();
+            for (QuizResult quizResult : quizResultList) {
+                if (quizResult.getStudentName().equals(student.getName())) {
+                    onesAverage.add(quizResult.getScore());
+                    break;
+                }
+            }
+        }
+
+        if (onesAverage.size() == 0 || totalAverage.size() == 0) {
+            return;
+        }
+
+        LineData lineData = generateLineData(onesAverage);
+        BarData barData = generateBarData(totalAverage);
+
+        //line : 학생
+        //bar : 반
 
         CombinedData combinedData = generateCombinedData(lineData, barData);
 

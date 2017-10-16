@@ -16,6 +16,7 @@ import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.QuizHistory;
 import com.blackdog.dictation_teacher.models.QuizResult;
 import com.blackdog.dictation_teacher.models.RecordModel;
+import com.blackdog.dictation_teacher.models.Student;
 import com.blackdog.dictation_teacher.models.Teacher;
 
 import java.io.IOException;
@@ -32,6 +33,8 @@ public class RecordFragment extends Fragment {
 //    private ArrayList<QuizResult> recordModels;
 //    private ArrayList<Teacher> teachers;
 //    private ArrayList<QuizHistory> quizHistories;
+
+    private Student student;
 
     @BindView(R.id.rvRecord)
     RecyclerView rvRecord;
@@ -57,17 +60,13 @@ public class RecordFragment extends Fragment {
         MyLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvRecord.setLayoutManager(MyLayoutManager);
 
-        ArrayList<QuizResult> recordModels = new ArrayList<>();
-        QuizResult item = new QuizResult();
-        item.setDate("2017년 10월 15일 테스트중");
-        item.setQuizNumber(9);
-        item.setRank(1);
-        item.setScore(100);
-        item.setStudentName("도효니!");
-        recordModels.add(item);
+        student = ((RecordManagerActivity) getActivity()).getStudent();
 
+        if (student == null) {
+            return;
+        }
 
-        recordAdapter = new RecordAdapter(getActivity(), recordModels);
+        recordAdapter = new RecordAdapter(getActivity(), student.getQuizResults());
         rvRecord.setAdapter(recordAdapter);
         recordAdapter.notifyDataSetChanged();
 

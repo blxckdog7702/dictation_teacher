@@ -32,10 +32,11 @@
             android:paddingTop="8dp">
 
             <TextView
+                android:id="@+id/tv_average_combined_chart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="누구의 평균 점수" />
+                android:text="누구의 점수와 반 평균 점수" />
 
             <com.github.mikephil.charting.charts.CombinedChart
                 android:id="@+id/student_combined_chart"
@@ -44,6 +45,7 @@
                 android:layout_marginTop="8dp" />
 
             <TextView
+                android:id="@+id/tv_rectify_pie_chart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

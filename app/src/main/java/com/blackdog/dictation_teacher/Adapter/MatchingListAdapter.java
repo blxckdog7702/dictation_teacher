@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.blackdog.dictation_teacher.MyTeacherInfo;
+import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Student;
 import com.blackdog.dictation_teacher.net.ApiRequester;

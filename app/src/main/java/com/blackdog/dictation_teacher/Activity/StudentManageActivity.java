@@ -5,14 +5,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
-import com.blackdog.dictation_teacher.Adapter.StudentListAdapter;
 import com.blackdog.dictation_teacher.Adapter.StudentManageAdapter;
-import com.blackdog.dictation_teacher.MyTeacherInfo;
+import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Student;
 import com.blackdog.dictation_teacher.net.ApiRequester;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StudentManageActivity extends BaseDrawerActivity {

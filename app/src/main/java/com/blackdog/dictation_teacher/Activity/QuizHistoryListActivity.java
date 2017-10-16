@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
 import com.blackdog.dictation_teacher.Adapter.QuizHistoryListAdapter;
-import com.blackdog.dictation_teacher.MyTeacherInfo;
+import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.QuizHistory;
 import com.blackdog.dictation_teacher.net.ApiRequester;

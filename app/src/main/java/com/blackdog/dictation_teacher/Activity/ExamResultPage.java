@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.blackdog.dictation_teacher.R;
-import com.blackdog.dictation_teacher.Util;
+import com.blackdog.dictation_teacher.singleton.Util;
 import com.blackdog.dictation_teacher.models.Question;
 import com.blackdog.dictation_teacher.models.QuestionResult;
 import com.blackdog.dictation_teacher.models.QuizResult;

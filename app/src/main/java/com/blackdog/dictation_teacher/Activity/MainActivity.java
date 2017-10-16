@@ -1,11 +1,7 @@
 package com.blackdog.dictation_teacher.Activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -15,8 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
-import com.blackdog.dictation_teacher.LoginSharedPref;
-import com.blackdog.dictation_teacher.MyTeacherInfo;
+import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Quiz;
 import com.blackdog.dictation_teacher.net.ApiRequester;

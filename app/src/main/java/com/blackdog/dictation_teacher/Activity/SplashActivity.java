@@ -5,11 +5,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.blackdog.dictation_teacher.LoginSharedPref;
-import com.blackdog.dictation_teacher.MyTeacherInfo;
+import com.blackdog.dictation_teacher.singleton.LoginSharedPref;
+import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Teacher;
 import com.blackdog.dictation_teacher.net.ApiRequester;

@@ -1,4 +1,4 @@
-package com.blackdog.dictation_teacher;
+package com.blackdog.dictation_teacher.singleton;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class Util {
 

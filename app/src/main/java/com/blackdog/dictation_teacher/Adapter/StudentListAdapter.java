@@ -3,6 +3,7 @@ package com.blackdog.dictation_teacher.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.RecordManagerActivity;
 import com.blackdog.dictation_teacher.R;
+import com.blackdog.dictation_teacher.models.QuizHistory;
 import com.blackdog.dictation_teacher.models.Student;
 
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.List;
  */
 
 public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.ViewHolder> {
+    private static final String TAG = "StudentListAdapter.java";
     private List<Student> mStudentList;
     private Context mContext;
 
@@ -74,7 +77,15 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
             public void onClick(View v) {
                 final int selectedPosition = holder.getAdapterPosition();
 
+                Student selectedItem = mStudentList.get(selectedPosition);
+
+                if(selectedItem == null) {
+                    Log.d(TAG, "onClick: 클릭한 학생 객체가 null");
+                    return;
+                }
+
                 Intent intent = new Intent(mContext, RecordManagerActivity.class);
+                intent.putExtra("student", selectedItem);
                 mContext.startActivity(intent);
 
 //                Toast.makeText(mContext, "테스트용", Toast.LENGTH_SHORT).show();

@@ -1,5 +1,6 @@
 package com.blackdog.dictation_teacher.Activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,23 +9,20 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
-import android.view.WindowManager;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseChartActivity;
 import com.blackdog.dictation_teacher.R;
-import com.blackdog.dictation_teacher.Util;
+import com.blackdog.dictation_teacher.singleton.Util;
+import com.blackdog.dictation_teacher.models.QuizResult;
+import com.blackdog.dictation_teacher.models.RectifyCount;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.utils.MPPointF;
 
 import java.util.ArrayList;
 
@@ -32,9 +30,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 //몇점이에요~ 액티비티
 public class RecordResultActivity extends BaseChartActivity implements OnChartValueSelectedListener {
+    private static final String TAG = "RecordResultActivity";
 
     @BindView(R.id.pieChart) PieChart pieChart;
     private Typeface tf;
+
+    QuizResult mQuizResult;
 
     String[] marker = {"Property1","Property2","Property3","Property4","Property5",
             "Property6","Property7","Property8","Property9","Property10",};
@@ -52,26 +53,37 @@ public class RecordResultActivity extends BaseChartActivity implements OnChartVa
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_record_result);
-        toolbarTitle.setText("누구의 x월 x일 시험");
-
         ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        mQuizResult = (QuizResult) intent.getSerializableExtra("quizResult");
+
+        if(mQuizResult == null) {
+            return;
+        }
+
+        if (toolbarTitle != null) {
+            toolbarTitle.setText(mQuizResult.getStudentName() + "의 " + mQuizResult.getDate() + " 시험");
+        }
+
         drawPieChart();
         pieChart.getLayoutParams().height = (int) ((Util.getInstance().getDisplayHeigth(this) / 5) * 3);
         setPieChartStyle();
     }
 
     private void drawPieChart() {
+        RectifyCount rectifyCount = mQuizResult.getRectifyCount();
         ArrayList<Integer> data = new ArrayList<>();
-        data.add(1);
-        data.add(100);
-        data.add(150);
-        data.add(50);
-        data.add(1);
-        data.add(100);
-        data.add(150);
-        data.add(50);
-        data.add(150);
-        data.add(50);
+        data.add(rectifyCount.getProperty1());
+        data.add(rectifyCount.getProperty2());
+        data.add(rectifyCount.getProperty3());
+        data.add(rectifyCount.getProperty4());
+        data.add(rectifyCount.getProperty5());
+        data.add(rectifyCount.getProperty6());
+        data.add(rectifyCount.getProperty7());
+        data.add(rectifyCount.getProperty8());
+        data.add(rectifyCount.getProperty9());
+        data.add(rectifyCount.getProperty10());
 
         PieData pieData = generatePieData(data, marker);
         pieChart.setData(pieData);
@@ -130,7 +142,7 @@ public class RecordResultActivity extends BaseChartActivity implements OnChartVa
         l.setEnabled(false);
 
         // entry label styling
-        pieChart.setEntryLabelColor(Color.WHITE);
+        pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setEntryLabelTypeface(mTfRegular);
         pieChart.setEntryLabelTextSize(12f);
 

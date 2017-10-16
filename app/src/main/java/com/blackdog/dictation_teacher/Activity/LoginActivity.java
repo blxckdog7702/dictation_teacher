@@ -3,7 +3,6 @@ package com.blackdog.dictation_teacher.Activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,8 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseActivity;
-import com.blackdog.dictation_teacher.LoginSharedPref;
-import com.blackdog.dictation_teacher.MyTeacherInfo;
+import com.blackdog.dictation_teacher.singleton.LoginSharedPref;
+import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Teacher;
 import com.blackdog.dictation_teacher.net.ApiRequester;
