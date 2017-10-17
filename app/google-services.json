@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "165299800729",
+    "firebase_url": "https://dictationteacher.firebaseio.com",
+    "project_id": "dictationteacher",
+    "storage_bucket": "dictationteacher.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165299800729:android:c7a2640e02fd2af5",
+        "android_client_info": {
+          "package_name": "com.blackdog.dictation_teacher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165299800729-b7u1epoddo6e0p3nidatqodttnnvs1r7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blackdog.dictation_teacher",
+            "certificate_hash": "a41016657846db00805f1232f247934f87cef20b"
+          }
+        },
+        {
+          "client_id": "165299800729-sslcr301bpj9vl851tr34i3a7n3s87g7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZcUkEHJew9OM8klXzMIqpDPPnEA3FlpM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165299800729-sslcr301bpj9vl851tr34i3a7n3s87g7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

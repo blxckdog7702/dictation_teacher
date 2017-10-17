@@ -4,29 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blackdog.dictation_teacher.Activity.MainActivity">
+    tools:context="com.blackdog.dictation_teacher.Activity.QuizReadyActivity">
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:layout_constraintBottom_toTopOf="@+id/bt_quiz_select"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+
+    <include layout="@layout/toolbar" />
 
     <Button
-        android:id="@+id/bt_quiz_select"
+        android:id="@+id/bt_quiz_start"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@color/colorPrimary"
         android:clickable="false"
-        android:text="@string/select_quiz"
+        android:onClick="readyToQuiz"
+        android:text="@string/quiz_start"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
-
 </android.support.constraint.ConstraintLayout>

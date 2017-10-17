@@ -532,19 +532,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btInResultPage"
-            android:layout_width="fill_parent"
-            android:layout_height="40.0dip"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="60.0dip"
-            android:layout_marginRight="60.0dip"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/border_button"
-            android:text="메인화면으로 이동하기"
-            android:textColor="#FFFFFF"
-            android:textSize="@dimen/text_size" />
-
     </LinearLayout>
 
     <nl.dionsegijn.konfetti.KonfettiView

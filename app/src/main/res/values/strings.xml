@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">우리반받아쓰기 (교사용)</string>
-    <string name="dictation_start">→ 받아쓰기 시작</string>
+    <string name="select_quiz">→ 문제 선택</string>
     <string name="dictation_end">→ 받아쓰기 종료</string>
     <string name="teacher_id">599b03151c6e6f0159a72815</string>
     <string name="title_activity_login">Sign in</string>
@@ -35,4 +35,5 @@
     <string name="menu_list_by_period">회차 별 시험 리스트</string>
     <string name="menu_create_question">문제 작성</string>
     <string name="menu_logout">로그아웃</string>
+    <string name="quiz_start">→ 문제 시작</string>
 </resources>

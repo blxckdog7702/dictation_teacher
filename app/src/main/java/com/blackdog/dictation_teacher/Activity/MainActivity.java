@@ -27,7 +27,6 @@ public class MainActivity extends BaseDrawerActivity {
     private ArrayList<Quiz> quizList;
     private Quiz selectedItem;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +35,15 @@ public class MainActivity extends BaseDrawerActivity {
         toolbarTitle.setText("받아쓰기 준비");
 
         listView = (ListView) findViewById(R.id.listView);
-        button = (Button) findViewById(R.id.button);
-        button.setClickable(false);
+        button = (Button) findViewById(R.id.bt_quiz_select);
+        button.setClickable(true);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                readyToQuiz();
+            }
+        });
 
         try {
             requestQuizList();
@@ -46,17 +52,13 @@ public class MainActivity extends BaseDrawerActivity {
         }
     }
 
-    public void startQuizClick(View view) {
-        try {
-            ApiRequester.getInstance().startQuiz(ApiRequester.TEACHER_ID, selectedItem.getNumber());
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void readyToQuiz() {
+        if(selectedItem == null) {
+            Toast.makeText(this, "문제를 선택 후 버튼을 눌러주세요.", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        Intent intent = new Intent(getApplicationContext(), QuizControlActivity.class);
-
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("selectedQuiz", selectedItem);
+        Intent intent = new Intent(getApplicationContext(), QuizReadyActivity.class);
         intent.putExtra("selectedQuiz", selectedItem);
         startActivity(intent);
     }
@@ -65,7 +67,7 @@ public class MainActivity extends BaseDrawerActivity {
         ApiRequester.getInstance().getTeachersQuizzes(MyTeacherInfo.getInstance().getTeacher().getId(), new ApiRequester.UserCallback<List<Quiz>>() {
             @Override
             public void onSuccess(List<Quiz> result) {
-                if(result == null) {
+                if (result == null) {
                     return;
                 }
 
