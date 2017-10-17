@@ -16,6 +16,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     String message;
     String receivedStudentName;
+    String studentId;
 
     /**
      * Called when message is received.
@@ -55,9 +56,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 receivedStudentName = "failed";
             }
 
+            if (remoteMessage.getData().get("id") != null) {
+                studentId = remoteMessage.getData().get("id");
+            } else {
+                studentId = "failed";
+            }
+
             Intent intent = new Intent(READY_TO_QUIZ);
             intent.putExtra("message", message);
             intent.putExtra("name", receivedStudentName);
+            intent.putExtra("id", studentId);
             sendBroadcast(intent);
         }
 

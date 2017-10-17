@@ -1,24 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.blackdog.dictation_teacher.Activity.QuizReadyActivity">
 
 
     <include layout="@layout/toolbar" />
 
-    <Button
-        android:id="@+id/bt_quiz_start"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="@color/colorPrimary"
-        android:clickable="false"
-        android:onClick="readyToQuiz"
-        android:text="@string/quiz_start"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_number_of_ready"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="현재 대기 학생 수 : 0"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ready_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
+            app:layout_constraintTop_toBottomOf="@id/tv_number_of_ready"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <Button
+            android:id="@+id/bt_quiz_start"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@color/colorPrimary"
+            android:clickable="false"
+            android:onClick="readyToQuiz"
+            android:text="@string/quiz_start"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</LinearLayout>
