@@ -108,8 +108,13 @@ public class QuizReadyActivity extends BaseActivity {
     }
 
     public void startQuizClick() {
+        if(numberOfReady < 1) {
+            Toast.makeText(QuizReadyActivity.this, "준비 학생이 1명 이상이여야 시험을 시작할 수 있습니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         try {
-            ApiRequester.getInstance().startQuiz(MyTeacherInfo.getInstance().getTeacher().getId(), selectedQuiz.getNumber());
+            ApiRequester.getInstance().startQuiz(MyTeacherInfo.getInstance().getTeacher().getId(), selectedQuiz.getNumber(), numberOfReady);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -157,9 +162,11 @@ public class QuizReadyActivity extends BaseActivity {
                     //테스트는 이름으로
 //                    if(item.getName().equals(name)) {
                     if(item.getId().equals(id)) {
-                        numberOfReady--;
-                        item.setReady(false);
-                        break;
+                        if(numberOfReady > 0) {
+                            numberOfReady--;
+                            item.setReady(false);
+                            break;
+                        }
                     }
                 }
                 mAdapter.notifyDataSetChanged();
