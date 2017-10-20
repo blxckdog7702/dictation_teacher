@@ -39,7 +39,6 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
         public TextView mClassNumber;
         public TextView mStudentNumber;
         public TextView mStudentName;
-        public Button mStudentDetail;
 
         public ViewHolder(View v) {
             super(v);
@@ -48,7 +47,6 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
             mClassNumber = (TextView) v.findViewById(R.id.tv_class_number);
             mStudentNumber = (TextView) v.findViewById(R.id.tv_student_number);
             mStudentName = (TextView) v.findViewById(R.id.tv_student_name);
-            mStudentDetail = (Button) v.findViewById(R.id.bt_student_detail);
         }
     }
 
@@ -72,25 +70,6 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
         holder.mStudentNumber.setText(mStudentList.get(position).getStudentId().toString());
         holder.mStudentName.setText(mStudentList.get(position).getName());
 
-        holder.mStudentDetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final int selectedPosition = holder.getAdapterPosition();
-
-                Student selectedItem = mStudentList.get(selectedPosition);
-
-                if(selectedItem == null) {
-                    Log.d(TAG, "onClick: 클릭한 학생 객체가 null");
-                    return;
-                }
-
-                Intent intent = new Intent(mContext, RecordManagerActivity.class);
-                intent.putExtra("student", selectedItem);
-                mContext.startActivity(intent);
-
-//                Toast.makeText(mContext, "테스트용", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override

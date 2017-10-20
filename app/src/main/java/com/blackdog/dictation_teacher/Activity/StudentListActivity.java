@@ -1,17 +1,28 @@
 package com.blackdog.dictation_teacher.Activity;
 
+import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
 import com.blackdog.dictation_teacher.Adapter.StudentListAdapter;
+import com.blackdog.dictation_teacher.service.RecyclerItemClickListener;
+import com.blackdog.dictation_teacher.service.VerticalSpaceItemDecoration;
 import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.QuizHistory;
@@ -27,22 +38,26 @@ public class StudentListActivity extends BaseDrawerActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private Button mTotalStatButton;
+    private TextView mTotalStatButton;
+    private Context mContext;
+    private List<Student> mStudentList;
+    private Student selectedstudent;
+    private Toolbar toolbar;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
 
-        toolbarTitle.setText("학생목록");
+        toolbarTitle.setText("학생학생");
+        mTotalStatButton = (TextView) findViewById(R.id.bt_total_stat);
+        mTotalStatButton.setPaintFlags(mTotalStatButton.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-        mTotalStatButton = (Button) findViewById(R.id.bt_total_stat);
         mRecyclerView = (RecyclerView) findViewById(R.id.student_recycler_view);
-
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getApplicationContext(),new LinearLayoutManager(this).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-
-
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -58,7 +73,33 @@ public class StudentListActivity extends BaseDrawerActivity {
                 startActivity(intent);
             }
         });
+
+
+
+        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                selectedstudent = mStudentList.get(position);
+
+                if(selectedstudent == null) {
+                    Log.d(TAG, "onClick: 클릭한 학생 객체가 null");
+                    return;
+                }
+                Toast.makeText(getApplicationContext(), selectedstudent.getName() ,Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getApplicationContext(), RecordManagerActivity.class);
+                intent.putExtra("student", selectedstudent);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+                Toast.makeText(getApplicationContext(),position+"번 째 아이템 롱 클릭",Toast.LENGTH_SHORT).show();
+            }
+        }));
+
     }
+
 
     private void requestTeachersQuizHistoryList() {
         try {
@@ -88,8 +129,10 @@ public class StudentListActivity extends BaseDrawerActivity {
                 if (result == null) {
                     return;
                 }
+                mStudentList = result;
                 mAdapter = new StudentListAdapter(StudentListActivity.this, result);
                 mRecyclerView.setAdapter(mAdapter);
+                mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(48));
             }
 
             @Override
