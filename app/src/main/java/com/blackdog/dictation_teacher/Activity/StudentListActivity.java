@@ -2,6 +2,7 @@ package com.blackdog.dictation_teacher.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -38,11 +39,11 @@ public class StudentListActivity extends BaseDrawerActivity {
         mTotalStatButton = (Button) findViewById(R.id.bt_total_stat);
         mRecyclerView = (RecyclerView) findViewById(R.id.student_recycler_view);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getApplicationContext(),new LinearLayoutManager(this).getOrientation());
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
 
-        // use a linear layout manager
+
+        mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
