@@ -88,7 +88,6 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
                 intent.putExtra("student", selectedItem);
                 mContext.startActivity(intent);
 
-//                Toast.makeText(mContext, "테스트용", Toast.LENGTH_SHORT).show();
             }
         });
     }
