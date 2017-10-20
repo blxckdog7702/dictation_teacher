@@ -39,10 +39,8 @@ public class StudentListActivity extends BaseDrawerActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private TextView mTotalStatButton;
-    private Context mContext;
     private List<Student> mStudentList;
     private Student selectedstudent;
-    private Toolbar toolbar;
 
 
 
@@ -51,9 +49,10 @@ public class StudentListActivity extends BaseDrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
 
-        toolbarTitle.setText("학생학생");
-        mTotalStatButton = (TextView) findViewById(R.id.bt_total_stat);
-        mTotalStatButton.setPaintFlags(mTotalStatButton.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        toolbarTitle.setText("학생 관리");
+
+       // mTotalStatButton = (TextView) findViewById(R.id.bt_total_stat);
+       // mTotalStatButton.setPaintFlags(mTotalStatButton.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.student_recycler_view);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getApplicationContext(),new LinearLayoutManager(this).getOrientation());
@@ -65,16 +64,14 @@ public class StudentListActivity extends BaseDrawerActivity {
         requestTeachersQuizHistoryList();
         requestStudentList();
 
-        mTotalStatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //우리반전체통계
-                Intent intent = new Intent(getApplicationContext(), TotalStatisticsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
+//        mTotalStatButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //우리반전체통계
+//                Intent intent = new Intent(getApplicationContext(), TotalStatisticsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
@@ -100,6 +97,29 @@ public class StudentListActivity extends BaseDrawerActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.student_list_menu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id==R.id.totalbutton)
+        {
+            Toast.makeText(getApplicationContext(), "전체성적보기", Toast.LENGTH_SHORT).show();
+
+
+            //우리반전체통계
+            Intent intent = new Intent(getApplicationContext(), TotalStatisticsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void requestTeachersQuizHistoryList() {
         try {

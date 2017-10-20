@@ -16,7 +16,15 @@
         android:src="@drawable/ic_face_black_24dp" />
 
 
-
+    <TextView
+        android:id="@+id/tv_managing_student_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        />
     <TextView
         android:id="@+id/tv_managing_student_grade"
         android:layout_width="wrap_content"
@@ -42,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="1dp"
         android:textColor="#000000"
         android:textSize="18sp" />
 
@@ -61,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="1dp"
         android:textColor="#000000"
         android:textSize="18sp"/>
 
@@ -91,7 +99,7 @@
         android:layout_marginTop="7dp"
         android:layout_marginBottom="10dp"
         android:src="@drawable/ic_clear_red_24dp"
-        android:layout_marginLeft="150dp" />
+        android:layout_marginRight="5dp" />
     />
 
 

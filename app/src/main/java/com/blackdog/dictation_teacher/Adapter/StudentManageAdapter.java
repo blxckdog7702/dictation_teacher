@@ -36,6 +36,8 @@ public class StudentManageAdapter extends RecyclerView.Adapter<StudentManageAdap
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
+
+        public TextView mStudentSchool;
         public TextView mStudentName;
         public TextView mGrade;
         public TextView mClassNumber;
@@ -44,6 +46,7 @@ public class StudentManageAdapter extends RecyclerView.Adapter<StudentManageAdap
 
         public ViewHolder(View v) {
             super(v);
+            mStudentSchool = (TextView) v.findViewById(R.id.tv_managing_student_school);
             mStudentName = (TextView) v.findViewById(R.id.tv_managing_student_name);
             mGrade = (TextView) v.findViewById(R.id.tv_managing_student_grade);
             mClassNumber = (TextView) v.findViewById(R.id.tv_managing_student_class_number);
@@ -67,6 +70,7 @@ public class StudentManageAdapter extends RecyclerView.Adapter<StudentManageAdap
     public void onBindViewHolder(final ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+        holder.mStudentSchool.setText(mStudentList.get(position).getSchool());
         holder.mGrade.setText(mStudentList.get(position).getGrade());
         holder.mClassNumber.setText(mStudentList.get(position).getClass_());
         holder.mStudentNumber.setText(mStudentList.get(position).getStudentId().toString());
