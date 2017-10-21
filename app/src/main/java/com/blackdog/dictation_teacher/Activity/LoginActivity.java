@@ -3,6 +3,7 @@ package com.blackdog.dictation_teacher.Activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,7 +18,7 @@ import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Teacher;
 import com.blackdog.dictation_teacher.net.ApiRequester;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private EditText mLoginIdView;
     private EditText mPasswordView;
@@ -30,7 +31,7 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        toolbarTitle.setText("로그인");
+//        toolbarTitle.setText("로그인");
 
         mLoginIdView = (EditText) findViewById(R.id.etLoginId);
         mPasswordView = (EditText) findViewById(R.id.etLoginPassword);
@@ -76,7 +77,7 @@ public class LoginActivity extends BaseActivity {
                 if(result == null) {
                     Toast.makeText(getApplicationContext(), "아이디와 비밀번호를 확인해주세요.",Toast.LENGTH_SHORT).show();
                 } else {
-                    if(mAutoLoginCheckBox.isChecked()) {
+                    if(true) {
                         saveLoginInfoToPref(mLoginIdView.getText().toString(), mPasswordView.getText().toString());
                     }
                     MyTeacherInfo.getInstance().setTeacher(result);
