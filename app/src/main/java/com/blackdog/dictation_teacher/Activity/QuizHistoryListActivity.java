@@ -1,6 +1,7 @@
 package com.blackdog.dictation_teacher.Activity;
 
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
 import com.blackdog.dictation_teacher.Adapter.QuizHistoryListAdapter;
+import com.blackdog.dictation_teacher.service.VerticalSpaceItemDecoration;
 import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.QuizHistory;
@@ -39,6 +41,8 @@ public class QuizHistoryListActivity extends BaseDrawerActivity {
 
         //리스트 셋팅
         rv_list = (RecyclerView) findViewById(R.id.rv_list);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getApplicationContext(),new LinearLayoutManager(this).getOrientation());
+        rv_list.addItemDecoration(dividerItemDecoration);
         rv_list.setHasFixedSize(true);
         rv_list.setLayoutManager(new LinearLayoutManager(this));
 
@@ -53,6 +57,8 @@ public class QuizHistoryListActivity extends BaseDrawerActivity {
                     }
 
                     rv_list.setAdapter(new QuizHistoryListAdapter(QuizHistoryListActivity.this, quizHistoryList));
+                    rv_list.addItemDecoration(new VerticalSpaceItemDecoration(48));
+
                     progressBar.setVisibility(View.GONE);
                 }
 

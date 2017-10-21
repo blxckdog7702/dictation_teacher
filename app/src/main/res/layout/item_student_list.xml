@@ -12,84 +12,100 @@
         android:layout_width="35dp"
         android:layout_height="35dp" />
 
-    <TextView
-        android:id="@+id/tv_school"
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="#000000"
-        android:textSize="18sp"/>
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="6">
 
-    <TextView
-        android:id="@+id/tv_grade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        />
+        <TextView
+            android:id="@+id/tv_school"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_weight="3"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="2">
+            <TextView
+                android:id="@+id/tv_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                />
 
-    <TextView
-        android:id="@+id/text_grade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="5dp"
-        android:text="학년"
-        android:textColor="#000000"
-        android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/text_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="5dp"
+                android:text="학년"
+                android:textColor="#000000"
+                android:textSize="18sp" />
 
 
-    <TextView
-        android:id="@+id/tv_class_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="1dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        />
+            <TextView
+                android:id="@+id/tv_class_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="1dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                />
 
-    <TextView
-    android:id="@+id/text_class_number"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="1dp"
-    android:layout_marginTop="5dp"
-    android:textColor="#000000"
-    android:text="반"
-        android:textSize="18sp" />
+            <TextView
+                android:id="@+id/text_class_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#000000"
+                android:text="반"
+                android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/tv_student_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="1dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        />
+            <TextView
+                android:id="@+id/tv_student_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="1dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                />
 
-    <TextView
-        android:id="@+id/text_student_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="5dp"
-        android:textColor="#000000"
-        android:text="번"
-        android:textSize="18sp" />
+            <TextView
+                android:id="@+id/text_student_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#000000"
+                android:text="번"
+                android:textSize="18sp" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_student_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textSize="18sp"
-        android:layout_marginLeft="10dp"
-        android:textColor="#000000"
-        />
+        <TextView
+            android:id="@+id/tv_student_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:layout_weight="1"
+            />
 
+    </LinearLayout>
 </LinearLayout>

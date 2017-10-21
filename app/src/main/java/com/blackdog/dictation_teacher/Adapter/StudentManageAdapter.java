@@ -89,7 +89,7 @@ public class StudentManageAdapter extends RecyclerView.Adapter<StudentManageAdap
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
 
-                alertDialogBuilder.setTitle("매칭끊기").setMessage("선생님과의 매칭을 끊으시겠습니까?").setPositiveButton("끊기", new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setTitle("매칭끊기").setMessage("학생과의 매칭을 끊으시겠습니까?").setPositiveButton("끊기", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         final int selectedPosition = holder.getAdapterPosition();
                         Student item = mStudentList.get(selectedPosition);
@@ -108,13 +108,13 @@ public class StudentManageAdapter extends RecyclerView.Adapter<StudentManageAdap
             @Override
             public void onSuccess(Boolean result) {
                 if(result == null) {
-                    Toast.makeText(mContext, "NULL~~~", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "NULL", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if(result == true) {
                     //성공
-                    Toast.makeText(mContext, "매칭끊기 성공", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "매칭을 끊었습니다.", Toast.LENGTH_SHORT).show();
                     mStudentList.remove(selectedPosition);
                     notifyItemRemoved(selectedPosition);
                     notifyItemRangeChanged(selectedPosition, mStudentList.size());

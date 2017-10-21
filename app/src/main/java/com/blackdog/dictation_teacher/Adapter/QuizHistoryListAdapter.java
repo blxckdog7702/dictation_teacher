@@ -47,7 +47,7 @@ public class QuizHistoryListAdapter extends RecyclerView.Adapter<QuizHistoryList
 
             layout = (LinearLayout) view.findViewById(R.id.layout_item_quiz_history);
 
-            tv_number = (TextView) view.findViewById(R.id.tv_number);
+//            tv_number = (TextView) view.findViewById(R.id.tv_number);
             tv_period = (TextView) view.findViewById(R.id.tv_period);
 
         }
@@ -65,7 +65,7 @@ public class QuizHistoryListAdapter extends RecyclerView.Adapter<QuizHistoryList
 
         final QuizHistory quizHistory = quizHistories.get(position);
 //        Log.d("quizHistory",quizHistory.getQuizNumber()+"");
-        holder.tv_number.setText( quizHistory.getQuizNumber().toString());
+      //  holder.tv_number.setText( quizHistory.getQuizNumber().toString());
         holder.tv_period.setText( quizHistory.getDate());
 
         holder.layout.setOnClickListener(new View.OnClickListener() {

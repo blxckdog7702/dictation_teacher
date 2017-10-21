@@ -81,14 +81,13 @@ public class MatchingListAdapter extends RecyclerView.Adapter<MatchingListAdapte
                 holder.mMatchBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "test", Toast.LENGTH_SHORT).show();
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
 
                 alertDialogBuilder.setTitle("매칭신청알림").setMessage("매칭신청을 수락하시겠습니까?").setPositiveButton("수락", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         int selectedPosition = holder.getAdapterPosition();
-                        Toast.makeText(mContext, "수락", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "매칭이 성사되었습니다.", Toast.LENGTH_SHORT).show();
                         matchingAccept(mMatchingList.get(selectedPosition).getId(), selectedPosition);
 
                     }
@@ -96,10 +95,16 @@ public class MatchingListAdapter extends RecyclerView.Adapter<MatchingListAdapte
                     public void onClick(DialogInterface dialog, int whichButton)
                     {
                         int selectedPosition = holder.getAdapterPosition();
-                        Toast.makeText(mContext, "거절", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "매칭을 거절했습니다.", Toast.LENGTH_SHORT).show();
                         matchingCancel(mMatchingList.get(selectedPosition).getId(), selectedPosition);
                     }
+                }).setNeutralButton("취소", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton)
+                    {
+                    }
                 }).show();
+
+
 
             }
         });
