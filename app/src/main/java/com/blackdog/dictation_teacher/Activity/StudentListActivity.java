@@ -49,7 +49,7 @@ public class StudentListActivity extends BaseDrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
 
-        toolbarTitle.setText("학생 관리");
+        toolbarTitle.setText("학생 목록");
 
        // mTotalStatButton = (TextView) findViewById(R.id.bt_total_stat);
        // mTotalStatButton.setPaintFlags(mTotalStatButton.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);

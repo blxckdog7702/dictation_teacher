@@ -4,7 +4,7 @@
     <item
         android:id="@+id/totalbutton"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_format_align_left_black_24dp"
+        android:icon="@drawable/ic_insert_chart_black_24dp"
         android:orderInCategory="0"
         android:title="menu"
         android:layout_gravity="right"

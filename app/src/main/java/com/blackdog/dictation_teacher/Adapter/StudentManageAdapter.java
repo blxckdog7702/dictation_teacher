@@ -1,7 +1,10 @@
 package com.blackdog.dictation_teacher.Adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blackdog.dictation_teacher.Activity.StudentListActivity;
+import com.blackdog.dictation_teacher.Activity.StudentManageActivity;
 import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Student;
@@ -44,6 +49,7 @@ public class StudentManageAdapter extends RecyclerView.Adapter<StudentManageAdap
         public TextView mStudentNumber;
         public ImageView mDelete;
 
+
         public ViewHolder(View v) {
             super(v);
             mStudentSchool = (TextView) v.findViewById(R.id.tv_managing_student_school);
@@ -76,13 +82,23 @@ public class StudentManageAdapter extends RecyclerView.Adapter<StudentManageAdap
         holder.mStudentNumber.setText(mStudentList.get(position).getStudentId().toString());
         holder.mStudentName.setText(mStudentList.get(position).getName());
 
+
         holder.mDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final int selectedPosition = holder.getAdapterPosition();
-                Student item = mStudentList.get(selectedPosition);
 
-                requestBreakMatching(selectedPosition, item);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
+
+                alertDialogBuilder.setTitle("매칭끊기").setMessage("선생님과의 매칭을 끊으시겠습니까?").setPositiveButton("끊기", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        final int selectedPosition = holder.getAdapterPosition();
+                        Student item = mStudentList.get(selectedPosition);
+                        requestBreakMatching(selectedPosition, item);
+                    }
+                }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                }).show();
             }
         });
     }
@@ -98,14 +114,14 @@ public class StudentManageAdapter extends RecyclerView.Adapter<StudentManageAdap
 
                 if(result == true) {
                     //성공
-                    Toast.makeText(mContext, "성공~~~", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "매칭끊기 성공", Toast.LENGTH_SHORT).show();
                     mStudentList.remove(selectedPosition);
                     notifyItemRemoved(selectedPosition);
                     notifyItemRangeChanged(selectedPosition, mStudentList.size());
 
                 } else {
                     //실패
-                    Toast.makeText(mContext, "실패~~~", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "실패", Toast.LENGTH_SHORT).show();
 
                 }
 
