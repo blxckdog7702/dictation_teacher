@@ -126,6 +126,14 @@ public class StatsFragment extends BaseChartFragment {
         ArrayList<Integer> totalAverage = new ArrayList<>();
 
         List<QuizHistory> list = QuizHistoryListSingle.getInstance().getQuizHistoryList();
+
+        if(list == null) {
+            combinedChart.setData(null);
+            combinedChart.invalidate();
+
+            return;
+        }
+
         for (QuizHistory quizHistory : list) {
             if (quizHistory.getAverage() == null) {
                 break;

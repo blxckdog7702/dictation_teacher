@@ -46,9 +46,12 @@ public class QuizHistoryListActivity extends BaseDrawerActivity {
             ApiRequester.getInstance().getTeachersQuizHistories(MyTeacherInfo.getInstance().getTeacher().getId(), new ApiRequester.UserCallback<List<QuizHistory>>() {
                 @Override
                 public void onSuccess(List<QuizHistory> quizHistoryList) {
-                    Log.d("quizHistory",quizHistoryList.size()+"");
-                    for(QuizHistory q : quizHistoryList)
-                        Log.d("quizHistory",q.getId());
+
+                    if(quizHistoryList == null) {
+                        Toast.makeText(QuizHistoryListActivity.this, "시험 이력이 없습니다.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     rv_list.setAdapter(new QuizHistoryListAdapter(QuizHistoryListActivity.this, quizHistoryList));
                     progressBar.setVisibility(View.GONE);
                 }
