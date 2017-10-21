@@ -6,107 +6,137 @@
     android:layout_height="match_parent"
     tools:context="com.blackdog.dictation_teacher.Activity.QuizMakingActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/bt_make_quiz"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="문제 작성"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20px">
 
         <LinearLayout
             android:id="@+id/layout_make_quiz"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@id/bt_make_quiz"
+            app:layout_constraintBottom_toTopOf="@+id/bt_make_quiz"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="문제 이름"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/et_quiz_name"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
                 android:hint="문제 이름을 입력하세요." />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#282828"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="문제"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/et_question_1"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:hint="입력하세요." />
+                android:hint="1번 문제를 입력하세요." />
 
             <EditText
                 android:id="@+id/et_question_2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:hint="입력하세요." />
+                android:hint="2번 문제를 입력하세요." />
 
             <EditText
                 android:id="@+id/et_question_3"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:hint="입력하세요." />
+                android:hint="3번 문제를 입력하세요." />
 
             <EditText
                 android:id="@+id/et_question_4"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:hint="입력하세요." />
+                android:hint="4번 문제를 입력하세요." />
 
             <EditText
                 android:id="@+id/et_question_5"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:hint="입력하세요." />
+                android:hint="5번 문제를 입력하세요." />
 
             <EditText
                 android:id="@+id/et_question_6"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:hint="입력하세요." />
+                android:hint="6번 문제를 입력하세요." />
 
             <EditText
                 android:id="@+id/et_question_7"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:hint="입력하세요." />
+                android:hint="7번 문제를 입력하세요." />
 
             <EditText
                 android:id="@+id/et_question_8"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:hint="입력하세요." />
+                android:hint="8번 문제를 입력하세요." />
 
             <EditText
                 android:id="@+id/et_question_9"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:hint="입력하세요." />
+                android:hint="9번 문제를 입력하세요." />
 
             <EditText
                 android:id="@+id/et_question_10"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:hint="입력하세요." />
+                android:hint="10번 문제를 입력하세요." />
 
         </LinearLayout>
-    </android.support.constraint.ConstraintLayout>
+
+
+        <Button
+            android:id="@+id/bt_make_quiz"
+            android:layout_width="fill_parent"
+            android:layout_height="40.0dip"
+            android:layout_above="@+id/layout"
+            android:layout_alignEnd="@+id/layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/signbutton"
+            android:text="만 들 기"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/text_size" />
+    </LinearLayout>
 </ScrollView>
