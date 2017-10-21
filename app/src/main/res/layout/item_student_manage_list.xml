@@ -36,7 +36,7 @@
         />
 
     <TextView
-        android:id="@+id/text_grade"
+        android:id="@+id/manage_text_grade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
@@ -55,7 +55,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/text_class_number"
+        android:id="@+id/manage_text_class_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
@@ -74,7 +74,7 @@
         android:textSize="18sp"/>
 
     <TextView
-        android:id="@+id/text_student_number"
+        android:id="@+id/manage_text_student_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"

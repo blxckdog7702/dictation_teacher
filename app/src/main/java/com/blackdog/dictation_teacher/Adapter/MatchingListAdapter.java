@@ -1,11 +1,14 @@
 package com.blackdog.dictation_teacher.Adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,21 +34,26 @@ public class MatchingListAdapter extends RecyclerView.Adapter<MatchingListAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
+        public TextView mSchoolName;
         public TextView mStudentName;
         public TextView mGrade;
         public TextView mClassNumber;
         public TextView mStudentNumber;
-        public Button mAccept;
-        public Button mRefuse;
+        public ImageView mMatchBt;
+//        public Button mAccept;
+//        public Button mRefuse;
 
         public ViewHolder(View v) {
             super(v);
+            mSchoolName = (TextView) v.findViewById(R.id.tv_matching_school_name);
             mStudentName = (TextView) v.findViewById(R.id.tv_matching_student_name);
             mGrade = (TextView) v.findViewById(R.id.tv_matching_student_grade);
             mClassNumber = (TextView) v.findViewById(R.id.tv_matching_student_class_number);
             mStudentNumber = (TextView) v.findViewById(R.id.tv_matching_student_student_number);
-            mAccept = (Button) v.findViewById(R.id.bt_matching_student_accept);
-            mRefuse = (Button) v.findViewById(R.id.bt_matching_student_refuse);
+            mMatchBt = (ImageView) v.findViewById(R.id.mMatchBt);
+
+//            mAccept = (Button) v.findViewById(R.id.bt_matching_student_accept);
+//            mRefuse = (Button) v.findViewById(R.id.bt_matching_student_refuse);
         }
     }
 
@@ -63,29 +71,56 @@ public class MatchingListAdapter extends RecyclerView.Adapter<MatchingListAdapte
     public void onBindViewHolder(final ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+        holder.mSchoolName.setText(mMatchingList.get(position).getSchool());
         holder.mGrade.setText(mMatchingList.get(position).getGrade());
         holder.mClassNumber.setText(mMatchingList.get(position).getClass_());
-
         holder.mStudentNumber.setText(mMatchingList.get(position).getStudentId().toString());
         holder.mStudentName.setText(mMatchingList.get(position).getName());
 
-        holder.mAccept.setOnClickListener(new View.OnClickListener() {
+
+                holder.mMatchBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int selectedPosition = holder.getAdapterPosition();
-                Toast.makeText(mContext, "수락", Toast.LENGTH_SHORT).show();
-                matchingAccept(mMatchingList.get(selectedPosition).getId(), selectedPosition);
+                Toast.makeText(mContext, "test", Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
+
+                alertDialogBuilder.setTitle("매칭신청알림").setMessage("매칭신청을 수락하시겠습니까?").setPositiveButton("수락", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        int selectedPosition = holder.getAdapterPosition();
+                        Toast.makeText(mContext, "수락", Toast.LENGTH_SHORT).show();
+                        matchingAccept(mMatchingList.get(selectedPosition).getId(), selectedPosition);
+
+                    }
+                }).setNegativeButton("거절", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton)
+                    {
+                        int selectedPosition = holder.getAdapterPosition();
+                        Toast.makeText(mContext, "거절", Toast.LENGTH_SHORT).show();
+                        matchingCancel(mMatchingList.get(selectedPosition).getId(), selectedPosition);
+                    }
+                }).show();
+
             }
         });
 
-        holder.mRefuse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int selectedPosition = holder.getAdapterPosition();
-                Toast.makeText(mContext, "거절", Toast.LENGTH_SHORT).show();
-                matchingCancel(mMatchingList.get(selectedPosition).getId(), selectedPosition);
-            }
-        });
+//        holder.mAccept.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                int selectedPosition = holder.getAdapterPosition();
+//                Toast.makeText(mContext, "수락", Toast.LENGTH_SHORT).show();
+//                matchingAccept(mMatchingList.get(selectedPosition).getId(), selectedPosition);
+//            }
+//        });
+
+//        holder.mRefuse.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                int selectedPosition = holder.getAdapterPosition();
+//                Toast.makeText(mContext, "거절", Toast.LENGTH_SHORT).show();
+//                matchingCancel(mMatchingList.get(selectedPosition).getId(), selectedPosition);
+//            }
+//        });
     }
 
     private void matchingCancel(String studentId, final int position) {
