@@ -102,9 +102,11 @@ public class ExamResultPage extends BaseDrawerActivity {
 
         ButterKnife.bind(this);
 
+        toolbarTitle.setText("시험 결과");
+
         Intent intent = getIntent();
         quizResult = (QuizResult) intent.getSerializableExtra("quizResult");
-        questions = (ArrayList<Question>) intent.getSerializableExtra("questionsList");
+        questions = (ArrayList<Question>) quizResult.getQuiz().getQuestions();
 
         if(quizResult.getScore() == 0){
             ivScore.setImageResource(R.drawable.score_00);
