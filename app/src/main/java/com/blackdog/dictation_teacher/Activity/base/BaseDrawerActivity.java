@@ -1,6 +1,8 @@
 package com.blackdog.dictation_teacher.Activity.base;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -9,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.LoginActivity;
@@ -18,8 +21,10 @@ import com.blackdog.dictation_teacher.Activity.QuizHistoryListActivity;
 import com.blackdog.dictation_teacher.Activity.QuizMakingActivity;
 import com.blackdog.dictation_teacher.Activity.StudentListActivity;
 import com.blackdog.dictation_teacher.Activity.StudentManageActivity;
+import com.blackdog.dictation_teacher.models.Teacher;
 import com.blackdog.dictation_teacher.singleton.LoginSharedPref;
 import com.blackdog.dictation_teacher.R;
+import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
 import com.blackdog.dictation_teacher.singleton.Util;
 import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
@@ -30,6 +35,9 @@ import butterknife.ButterKnife;
 
 public class BaseDrawerActivity extends BaseActivity {
 
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
+
     @BindView(R.id.drawerlayout) FlowingDrawer drawerlayout;
     @Nullable @BindView(R.id.vNavigation) NavigationView vNavigation;
 
@@ -38,6 +46,7 @@ public class BaseDrawerActivity extends BaseActivity {
 
     //Cannot be bound via Butterknife, hosting view is initialized later (see setupHeader() method)
     private ImageView ivMenuUserProfilePhoto;
+    private TextView teacher_name;
 
     @Override
     public void setContentView(int layoutResID) {
@@ -114,6 +123,7 @@ public class BaseDrawerActivity extends BaseActivity {
     private void setupHeader() {
         View headerView = vNavigation.getHeaderView(0);
         ivMenuUserProfilePhoto = (ImageView) headerView.findViewById(R.id.ivMenuUserProfilePhoto);
+        teacher_name = (TextView) headerView.findViewById(R.id.teacher_name);
         headerView.findViewById(R.id.vGlobalMenuHeader).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,6 +137,11 @@ public class BaseDrawerActivity extends BaseActivity {
 //                .centerCrop()
 //                .transform(new CircleTransformation())
 //                .into(ivMenuUserProfilePhoto);
+
+        sharedPref = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+        editor= sharedPref.edit();
+
+        teacher_name.setText(MyTeacherInfo.getInstance().getTeacher().getName());
     }
 
     public void onGlobalMenuHeaderClick(final View v) {

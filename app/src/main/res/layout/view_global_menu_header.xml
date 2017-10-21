@@ -16,12 +16,11 @@
             android:layout_margin="12dp" />
 
         <TextView
-            android:id="@+id/tvStudentName"
+            android:id="@+id/teacher_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="K-해커톤"
             android:textColor="#2d5d82"
             android:textSize="16sp"
             android:textStyle="bold" />
