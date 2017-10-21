@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="회원가입 없이 진행하기를 원하세요?"
+                android:text="우리반 받아쓰기가 처음이세요?"
                 android:textColor="#EEEEEE"
                 android:textSize="@dimen/text_size" />
         </LinearLayout>
