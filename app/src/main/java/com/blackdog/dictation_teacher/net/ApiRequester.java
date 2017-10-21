@@ -1,7 +1,9 @@
 package com.blackdog.dictation_teacher.net;
 
 import android.util.Log;
+import android.widget.Toast;
 
+import com.blackdog.dictation_teacher.Activity.QuizReadyActivity;
 import com.blackdog.dictation_teacher.models.EndedQuiz;
 import com.blackdog.dictation_teacher.models.Quiz;
 import com.blackdog.dictation_teacher.models.QuizHistory;
@@ -178,7 +180,7 @@ public class ApiRequester {
     }
 
     //시험을 시작하고 quiz history id를 리턴한다
-    public void startQuiz(String teacherId, final int quizNumber) throws JsonSyntaxException, IOException {
+    public void startQuiz(String teacherId, final int quizNumber, final int numOfExaminee) throws JsonSyntaxException, IOException {
         Call<ResponseBody> call = dictationServerApi.startQuiz(teacherId, quizNumber);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -192,17 +194,27 @@ public class ApiRequester {
                         e.printStackTrace();
                     }
 
-                    String quizHistoryId = null;
                     if (object == null) {
                         return;
                     }
-                    quizHistoryId = object.get("quiz_history_id").getAsString();
+                    String quizHistoryId = object.get("quiz_history_id").getAsString();
 
                     try {
                         FcmRequester.getInstance().requestDictationStart(quizNumber, quizHistoryId);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
+                    sendSizeOfExaminee(quizHistoryId, numOfExaminee, new UserCallback<Boolean>() {
+                        @Override
+                        public void onSuccess(Boolean result) {
+                        }
+
+                        @Override
+                        public void onFail() {
+
+                        }
+                    });
                 } else {
                     Log.d(TAG, "error onResponse: " + response.body());
                 }
@@ -268,5 +280,11 @@ public class ApiRequester {
 		Call<List<Student>> call = dictationServerApi.getTeachersStudents(teacherID);
 		call.enqueue(new ObjectCallback<>(userCallback));
 	}
+
+	//시험 시작할 때, 서버로 시험보는 학생 수를 보내주기
+    public void sendSizeOfExaminee(String quizHistoryId, int numOfExaminee, UserCallback<Boolean> userCallback) {
+        Call<okhttp3.ResponseBody> call = dictationServerApi.sendSizeOfExaminee(quizHistoryId, numOfExaminee);
+        call.enqueue(new ResultCallback(userCallback));
+    }
 
 }

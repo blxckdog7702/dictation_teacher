@@ -95,6 +95,10 @@ public interface DictationServerApi {
     @POST("/quiz/end")
     Call<QuizHistory> endQuiz(@Body JsonObject endedQuiz);
 
+    @FormUrlEncoded
+    @POST("/quiz_histories/{id}/number")
+    Call<okhttp3.ResponseBody> sendSizeOfExaminee(@Path("id") String quizHistoryId, @Field("num") int numOfExaminee);
+
     public static final Retrofit retrofit = new Retrofit.Builder()
 //            .baseUrl("http://dictation.run.goorm.io")
             //테스트용 서버1
