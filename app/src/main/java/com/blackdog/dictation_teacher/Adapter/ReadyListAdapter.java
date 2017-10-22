@@ -1,9 +1,11 @@
 package com.blackdog.dictation_teacher.Adapter;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blackdog.dictation_teacher.R;
@@ -26,12 +28,20 @@ public class ReadyListAdapter extends RecyclerView.Adapter<ReadyListAdapter.View
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView tvName;
-        public TextView tvIsReady;
+        public ImageView ivIsReady;
+        public TextView tvSchool;
+        public TextView tvGrade;
+        public TextView tvClass;
+        public TextView tvClassNumber;
 
         public ViewHolder(View v) {
             super(v);
-            tvName = (TextView)v.findViewById(R.id.tv_ready_student_name);
-            tvIsReady = (TextView)v.findViewById(R.id.tv_is_ready);
+            tvName = (TextView) v.findViewById(R.id.tv_ready_student_name);
+            ivIsReady = (ImageView) v.findViewById(R.id.iv_is_ready);
+            tvSchool = (TextView)v.findViewById(R.id.tv_ready_school);
+            tvGrade = (TextView)v.findViewById(R.id.tv_ready_grade);
+            tvClass = (TextView)v.findViewById(R.id.tv_ready_class);
+            tvClassNumber = (TextView)v.findViewById(R.id.tv_ready_class_number);
         }
     }
 
@@ -48,12 +58,19 @@ public class ReadyListAdapter extends RecyclerView.Adapter<ReadyListAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.tvName.setText(mReadyList.get(position).getName());
+        holder.tvSchool.setText(mReadyList.get(position).getSchool());
+        holder.tvGrade.setText(mReadyList.get(position).getGrade());
+        holder.tvClass.setText(mReadyList.get(position).get_class());
+        holder.tvClassNumber.setText(mReadyList.get(position).getNumber());
 
-        if(mReadyList.get(position).isReady()) {
-            holder.tvIsReady.setText("O");
+
+        if (mReadyList.get(position).isReady()) {
+            holder.ivIsReady.setImageResource(R.drawable.ic_check_ok);
         } else {
-            holder.tvIsReady.setText("X");
+            holder.ivIsReady.setImageResource(R.drawable.ic_check_no);
         }
+
+
     }
 
     @Override

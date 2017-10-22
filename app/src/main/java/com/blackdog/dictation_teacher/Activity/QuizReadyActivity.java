@@ -56,7 +56,7 @@ public class QuizReadyActivity extends BaseActivity {
         setContentView(R.layout.activity_quiz_ready);
         rbRippleBackground = (RippleBackground) findViewById(R.id.rbRippleBackground);
         rbRippleBackground.bringToFront();
-        img=(ImageView)findViewById(R.id.ivStudentPhone);
+        img = (ImageView) findViewById(R.id.ivStudentPhone);
         rbRippleBackground.startRippleAnimation();
 
         toolbarTitle.setText("대기 학생 확인");
@@ -93,19 +93,24 @@ public class QuizReadyActivity extends BaseActivity {
         ApiRequester.getInstance().getTeachersStudents(MyTeacherInfo.getInstance().getTeacher().getId(), new ApiRequester.UserCallback<List<Student>>() {
             @Override
             public void onSuccess(List<Student> result) {
-                if(result == null) {
+                if (result == null) {
                     return;
                 }
 
                 mStudentList = result;
 
-                for(Student item : mStudentList) {
-                 StudentReady convert = new StudentReady();
-                  convert.setName(item.getName());
-                  convert.setId(item.getId());
-                  convert.setReady(false);
-                  mReadyList.add(convert);
-}
+                for (Student item : mStudentList) {
+                    StudentReady convert = new StudentReady();
+                    convert.setName(item.getName());
+                    convert.setId(item.getId());
+                    convert.setSchool(item.getSchool());
+                    convert.set_class(item.getClass_());
+                    convert.setGrade(item.getGrade());
+                    convert.setNumber(String.valueOf(item.getStudentId()));
+
+                    convert.setReady(false);
+                    mReadyList.add(convert);
+                }
 
 
                 mAdapter = new ReadyListAdapter(mReadyList);
@@ -120,7 +125,7 @@ public class QuizReadyActivity extends BaseActivity {
     }
 
     public void startQuizClick() {
-        if(numberOfReady < 1) {
+        if (numberOfReady < 1) {
             Toast.makeText(QuizReadyActivity.this, "준비 학생이 1명 이상이여야 시험을 시작할 수 있습니다.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -143,9 +148,6 @@ public class QuizReadyActivity extends BaseActivity {
             String name = intent.getStringExtra("name");
             String id = intent.getStringExtra("id");
 
-            //test
-            Toast.makeText(QuizReadyActivity.this, name + "이가 + " + message, Toast.LENGTH_SHORT).show();
-
             if (name == null) {
                 return;
             }
@@ -159,24 +161,26 @@ public class QuizReadyActivity extends BaseActivity {
             }
 
             if (message.equals("ready")) {
-                for(StudentReady item : mReadyList) {
+                for (StudentReady item : mReadyList) {
                     //테스트는 이름으로
 //                    if(item.getName().equals(name)) {
-                    if(item.getId().equals(id)) {
+                    if (item.getId().equals(id)) {
                         numberOfReady++;
                         item.setReady(true);
+                        Toast.makeText(QuizReadyActivity.this, name + "학생이 대기합니다.", Toast.LENGTH_SHORT).show();
                         break;
                     }
                 }
                 mAdapter.notifyDataSetChanged();
             } else if (message.equals("cancel")) {
-                for(StudentReady item : mReadyList) {
+                for (StudentReady item : mReadyList) {
                     //테스트는 이름으로
 //                    if(item.getName().equals(name)) {
-                    if(item.getId().equals(id)) {
-                        if(numberOfReady > 0) {
+                    if (item.getId().equals(id)) {
+                        if (numberOfReady > 0) {
                             numberOfReady--;
                             item.setReady(false);
+                            Toast.makeText(QuizReadyActivity.this, name + "학생이 대기를 취소합니다.", Toast.LENGTH_SHORT).show();
                             break;
                         }
                     }

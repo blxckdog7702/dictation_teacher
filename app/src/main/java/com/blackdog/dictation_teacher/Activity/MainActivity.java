@@ -87,7 +87,7 @@ public class MainActivity extends BaseDrawerActivity {
                             button.setClickable(true);
                             int pos = listView.getCheckedItemPosition();
                             selectedItem = (Quiz) listView.getItemAtPosition(pos);
-                            Toast.makeText(getApplicationContext(), selectedItem.getName(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), selectedItem.getName() + "을 선택하셨습니다.", Toast.LENGTH_LONG).show();
                         }
                     }
                 });

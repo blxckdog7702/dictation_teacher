@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
             android:gravity="center_horizontal"
             android:text="현재 대기 학생 수 : 0"
             android:textSize="24sp" />
@@ -25,7 +26,7 @@
         <Button
             android:id="@+id/bt_quiz_start"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:background="@color/colorPrimary"
@@ -37,21 +38,30 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ready_recycler_view"
+            android:layout_marginLeft="16dp"
+            android:text="대기 현황"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/ready_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:scrollbars="vertical"
+            android:layout_height="300dp"
             android:layout_above="@+id/bt_quiz_start"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="50dp" />
+            android:scrollbars="vertical" />
 
         <LinearLayout
             android:id="@+id/searching"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/tv_number_of_ready"
-            android:layout_above="@+id/ready_recycler_view">
+            android:layout_above="@+id/ready_recycler_view"
+            android:layout_below="@+id/tv_number_of_ready">
+
             <com.skyfishjy.library.RippleBackground
                 android:id="@+id/rbRippleBackground"
                 android:layout_width="match_parent"
@@ -61,8 +71,7 @@
                 app:rb_duration="3000"
                 app:rb_radius="32dp"
                 app:rb_rippleAmount="6"
-                app:rb_scale="6"
-                >
+                app:rb_scale="6">
 
                 <ImageView
                     android:id="@+id/ivStudentPhone"
@@ -75,9 +84,5 @@
 
         </LinearLayout>
 
-
-
     </RelativeLayout>
-
-
 </LinearLayout>
