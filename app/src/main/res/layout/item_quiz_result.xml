@@ -3,6 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     android:orientation="vertical"
     android:background="#ffffff"
     android:id="@+id/layout_item_quiz_result">
@@ -14,34 +18,27 @@
         android:layout_weight="10"
         >
 
-
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_face_black_36dp"
+            android:layout_gravity="center"/>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
+            android:paddingLeft="4dp"
             android:orientation="vertical"
             android:layout_marginTop="5dp">
-
 
             <TextView
                 android:id="@+id/tv_name"
                 android:text="반상민"
                 android:textColor="#000000"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/tv_quiz_number"
-                android:text="1"
-                android:textColor="#000000"
-                android:textSize="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="false"
-                android:layout_marginRight="50dp"/>
-
         </LinearLayout>
 
         <LinearLayout

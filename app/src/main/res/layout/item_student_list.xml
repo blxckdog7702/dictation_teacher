@@ -2,75 +2,81 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:background="#ffffff"
     android:orientation="horizontal"
-    >
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp">
 
     <ImageView
-        android:id="@+id/ic_face_black_24dp"
+        android:id="@+id/imageView"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_centerVertical="true"
-        android:layout_marginTop="7dp"
+        android:layout_gravity="center_vertical"
         android:layout_marginBottom="10dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginTop="7dp"
         android:src="@drawable/ic_face_black_24dp" />
 
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_student_name"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="12dp"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_student_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="이름"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:weightSum="15"
-            android:orientation="horizontal">
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            android:weightSum="15">
 
             <TextView
                 android:id="@+id/tv_school"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="15"
-                android:layout_below="@+id/tv_student_name"
-                android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
+                android:layout_weight="15"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:layout_toRightOf="@+id/tv_school"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="10dp"
+                android:layout_weight="0">
 
                 <TextView
                     android:id="@+id/tv_grade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/text_grade"
+                    android:id="@+id/manage_text_grade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/tv_grade"
-                    android:text="학년"
-                    android:layout_marginLeft="1dp"
+                    android:text="학년 "
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -78,18 +84,15 @@
                     android:id="@+id/tv_class_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/text_grade"
                     android:layout_marginLeft="1dp"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/text_class_number"
+                    android:id="@+id/manage_text_class_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/tv_class_number"
-                    android:layout_marginLeft="1dp"
-                    android:text="반"
+                    android:text="반 "
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -97,27 +100,18 @@
                     android:id="@+id/tv_student_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/text_class_number"
-                    android:layout_marginLeft="1dp"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/text_student_number"
+                    android:id="@+id/manage_text_student_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/tv_student_number"
-                    android:layout_marginLeft="1dp"
-                    android:text="번"
+                    android:text="번 "
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
             </LinearLayout>
-
         </LinearLayout>
-
-
-
-
-    </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

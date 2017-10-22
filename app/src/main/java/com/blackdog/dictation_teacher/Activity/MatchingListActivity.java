@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseDrawerActivity;
@@ -25,6 +26,7 @@ public class MatchingListActivity extends BaseDrawerActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private LinearLayout mLayoutNoResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +42,16 @@ public class MatchingListActivity extends BaseDrawerActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        mLayoutNoResult = (LinearLayout) findViewById(R.id.layout_no_result);
+
         ApiRequester.getInstance().getTeachersApplicants(MyTeacherInfo.getInstance().getTeacher().getLoginId(), new ApiRequester.UserCallback<List<Student>>() {
             @Override
             public void onSuccess(List<Student> result) {
+                if(result == null || result.size() == 0) {
+                    mLayoutNoResult.setVisibility(View.VISIBLE);
+                    return;
+                }
+
                 mAdapter = new MatchingListAdapter(MatchingListActivity.this, result);
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(15));

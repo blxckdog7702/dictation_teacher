@@ -94,7 +94,7 @@ public class StudentListActivity extends BaseDrawerActivity {
 
             @Override
             public void onLongItemClick(View view, int position) {
-                Toast.makeText(getApplicationContext(), position + "번 째 아이템 롱 클릭", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), position + "번 째 아이템 롱 클릭", Toast.LENGTH_SHORT).show();
             }
         }));
 

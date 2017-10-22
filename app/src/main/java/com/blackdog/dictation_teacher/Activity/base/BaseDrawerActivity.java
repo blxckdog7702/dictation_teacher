@@ -113,7 +113,6 @@ public class BaseDrawerActivity extends BaseActivity {
                     }
                 }
 
-                Toast.makeText(getApplicationContext(),menuItem.getTitle(),Toast.LENGTH_SHORT).show();
                 drawerlayout.closeMenu();
                 return false;
             }

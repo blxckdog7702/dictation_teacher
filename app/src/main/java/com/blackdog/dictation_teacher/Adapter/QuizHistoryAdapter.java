@@ -37,7 +37,7 @@ public class QuizHistoryAdapter extends RecyclerView.Adapter<QuizHistoryAdapter.
 
         TextView tv_name;
         TextView tv_score;
-        TextView tv_quiz_number;
+//        TextView tv_quiz_number;
 
         public ViewHolder(View view) {
             super(view);
@@ -46,7 +46,7 @@ public class QuizHistoryAdapter extends RecyclerView.Adapter<QuizHistoryAdapter.
 
             tv_name = (TextView) view.findViewById(R.id.tv_name);
             tv_score = (TextView) view.findViewById(R.id.tv_score);
-            tv_quiz_number = (TextView) view.findViewById(R.id.tv_quiz_number);
+//            tv_quiz_number = (TextView) view.findViewById(R.id.tv_quiz_number);
         }
     }
 
@@ -61,23 +61,20 @@ public class QuizHistoryAdapter extends RecyclerView.Adapter<QuizHistoryAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         final QuizResult quizResult = quizResults.get(position);
-        String correctString = "";
-
-        for (QuestionResult qr : quizResult.getQuestionResult())
-            if (qr.getCorrect()) correctString += "O|";
-            else correctString += "X|";
+//        String correctString = "";
+//
+//        for (QuestionResult qr : quizResult.getQuestionResult())
+//            if (qr.getCorrect()) correctString += "O|";
+//            else correctString += "X|";
 
 //        Log.d("quizHistory",quizHistory.getQuizNumber()+"");
         holder.tv_name.setText(quizResult.getStudentName());
         holder.tv_score.setText(quizResult.getScore().toString());
-        holder.tv_quiz_number.setText(correctString);
+//        holder.tv_quiz_number.setText(correctString);
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                Toast.makeText(context, "테스트용", Toast.LENGTH_SHORT).show();
-                //화면 옮겨가기
 
                 Intent intent = new Intent(context, ExamResultPage.class);
                 intent.putExtra("quizResult",quizResult);

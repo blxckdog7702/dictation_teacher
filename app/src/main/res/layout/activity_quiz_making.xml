@@ -133,9 +133,10 @@
             android:layout_above="@+id/layout"
             android:layout_alignEnd="@+id/layout"
             android:layout_marginLeft="5dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:background="@drawable/signbutton"
-            android:text="만 들 기"
+            android:text="문제 작성"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/text_size" />
     </LinearLayout>

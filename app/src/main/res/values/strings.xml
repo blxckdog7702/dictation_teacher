@@ -40,4 +40,5 @@
     <string name="quiz_start">→ 문제 시작</string>
     <string name="no_user">추가된 학생이 없습니다.</string>
     <string name="no_quiz_result">시험 이력이 없습니다.</string>
+    <string name="no_matching_req">들어온 매칭 신청이 없습니다.</string>
 </resources>

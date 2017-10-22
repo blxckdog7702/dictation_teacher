@@ -48,6 +48,7 @@ dependencies {
     compile 'nl.dionsegijn:konfetti:1.1.0'
     compile 'com.google.firebase:firebase-messaging:10.0.1'
     compile 'com.skyfishjy.ripplebackground:library:1.0.1'
+    compile 'com.sdsmdg.tastytoast:tastytoast:0.1.1'
 
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.0'

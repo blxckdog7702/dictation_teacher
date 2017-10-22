@@ -17,6 +17,7 @@ import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.Teacher;
 import com.blackdog.dictation_teacher.net.ApiRequester;
+import com.sdsmdg.tastytoast.TastyToast;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -62,12 +63,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void attemptLogin(String id, String password) {
         if(id.isEmpty() || id == null) {
-            Toast.makeText(getApplicationContext(), "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            TastyToast.makeText(getApplicationContext(), "아이디를 입력해주세요.", Toast.LENGTH_SHORT, TastyToast.DEFAULT).show();
             return;
         }
 
         if(password.isEmpty() || password == null) {
-            Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            TastyToast.makeText(getApplicationContext(), "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT, TastyToast.DEFAULT).show();
             return;
         }
 
@@ -75,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Teacher result) {
                 if(result == null) {
-                    Toast.makeText(getApplicationContext(), "아이디와 비밀번호를 확인해주세요.",Toast.LENGTH_SHORT).show();
+                    TastyToast.makeText(getApplicationContext(), "아이디와 비밀번호를 확인해주세요.",Toast.LENGTH_SHORT, TastyToast.DEFAULT).show();
                 } else {
                     if(true) {
                         saveLoginInfoToPref(mLoginIdView.getText().toString(), mPasswordView.getText().toString());
@@ -90,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFail() {
-                Toast.makeText(getApplicationContext(), "서버와의 연결을 확인해주세요.",Toast.LENGTH_SHORT).show();
+                TastyToast.makeText(getApplicationContext(), "서버와의 연결을 확인해주세요.",Toast.LENGTH_SHORT, TastyToast.DEFAULT).show();
             }
         });
     }
