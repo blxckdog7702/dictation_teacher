@@ -4,7 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.AsyncTask;
@@ -17,18 +20,30 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blackdog.dictation_teacher.Activity.base.BaseActivity;
 import com.blackdog.dictation_teacher.R;
+import com.blackdog.dictation_teacher.models.School;
 import com.blackdog.dictation_teacher.models.Teacher;
 import com.blackdog.dictation_teacher.net.ApiRequester;
 
+import java.util.List;
 import java.util.regex.Pattern;
+
+import butterknife.ButterKnife;
+
+import static com.blackdog.dictation_teacher.R.id.spState;
 
 /**
  * A login screen that offers login via teacherId/password.
@@ -64,6 +79,15 @@ public class SignUpActivity extends BaseActivity {
     private View mProgressView;
     private View mSignUpFormView;
 
+    ApiRequester apiRequester = new ApiRequester();
+
+    String region1=null;
+    String region2=null;
+    private String name[];
+    private int temp;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +112,63 @@ public class SignUpActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 attemptSignUp();
+            }
+        });
+        Button mSchoolButton = (Button) findViewById(R.id.school_bt);
+        mSchoolButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                apiRequester.searchSchools(region1, region2, String.valueOf(mSchoolView.getText()), new ApiRequester.UserCallback<List<School>>() {
+                    @Override
+                    public void onSuccess(List<School> result) {
+                            if(result==null)
+                            {
+                                Toast.makeText(getApplicationContext(), "해당학교가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                int size = result.size();
+                                name = new String[size];
+                                int i = -1;
+
+                                Log.d("TAG", "성공");
+
+                                for(School school : result){
+                                    i++;
+                                    System.out.println(school.getName());
+                                    name[i] = school.getName();
+                                }
+
+                                AlertDialog.Builder builder3 =
+                                        new AlertDialog.Builder(SignUpActivity.this);
+                                builder3.setTitle("학교를 선택해 주세요.")
+                                        .setPositiveButton("선택완료", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                mSchoolView.setText(name[temp]);
+                                            }
+                                        })
+                                        .setSingleChoiceItems
+                                                ( name,// 리스트배열 목록
+                                                        -1, // 기본 설정값
+                                                        new DialogInterface.OnClickListener() {
+                                                            public void onClick(DialogInterface dialog,
+                                                                                int which) {
+                                                                temp = which;
+                                                            }
+                                                        }).setNegativeButton("취소", null);    // 리스너
+
+                                AlertDialog dialog = builder3.create();
+                                dialog.show();
+                            }
+
+                    }
+
+                    @Override
+                    public void onFail() {
+                        Log.d("TAG", "실패");
+
+                    }
+                });
             }
         });
 

@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,10 +26,13 @@ import com.blackdog.dictation_teacher.net.ApiRequester;
 import com.blackdog.dictation_teacher.service.MyFirebaseMessagingService;
 import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.skyfishjy.library.RippleBackground;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
 
 public class QuizReadyActivity extends BaseActivity {
     private static final String TAG = "QuizReadyActivity";
@@ -42,11 +47,18 @@ public class QuizReadyActivity extends BaseActivity {
     private List<Student> mStudentList;
     private List<StudentReady> mReadyList;
     private int numberOfReady;
+    private RippleBackground rbRippleBackground;
+    private ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_ready);
+        rbRippleBackground = (RippleBackground) findViewById(R.id.rbRippleBackground);
+        rbRippleBackground.bringToFront();
+        img=(ImageView)findViewById(R.id.ivStudentPhone);
+        rbRippleBackground.startRippleAnimation();
+
         toolbarTitle.setText("대기 학생 확인");
 
         Intent intent = getIntent();
@@ -74,7 +86,6 @@ public class QuizReadyActivity extends BaseActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mReadyList = new ArrayList<>();
-
         requestStudentList();
     }
 
@@ -89,12 +100,13 @@ public class QuizReadyActivity extends BaseActivity {
                 mStudentList = result;
 
                 for(Student item : mStudentList) {
-                    StudentReady convert = new StudentReady();
-                    convert.setName(item.getName());
-                    convert.setId(item.getId());
-                    convert.setReady(false);
-                    mReadyList.add(convert);
-                }
+                 StudentReady convert = new StudentReady();
+                  convert.setName(item.getName());
+                  convert.setId(item.getId());
+                  convert.setReady(false);
+                  mReadyList.add(convert);
+}
+
 
                 mAdapter = new ReadyListAdapter(mReadyList);
                 mRecyclerView.setAdapter(mAdapter);

@@ -84,7 +84,6 @@ public class QuizHistoryListAdapter extends RecyclerView.Adapter<QuizHistoryList
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 //                Toast.makeText(context,"테스트용",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, QuizHistoryActivity.class);
                 intent.putExtra("quizHistoryId",quizHistory.getId());

@@ -19,6 +19,8 @@
     <string name="prompt_auto_login">자동 로그인</string>
     <string name="action_sign_up">회원가입</string>
     <string name="action_duplicate_check">중복검사</string>
+    <string name="action_school_check">학교검색</string>
+
     <string name="action_sign_in_short">회원가입</string>
     <string name="error_invalid_teacher_id">4자 이상 입력해주세요.</string>
     <string name="error_duplicate_teacher_id">아이디 중복검사를 해주세요.</string>

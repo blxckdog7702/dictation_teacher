@@ -36,7 +36,7 @@ public class ApiRequester {
 
     Callback callback;
 
-    private ApiRequester() {
+    public ApiRequester() {
         parser = new JsonParser();
         gson = new Gson();
         dictationServerApi = DictationServerApi.retrofit.create(DictationServerApi.class);

@@ -53,7 +53,6 @@
                         android:orientation="horizontal"
                         android:weightSum="10">
 
-
                         <EditText
                             android:id="@+id/etLoginId"
                             android:layout_width="match_parent"
@@ -100,7 +99,13 @@
                         android:textColorHighlight="#FFFFFF"
                         android:textColorHint="#FFFFFF" />
 
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10px"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
                     <EditText
                         android:id="@+id/school"
                         android:layout_width="match_parent"
@@ -108,16 +113,28 @@
                         android:layout_marginBottom="10px"
                         android:layout_marginLeft="20.0dip"
                         android:layout_marginRight="20.0dip"
+                        android:layout_weight="3"
                         android:layout_marginTop="10px"
                         android:background="@drawable/signedittext"
                         android:hint="@string/prompt_school"
-                        android:inputType="textVisiblePassword"
                         android:maxLines="1"
                         android:paddingLeft="20.0dip"
                         android:textColor="#FFFFFF"
                         android:textColorHighlight="#FFFFFF"
                         android:textColorHint="#FFFFFF" />
 
+                    <Button
+                        android:id="@+id/school_bt"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="fill_parent"
+                        android:layout_height="48.0dip"
+                        android:layout_weight="7"
+                        android:background="@drawable/signbutton"
+                        android:text="@string/action_school_check"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/text_size"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -135,7 +152,6 @@
                             android:layout_weight="1"
                             android:background="@drawable/signedittext"
                             android:hint="@string/prompt_grade"
-                            android:inputType="textVisiblePassword"
                             android:maxLines="1"
                             android:nextFocusDown="@+id/classNumber"
                             android:paddingLeft="20.0dip"
@@ -153,7 +169,6 @@
                             android:layout_weight="1"
                             android:background="@drawable/signedittext"
                             android:hint="@string/prompt_classNumber"
-                            android:inputType="textVisiblePassword"
                             android:maxLines="1"
                             android:nextFocusDown="@+id/name"
                             android:paddingLeft="20.0dip"
@@ -175,8 +190,8 @@
                         android:layout_weight="3"
                         android:background="@drawable/signedittext"
                         android:hint="@string/prompt_name"
-                        android:inputType="textVisiblePassword"
                         android:maxLines="1"
+                        android:privateImeOptions="defaultInputmode=korean"
                         android:paddingLeft="20.0dip"
                         android:textColor="#FFFFFF"
                         android:textColorHighlight="#FFFFFF"

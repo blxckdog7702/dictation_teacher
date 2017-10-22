@@ -13,6 +13,8 @@ import com.blackdog.dictation_teacher.Adapter.QuizHistoryAdapter;
 import com.blackdog.dictation_teacher.R;
 import com.blackdog.dictation_teacher.models.QuizHistory;
 import com.blackdog.dictation_teacher.net.ApiRequester;
+import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
+import com.blackdog.dictation_teacher.singleton.QuizHistoryListSingle;
 
 import java.io.IOException;
 
@@ -27,7 +29,6 @@ public class QuizHistoryActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_quiz_history);
         super.onCreate(savedInstanceState);
-        toolbarTitle.setText("몇월 몇일 무슨 시험");
 
         String quizHistoryId = getIntent().getStringExtra("quizHistoryId");
 
@@ -47,6 +48,8 @@ public class QuizHistoryActivity extends BaseActivity {
                     //화면 갱신하기
                     rv_list.setAdapter(new QuizHistoryAdapter(QuizHistoryActivity.this, result.getQuizResults()));
                     progressBar.setVisibility(View.GONE);
+                    toolbarTitle.setText(result.getDate());
+
                 }
 
                 @Override

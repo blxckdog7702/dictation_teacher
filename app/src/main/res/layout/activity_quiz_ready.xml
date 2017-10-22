@@ -7,37 +7,27 @@
     android:orientation="vertical"
     tools:context="com.blackdog.dictation_teacher.Activity.QuizReadyActivity">
 
-
     <include layout="@layout/toolbar" />
 
-    <android.support.constraint.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv_number_of_ready"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
             android:text="현재 대기 학생 수 : 0"
-            />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/ready_recycler_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scrollbars="vertical"
-            app:layout_constraintTop_toBottomOf="@id/tv_number_of_ready"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteX="0dp" />
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/bt_quiz_start"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
             android:background="@color/colorPrimary"
             android:clickable="false"
             android:onClick="readyToQuiz"
@@ -47,7 +37,47 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ready_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scrollbars="vertical"
+            android:layout_above="@+id/bt_quiz_start"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="50dp" />
+
+        <LinearLayout
+            android:id="@+id/searching"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tv_number_of_ready"
+            android:layout_above="@+id/ready_recycler_view">
+            <com.skyfishjy.library.RippleBackground
+                android:id="@+id/rbRippleBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:rb_color="#0099CC"
+                app:rb_duration="3000"
+                app:rb_radius="32dp"
+                app:rb_rippleAmount="6"
+                app:rb_scale="6"
+                >
+
+                <ImageView
+                    android:id="@+id/ivStudentPhone"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/phone1"
+                    android:visibility="visible" />
+            </com.skyfishjy.library.RippleBackground>
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
 
 
 </LinearLayout>
