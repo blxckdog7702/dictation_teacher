@@ -2,6 +2,8 @@ package com.blackdog.dictation_teacher.net;
 
 import android.util.Log;
 
+import com.blackdog.dictation_teacher.singleton.MyTeacherInfo;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -34,7 +36,7 @@ public class FcmRequester {
 
     public void requestDictationStart(int quizNumber, String quizHistoryId) throws IOException {
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, "{\r\n  \"to\": \"/topics/teacherId\",\r\n  \"data\": \r\n  {\r\n    \"message\": \"start\",\r\n    \"quizNumber\": \"" + quizNumber + "\",\r\n    \"quizHistoryId\": \"" + quizHistoryId + "\"\r\n  }\r\n}");
+        RequestBody body = RequestBody.create(mediaType, "{\r\n  \"to\": \"/topics/" + MyTeacherInfo.getInstance().getTeacher().getLoginId() + "\",\r\n  \"data\": \r\n  {\r\n    \"message\": \"start\",\r\n    \"quizNumber\": \"" + quizNumber + "\",\r\n    \"quizHistoryId\": \"" + quizHistoryId + "\"\r\n  }\r\n}");
         Request request = new Request.Builder()
                 .url("https://fcm.googleapis.com/fcm/send")
                 .post(body)
@@ -63,7 +65,7 @@ public class FcmRequester {
 
     public void requestDictationEnd() {
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, "{\r\n  \"to\": \"/topics/teacherId\",\r\n  \"data\": \r\n  {\r\n    \"message\": \"end\"\r\n  }\r\n}");
+        RequestBody body = RequestBody.create(mediaType, "{\r\n  \"to\": \"/topics/" + MyTeacherInfo.getInstance().getTeacher().getLoginId() + "\",\r\n  \"data\": \r\n  {\r\n    \"message\": \"end\"\r\n  }\r\n}");
         Request request = new Request.Builder()
                 .url("https://fcm.googleapis.com/fcm/send")
                 .post(body)
@@ -86,7 +88,7 @@ public class FcmRequester {
 
     public void requestMoveToNext() {
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, "{\r\n  \"to\": \"/topics/teacherId\",\r\n  \"data\": \r\n  {\r\n    \"message\": \"next\"\r\n  }\r\n}");
+        RequestBody body = RequestBody.create(mediaType, "{\r\n  \"to\": \"/topics/" +  MyTeacherInfo.getInstance().getTeacher().getLoginId() + "\",\r\n  \"data\": \r\n  {\r\n    \"message\": \"next\"\r\n  }\r\n}");
         Request request = new Request.Builder()
                 .url("https://fcm.googleapis.com/fcm/send")
                 .post(body)
@@ -111,7 +113,7 @@ public class FcmRequester {
 
     public void requestMoveToPrevious() {
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, "{\r\n  \"to\": \"/topics/teacherId\",\r\n  \"data\": \r\n  {\r\n    \"message\": \"previous\"\r\n  }\r\n}");
+        RequestBody body = RequestBody.create(mediaType, "{\r\n  \"to\": \"/topics/" + MyTeacherInfo.getInstance().getTeacher().getLoginId() +"\",\r\n  \"data\": \r\n  {\r\n    \"message\": \"previous\"\r\n  }\r\n}");
         Request request = new Request.Builder()
                 .url("https://fcm.googleapis.com/fcm/send")
                 .post(body)

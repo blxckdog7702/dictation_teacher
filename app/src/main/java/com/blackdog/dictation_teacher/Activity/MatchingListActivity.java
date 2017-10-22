@@ -45,7 +45,7 @@ public class MatchingListActivity extends BaseDrawerActivity {
             public void onSuccess(List<Student> result) {
                 mAdapter = new MatchingListAdapter(MatchingListActivity.this, result);
                 mRecyclerView.setAdapter(mAdapter);
-                mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(48));
+                mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(15));
             }
 
             @Override

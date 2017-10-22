@@ -67,7 +67,7 @@ public class StudentManageActivity extends BaseDrawerActivity {
                 }
                 mAdapter = new StudentManageAdapter(StudentManageActivity.this, result);
                 mRecyclerView.setAdapter(mAdapter);
-                mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(5));
+                mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(15));
             }
             @Override
             public void onFail() {

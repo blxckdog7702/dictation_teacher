@@ -152,7 +152,7 @@ public class StudentListActivity extends BaseDrawerActivity {
                 mStudentList = result;
                 mAdapter = new StudentListAdapter(StudentListActivity.this, result);
                 mRecyclerView.setAdapter(mAdapter);
-                mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(48));
+                mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(15));
             }
 
             @Override
