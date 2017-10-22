@@ -2,67 +2,106 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
     android:orientation="vertical"
-    android:background="#ffffff"
-
     android:id="@+id/layout_item_quiz_history">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="10"
+        android:background="#ffffff"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="2"
-            android:background="@color/fbutton_color_carrot"
-            android:orientation="horizontal"
+
+            android:gravity="center"
+            android:orientation="vertical"
             android:weightSum="1">
-            <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_gravity="right"-->
-            <!--android:text="No."/>-->
-            <!--<TextView-->
-            <!--android:id="@+id/tv_number"-->
-            <!--android:text="1111111111"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_marginRight="2dp"-->
-            <!--android:textColor="#000000"-->
-            <!--android:textSize="15dp"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="0.70" />-->
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/ic_content_paste_black_24dp" />
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="right"
+            android:textAlignment="center"
+            android:text="No."/>
+            <TextView
+            android:id="@+id/tv_index"
+            android:text="1"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.70" />
+
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_weight="8">
+            android:layout_weight="8"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_quiz_index"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="문제 번호 : 0번"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_average"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="평균 : 0점"
+                android:textColor="#000000"
+                android:textSize="15dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/ic_face_black_36dp"
+                    android:layout_marginRight="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_examinee_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="0"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
 
 
             <TextView
                 android:id="@+id/tv_period"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="2016-12-01"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="15dp" />
+                android:layout_marginTop="5dp"
+                android:textAlignment="textEnd"
+                android:text="10월 17일 오전 02시 47분"
+                android:textColor="#7e7e7e"
+                android:textSize="13dp" />
+
 
         </LinearLayout>
 
