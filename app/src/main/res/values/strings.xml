@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">우리반받아쓰기 (교사용)</string>
+    <string name="app_name">모두의 받아쓰기(교사용)</string>
     <string name="select_quiz">→ 문제 선택</string>
     <string name="dictation_end">→ 받아쓰기 종료</string>
     <string name="teacher_id">599b03151c6e6f0159a72815</string>
@@ -14,7 +14,7 @@
     <string name="prompt_grade">학년</string>
     <string name="prompt_classNumber">반</string>
     <string name="prompt_name">이름</string>
-    <string name="prompt_sign_up"><u>우리반 받아쓰기가 처음이신가요?</u></string>
+    <string name="prompt_sign_up"><u>모두의 받아쓰기가 처음이세요?</u></string>
     <string name="prompt_sign_in">로그인</string>
     <string name="prompt_auto_login">자동 로그인</string>
     <string name="action_sign_up">회원가입</string>
@@ -38,4 +38,5 @@
     <string name="menu_create_question">문제 작성</string>
     <string name="menu_logout">로그아웃</string>
     <string name="quiz_start">→ 문제 시작</string>
+    <string name="no_user">추가된 학생이 없습니다.</string>
 </resources>

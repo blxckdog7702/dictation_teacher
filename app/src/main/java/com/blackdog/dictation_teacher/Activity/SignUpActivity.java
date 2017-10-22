@@ -224,12 +224,12 @@ public class SignUpActivity extends BaseActivity {
         mNameView.setError(null);
 
         // Store values at the time of the SignUp attempt.
-        String teacherId = mTeacherIdView.getText().toString();
+        String teacherId = mTeacherIdView.getText().toString().trim();
         String password = mPasswordView.getText().toString();
-        String school = mSchoolView.getText().toString();
-        String grade = mGradeView.getText().toString();
-        String classNumber = mClassNumberView.getText().toString();
-        String name = mNameView.getText().toString();
+        String school = mSchoolView.getText().toString().trim();
+        String grade = mGradeView.getText().toString().trim();
+        String classNumber = mClassNumberView.getText().toString().trim();
+        String name = mNameView.getText().toString().trim();
 
         boolean cancel = false;
         View focusView = null;

@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ public class StudentListActivity extends BaseDrawerActivity {
     private TextView mTotalStatButton;
     private List<Student> mStudentList;
     private Student selectedstudent;
-
+    private LinearLayout mLayoutNoUser;
 
 
     @Override
@@ -51,15 +52,17 @@ public class StudentListActivity extends BaseDrawerActivity {
 
         toolbarTitle.setText("학생 목록");
 
-       // mTotalStatButton = (TextView) findViewById(R.id.bt_total_stat);
-       // mTotalStatButton.setPaintFlags(mTotalStatButton.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        // mTotalStatButton = (TextView) findViewById(R.id.bt_total_stat);
+        // mTotalStatButton.setPaintFlags(mTotalStatButton.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.student_recycler_view);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getApplicationContext(),new LinearLayoutManager(this).getOrientation());
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getApplicationContext(), new LinearLayoutManager(this).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mLayoutNoUser = (LinearLayout) findViewById(R.id.layout_no_user);
 
         requestTeachersQuizHistoryList();
         requestStudentList();
@@ -78,11 +81,11 @@ public class StudentListActivity extends BaseDrawerActivity {
             public void onItemClick(View view, int position) {
                 selectedstudent = mStudentList.get(position);
 
-                if(selectedstudent == null) {
-                    Log.d(TAG, "onClick: 클릭한 학생 객체가 null");
+                if (selectedstudent == null) {
                     return;
                 }
-                Toast.makeText(getApplicationContext(), selectedstudent.getName() ,Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(getApplicationContext(), selectedstudent.getName(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(), RecordManagerActivity.class);
                 intent.putExtra("student", selectedstudent);
@@ -91,7 +94,7 @@ public class StudentListActivity extends BaseDrawerActivity {
 
             @Override
             public void onLongItemClick(View view, int position) {
-                Toast.makeText(getApplicationContext(),position+"번 째 아이템 롱 클릭",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), position + "번 째 아이템 롱 클릭", Toast.LENGTH_SHORT).show();
             }
         }));
 
@@ -108,11 +111,12 @@ public class StudentListActivity extends BaseDrawerActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id==R.id.totalbutton)
-        {
-            Toast.makeText(getApplicationContext(), "전체성적보기", Toast.LENGTH_SHORT).show();
-
-
+        if (id == R.id.totalbutton) {
+            if (QuizHistoryListSingle.getInstance().getQuizHistoryList() == null ||
+                    QuizHistoryListSingle.getInstance().getQuizHistoryList().size() == 0) {
+                Toast.makeText(getApplicationContext(), "시험 이력이 없습니다.", Toast.LENGTH_SHORT).show();
+                return false;
+            }
             //우리반전체통계
             Intent intent = new Intent(getApplicationContext(), TotalStatisticsActivity.class);
             startActivity(intent);
@@ -147,9 +151,13 @@ public class StudentListActivity extends BaseDrawerActivity {
             @Override
             public void onSuccess(List<Student> result) {
                 if (result == null) {
+                    mLayoutNoUser.setVisibility(View.VISIBLE);
                     return;
                 }
                 mStudentList = result;
+                if(mStudentList.size() == 0) {
+                    mLayoutNoUser.setVisibility(View.VISIBLE);
+                }
                 mAdapter = new StudentListAdapter(StudentListActivity.this, result);
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(15));

@@ -6,14 +6,33 @@
     android:layout_height="match_parent"
     tools:context="com.blackdog.dictation_teacher.Activity.StudentListActivity">
 
+    <LinearLayout
+        android:id="@+id/layout_no_user"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/no_user"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/no_user" />
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/student_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        android:scrollbars="vertical"
-        >
+        android:scrollbars="vertical">
 
     </android.support.v7.widget.RecyclerView>
 

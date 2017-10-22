@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                attemptLogin(mLoginIdView.getText().toString(), mPasswordView.getText().toString());
+                attemptLogin(mLoginIdView.getText().toString().trim(), mPasswordView.getText().toString().trim());
             }
         });
     }

@@ -30,7 +30,7 @@
                     android:id="@+id/tabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="#B2CCFF"
+                    android:background="@color/colorPrimary"
                     android:layout_gravity="bottom"
                     app:tabIndicatorColor="#AAAAAA"
                     app:tabSelectedTextColor="#000000"
