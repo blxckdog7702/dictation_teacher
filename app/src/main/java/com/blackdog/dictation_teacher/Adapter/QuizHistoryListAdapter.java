@@ -39,17 +39,22 @@ public class QuizHistoryListAdapter extends RecyclerView.Adapter<QuizHistoryList
 
         LinearLayout layout;
 
-        TextView tv_number;
+        TextView tv_index;
         TextView tv_period;
+        TextView tv_quiz_index;
+        TextView tv_average;
+        TextView tv_examinee_size;
 
         public ViewHolder(View view) {
             super(view);
 
             layout = (LinearLayout) view.findViewById(R.id.layout_item_quiz_history);
 
-//            tv_number = (TextView) view.findViewById(R.id.tv_number);
+            tv_index = (TextView) view.findViewById(R.id.tv_index);
             tv_period = (TextView) view.findViewById(R.id.tv_period);
-
+            tv_quiz_index = (TextView) view.findViewById(R.id.tv_quiz_index);
+            tv_average = (TextView) view.findViewById(R.id.tv_average);
+            tv_examinee_size = (TextView) view.findViewById(R.id.tv_examinee_size);
         }
     }
 
@@ -64,9 +69,17 @@ public class QuizHistoryListAdapter extends RecyclerView.Adapter<QuizHistoryList
     public void onBindViewHolder(ViewHolder holder,int position) {
 
         final QuizHistory quizHistory = quizHistories.get(position);
-//        Log.d("quizHistory",quizHistory.getQuizNumber()+"");
-      //  holder.tv_number.setText( quizHistory.getQuizNumber().toString());
+        Log.d("quizHistory",quizHistory.getAverage() + "");
+
+        holder.tv_index.setText( (position + 1) + "");
         holder.tv_period.setText( quizHistory.getDate());
+        if( quizHistory.getQuizResults() != null ){
+            holder.tv_examinee_size.setText( quizHistory.getQuizResults().size() + "");
+            if(quizHistory.getAverage() != null)
+                holder.tv_average.setText( "평균 : " + quizHistory.getAverage() + "");
+            if(quizHistory.getQuizNumber() != null)
+                holder.tv_quiz_index.setText( "문제 번호 : " + quizHistory.getQuizNumber());
+        }
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override

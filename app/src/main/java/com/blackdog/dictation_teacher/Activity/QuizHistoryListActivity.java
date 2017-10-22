@@ -57,7 +57,7 @@ public class QuizHistoryListActivity extends BaseDrawerActivity {
                     }
 
                     rv_list.setAdapter(new QuizHistoryListAdapter(QuizHistoryListActivity.this, quizHistoryList));
-                    rv_list.addItemDecoration(new VerticalSpaceItemDecoration(48));
+                    rv_list.addItemDecoration(new VerticalSpaceItemDecoration(10));
 
                     progressBar.setVisibility(View.GONE);
                 }
