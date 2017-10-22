@@ -36,6 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:text="누구의 점수와 반 평균 점수" />
 
             <com.github.mikephil.charting.charts.CombinedChart
@@ -49,6 +51,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:text="누구가 자주 틀리는 문법" />
 
             <com.github.mikephil.charting.charts.PieChart

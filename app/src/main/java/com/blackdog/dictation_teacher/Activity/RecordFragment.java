@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blackdog.dictation_teacher.Adapter.RecordAdapter;
@@ -40,12 +41,15 @@ public class RecordFragment extends Fragment {
     RecyclerView rvRecord;
     @BindView(R.id.tvRecord)
     TextView tvRecord;
+    LinearLayout layoutNoResult;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record, container, false);
         ButterKnife.bind(this, view);
+
+        layoutNoResult = (LinearLayout)view.findViewById(R.id.layout_no_result);
 
 //        getServerData();
 //        initModels();
@@ -63,9 +67,13 @@ public class RecordFragment extends Fragment {
         student = ((RecordManagerActivity) getActivity()).getStudent();
 
         if (student == null) {
+            layoutNoResult.setVisibility(View.VISIBLE);
             return;
         }
 
+        if (student.getQuizResults().size() == 0) {
+            layoutNoResult.setVisibility(View.VISIBLE);
+        }
         recordAdapter = new RecordAdapter(getActivity(), student.getQuizResults());
         rvRecord.setAdapter(recordAdapter);
         recordAdapter.notifyDataSetChanged();
