@@ -89,6 +89,12 @@ public class QuizReadyActivity extends BaseActivity {
         requestStudentList();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(myReciver);
+    }
+
     private void requestStudentList() {
         ApiRequester.getInstance().getTeachersStudents(MyTeacherInfo.getInstance().getTeacher().getId(), new ApiRequester.UserCallback<List<Student>>() {
             @Override

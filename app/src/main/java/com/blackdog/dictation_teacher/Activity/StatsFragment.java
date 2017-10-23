@@ -46,8 +46,7 @@ public class StatsFragment extends BaseChartFragment {
     @BindView(R.id.tv_rectify_pie_chart)
     TextView tvRectify;
 
-    String[] marker = {"Property1", "Property2", "Property3", "Property4", "Property5",
-            "Property6", "Property7", "Property8", "Property9", "Property10",};
+    String[] marker = {"띄어쓰기", "맞춤법", "붙여쓰기"};
 
     CombinedChart combinedChart;
     PieChart pieChart;
@@ -95,7 +94,7 @@ public class StatsFragment extends BaseChartFragment {
 
         List<QuizResult> quizResultList = student.getQuizResults();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             rectifyTotal.add(0);
         }
 
@@ -104,13 +103,13 @@ public class StatsFragment extends BaseChartFragment {
             rectifyTotal.set(0, rectifyTotal.get(0) + item.getProperty1());
             rectifyTotal.set(1, rectifyTotal.get(1) + item.getProperty2());
             rectifyTotal.set(2, rectifyTotal.get(2) + item.getProperty3());
-            rectifyTotal.set(3, rectifyTotal.get(3) + item.getProperty4());
-            rectifyTotal.set(4, rectifyTotal.get(4) + item.getProperty5());
-            rectifyTotal.set(5, rectifyTotal.get(5) + item.getProperty6());
-            rectifyTotal.set(6, rectifyTotal.get(6) + item.getProperty7());
-            rectifyTotal.set(7, rectifyTotal.get(7) + item.getProperty8());
-            rectifyTotal.set(8, rectifyTotal.get(8) + item.getProperty9());
-            rectifyTotal.set(9, rectifyTotal.get(9) + item.getProperty10());
+//            rectifyTotal.set(3, rectifyTotal.get(3) + item.getProperty4());
+//            rectifyTotal.set(4, rectifyTotal.get(4) + item.getProperty5());
+//            rectifyTotal.set(5, rectifyTotal.get(5) + item.getProperty6());
+//            rectifyTotal.set(6, rectifyTotal.get(6) + item.getProperty7());
+//            rectifyTotal.set(7, rectifyTotal.get(7) + item.getProperty8());
+//            rectifyTotal.set(8, rectifyTotal.get(8) + item.getProperty9());
+//            rectifyTotal.set(9, rectifyTotal.get(9) + item.getProperty10());
         }
 
 

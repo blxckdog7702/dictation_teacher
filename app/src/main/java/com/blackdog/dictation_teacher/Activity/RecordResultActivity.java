@@ -74,8 +74,7 @@ public class RecordResultActivity extends BaseChartActivity implements OnChartVa
     @BindView(R.id.konfettiView)
     KonfettiView konfettiView;
 
-    String[] marker = {"Property1", "Property2", "Property3", "Property4", "Property5",
-            "Property6", "Property7", "Property8", "Property9", "Property10",};
+    String[] marker = {"띄어쓰기", "맞춤법", "붙여쓰기"};
 
     protected String[] mParties = new String[]{
             "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
@@ -285,13 +284,13 @@ public class RecordResultActivity extends BaseChartActivity implements OnChartVa
         data.add(rectifyCount.getProperty1());
         data.add(rectifyCount.getProperty2());
         data.add(rectifyCount.getProperty3());
-        data.add(rectifyCount.getProperty4());
-        data.add(rectifyCount.getProperty5());
-        data.add(rectifyCount.getProperty6());
-        data.add(rectifyCount.getProperty7());
-        data.add(rectifyCount.getProperty8());
-        data.add(rectifyCount.getProperty9());
-        data.add(rectifyCount.getProperty10());
+//        data.add(rectifyCount.getProperty4());
+//        data.add(rectifyCount.getProperty5());
+//        data.add(rectifyCount.getProperty6());
+//        data.add(rectifyCount.getProperty7());
+//        data.add(rectifyCount.getProperty8());
+//        data.add(rectifyCount.getProperty9());
+//        data.add(rectifyCount.getProperty10());
 
         PieData pieData = generatePieData(data, marker);
         pieChart.setData(pieData);
@@ -423,13 +422,13 @@ public class RecordResultActivity extends BaseChartActivity implements OnChartVa
 
     private SpannableString generateCenterSpannableText() {
 
-        SpannableString s = new SpannableString("MPAndroidChart\ndeveloped by Philipp Jahoda");
-        s.setSpan(new RelativeSizeSpan(1.5f), 0, 14, 0);
-        s.setSpan(new StyleSpan(Typeface.NORMAL), 14, s.length() - 15, 0);
-        s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
-        s.setSpan(new RelativeSizeSpan(.65f), 14, s.length() - 15, 0);
-        s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
+        SpannableString s = new SpannableString("어떤 맞춤법이 취약한지 참고하세요!");
+//        s.setSpan(new RelativeSizeSpan(1.5f), 0, 14, 0);
+//        s.setSpan(new StyleSpan(Typeface.NORMAL), 14, s.length() - 15, 0);
+//        s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
+//        s.setSpan(new RelativeSizeSpan(.65f), 14, s.length() - 15, 0);
+//        s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
+//        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
         return s;
     }
 
