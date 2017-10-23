@@ -181,25 +181,25 @@ public class RecordResultActivity extends BaseChartActivity implements OnChartVa
 
     private void setScoreImage() {
         if (quizResult.getScore() == 0) {
-            ivScore.setImageResource(R.drawable.score0);
+            ivScore.setImageResource(R.drawable.score_00);
         } else if (quizResult.getScore() == 10) {
-            ivScore.setImageResource(R.drawable.score10);
+            ivScore.setImageResource(R.drawable.score_10);
         } else if (quizResult.getScore() == 20) {
-            ivScore.setImageResource(R.drawable.score10);
+            ivScore.setImageResource(R.drawable.score_20);
         } else if (quizResult.getScore() == 30) {
-            ivScore.setImageResource(R.drawable.score10);
+            ivScore.setImageResource(R.drawable.score_30);
         } else if (quizResult.getScore() == 40) {
-            ivScore.setImageResource(R.drawable.score10);
+            ivScore.setImageResource(R.drawable.score_40);
         } else if (quizResult.getScore() == 50) {
-            ivScore.setImageResource(R.drawable.score10);
+            ivScore.setImageResource(R.drawable.score_50);
         } else if (quizResult.getScore() == 60) {
-            ivScore.setImageResource(R.drawable.score10);
+            ivScore.setImageResource(R.drawable.score_60);
         } else if (quizResult.getScore() == 70) {
-            ivScore.setImageResource(R.drawable.score10);
+            ivScore.setImageResource(R.drawable.score_70);
         } else if (quizResult.getScore() == 80) {
-            ivScore.setImageResource(R.drawable.score10);
+            ivScore.setImageResource(R.drawable.score_80);
         } else if (quizResult.getScore() == 90) {
-            ivScore.setImageResource(R.drawable.score10);
+            ivScore.setImageResource(R.drawable.score_90);
         } else if (quizResult.getScore() == 100) {
             ivScore.setImageResource(R.drawable.score100);
             konfettiView.build()
@@ -224,6 +224,8 @@ public class RecordResultActivity extends BaseChartActivity implements OnChartVa
 
         intent.putExtra("questionResult", quizResult.getQuestionResult().get(num));
         intent.putExtra("question", questions.get(num).getSentence());
+        intent.putExtra("quizResult", quizResult);
+        intent.putExtra("questionNumber", num);
         startActivity(intent);
     }
 

@@ -4,62 +4,74 @@
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+        android:background="@drawable/exam_result"
         android:orientation="vertical">
         <include layout="@layout/toolbar"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/rounded_layout_gray"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="5">
 
-            <RelativeLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/rounded_layout_white">
+                android:layout_weight="5"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/gradeboard"
+                    android:layout_gravity="center"/>
 
                 <ImageView
                     android:id="@+id/ivScore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="60dp"
-                    android:src="@drawable/score10" />
-            </RelativeLayout>
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/score_100"
+                    />
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/rounded_layout_white"
-                android:orientation="vertical">
+                android:layout_weight="2">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#8a4f3f" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_layout_white"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
                     android:weightSum="10">
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="#8a4f3f" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -76,6 +88,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
+                            fbutton:buttonColor="@color/fbutton_color_wisteria"
                             android:text="1"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/bt_result_text_size"
@@ -89,7 +102,7 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:background="#AAAAAA" />
+                            android:background="#8a4f3f" />
 
                         <ImageView
                             android:id="@+id/ivGradeOne"
@@ -103,10 +116,10 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="3dp"
                         android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
-                        android:background="#AAAAAA" />
+                        android:background="#8a4f3f" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -125,6 +138,7 @@
                             android:layout_marginTop="10dp"
                             android:text="2"
                             android:textColor="@android:color/white"
+                            fbutton:buttonColor="@color/fbutton_color_belize_hole"
                             android:textSize="@dimen/bt_result_text_size"
                             fbutton:cornerRadius="15dp"
                             fbutton:shadowEnabled="true"
@@ -136,7 +150,7 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:background="#AAAAAA" />
+                            android:background="#8a4f3f" />
 
                         <ImageView
                             android:id="@+id/ivGradeTwo"
@@ -150,10 +164,10 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="3dp"
                         android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
-                        android:background="#AAAAAA" />
+                        android:background="#8a4f3f" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -170,6 +184,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
+                            fbutton:buttonColor="@color/fbutton_color_green_sea"
                             android:text="3"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/bt_result_text_size"
@@ -183,7 +198,7 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:background="#AAAAAA" />
+                            android:background="#8a4f3f" />
 
                         <ImageView
                             android:id="@+id/ivGradeThree"
@@ -197,10 +212,10 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="3dp"
                         android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
-                        android:background="#AAAAAA" />
+                        android:background="#8a4f3f" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -217,6 +232,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
+                            fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
                             android:text="4"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/bt_result_text_size"
@@ -230,7 +246,7 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:background="#AAAAAA" />
+                            android:background="#8a4f3f" />
 
                         <ImageView
                             android:id="@+id/ivGradeFour"
@@ -244,10 +260,10 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="3dp"
                         android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
-                        android:background="#AAAAAA" />
+                        android:background="#8a4f3f" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -264,6 +280,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
+                            fbutton:buttonColor="@color/fbutton_color_alizarin"
                             android:text="5"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/bt_result_text_size"
@@ -277,7 +294,7 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:background="#AAAAAA" />
+                            android:background="#8a4f3f" />
 
                         <ImageView
                             android:id="@+id/ivGradeFive"
@@ -289,21 +306,26 @@
                             android:layout_marginRight="10dp"
                             android:src="@drawable/ic_check_no" />
                     </LinearLayout>
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="#8a4f3f" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="#AAAAAA" />
+                    android:layout_height="3dp"
+                    android:background="#8a4f3f" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_layout_white"
                     android:gravity="center_horizontal"
                     android:weightSum="10">
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="#8a4f3f" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -322,6 +344,7 @@
                             android:layout_marginTop="10dp"
                             android:text="6"
                             android:textColor="@android:color/white"
+                            fbutton:buttonColor="@color/fbutton_color_asbestos"
                             android:textSize="@dimen/bt_result_text_size"
                             fbutton:cornerRadius="15dp"
                             fbutton:shadowEnabled="true"
@@ -333,7 +356,7 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:background="#AAAAAA" />
+                            android:background="#8a4f3f" />
 
                         <ImageView
                             android:id="@+id/ivGradeSix"
@@ -347,10 +370,10 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="3dp"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
-                        android:background="#AAAAAA" />
+                        android:background="#8a4f3f" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -369,6 +392,7 @@
                             android:layout_marginTop="10dp"
                             android:text="7"
                             android:textColor="@android:color/white"
+                            fbutton:buttonColor="@color/fbutton_color_sun_flower"
                             android:textSize="@dimen/bt_result_text_size"
                             fbutton:cornerRadius="15dp"
                             fbutton:shadowEnabled="true"
@@ -380,7 +404,7 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:background="#AAAAAA" />
+                            android:background="#8a4f3f" />
 
                         <ImageView
                             android:id="@+id/ivGradeSeven"
@@ -394,10 +418,10 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="3dp"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
-                        android:background="#AAAAAA" />
+                        android:background="#8a4f3f" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -417,6 +441,7 @@
                             android:text="8"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/bt_result_text_size"
+                            fbutton:buttonColor="@color/fbutton_color_carrot"
                             fbutton:cornerRadius="15dp"
                             fbutton:shadowEnabled="true"
                             fbutton:shadowHeight="6dp" />
@@ -427,7 +452,7 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:background="#AAAAAA" />
+                            android:background="#8a4f3f" />
 
                         <ImageView
                             android:id="@+id/ivGradeEight"
@@ -441,10 +466,10 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="3dp"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
-                        android:background="#AAAAAA" />
+                        android:background="#8a4f3f" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -461,6 +486,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
+                            fbutton:buttonColor="@color/fbutton_color_silver"
                             android:text="9"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/bt_result_text_size"
@@ -474,7 +500,7 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:background="#AAAAAA" />
+                            android:background="#8a4f3f" />
 
                         <ImageView
                             android:id="@+id/ivGradeNine"
@@ -488,10 +514,10 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="3dp"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
-                        android:background="#AAAAAA" />
+                        android:background="#8a4f3f" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -508,6 +534,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
+                            fbutton:buttonColor="@color/fbutton_default_shadow_color"
                             android:text="10"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/bt_result_text_size"
@@ -521,7 +548,7 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:background="#AAAAAA" />
+                            android:background="#8a4f3f" />
 
                         <ImageView
                             android:id="@+id/ivGradeTen"
@@ -533,22 +560,18 @@
                             android:layout_marginRight="10dp"
                             android:src="@drawable/ic_check_no" />
                     </LinearLayout>
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="#8a4f3f" />
 
                 </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="#8a4f3f" />
+
             </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/rounded_layout_gray">
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pieChart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
 
         </LinearLayout>
 
@@ -557,5 +580,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="match_parent"
+                android:layout_height="345dp" />
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
