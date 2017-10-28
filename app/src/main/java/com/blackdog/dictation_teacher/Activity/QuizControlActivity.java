@@ -110,5 +110,7 @@ public class QuizControlActivity extends AppCompatActivity {
 
     public void dictationEndClick(View view) {
         FcmRequester.getInstance().requestDictationEnd();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

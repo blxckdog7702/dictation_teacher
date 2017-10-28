@@ -4,7 +4,7 @@
     android:id="@+id/layout_sign_up"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sign"
+    android:background="@drawable/splash"
     android:gravity="center_horizontal"
     android:orientation="vertical"
 
@@ -15,7 +15,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="top">
+        android:gravity="top"
+        android:background="#66000000">
 
         <LinearLayout
             android:layout_width="match_parent"

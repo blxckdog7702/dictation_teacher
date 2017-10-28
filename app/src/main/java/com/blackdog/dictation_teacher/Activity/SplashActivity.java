@@ -23,8 +23,10 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         LoginSharedPref pref = new LoginSharedPref();
-        final String login_id = pref.getLoginId(getApplicationContext());
+//        final String login_id = pref.getLoginId(getApplicationContext());
         final String password = pref.getPassword(getApplicationContext());
+
+        final String login_id = "";
 
         new Handler().postDelayed((new Runnable() {
             @Override
